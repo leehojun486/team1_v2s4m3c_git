@@ -18,7 +18,7 @@
 </head>
 <body>
  <H1>1. 팀장</H1>
- <H1>2,,,adefsdfsdfsdfsdf,,,,,,,,,</H1>
+ <H1>2 병장 이명원</H1>
 
 </body>
 </html>
