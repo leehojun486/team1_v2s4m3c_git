@@ -15,12 +15,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-</head>
+</head>  
 <body>
  <H1>1. 팀장</H1>
  <H1>2. 수석개발자</H1>
  <H1>3. 웹퍼블리셔</H1>
  <H1>4. 데이터과학자</H1>
-
+ <H1>5. 안경진</H1>
 </body>
 </html>
