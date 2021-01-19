@@ -17,7 +17,7 @@
 
 </head>  
 <body>
-      <img src='./lamen.jpg' style='width: 100%;'>
+      <img src='./lamen1.jpg' style='width: 100%;'> 
    
   
 </body>
