@@ -23,8 +23,8 @@
       <img src='./gookbab.jpg' style='width: 100%;'> 
       <h2>3.웹 퍼블리셔: 김밥</h2>
       <img src='./kimbab.jpg' style='width: 100%;'> 
-      <h2>4.데이터 아키텍처: 바다</h2>
-      <img src='./sea.jpg' style='width: 100%;'>
+      <h2>4.데이터 아키텍처: 찜닭</h2>
+      <img src='./steamedchicken.jpg' style='width: 100%;'>
       <h2>5.데이터 사이언스: 조퇴</h2>
       <img src='./jotae.jpg' style='width: 100%;'>
   
