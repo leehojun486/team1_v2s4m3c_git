@@ -17,7 +17,7 @@
 
 </head>  
 <body>
-      <h2>1.팀장: 전지현</h2>
+      <h2>1.팀장: 전지현!</h2>
       <img src='./images/jihyun2.jpg' style='width: 100%;'> 
 
 </body>
