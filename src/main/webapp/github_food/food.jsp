@@ -18,7 +18,7 @@
 </head>  
 <body>
       <img src='./lamen1.jpg' style='width: 100%;'> 
-   
+      <img src='./sea.jpg' style='width: 100%;'> 
   
 </body>
 </html>
