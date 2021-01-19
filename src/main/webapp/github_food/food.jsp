@@ -27,6 +27,5 @@
       <img src='./sea.jpg' style='width: 100%;'>
       <h2>5.데이터 사이언스: 조퇴</h2>
       <img src='./jotae.jpg' style='width: 100%;'>
-  
 </body>
 </html>
