@@ -17,7 +17,10 @@
 
 </head>  
 <body>
-      <img src='./lamen1.jpg' style='width: 100%;'> 
+      <h2>1.팀장: 라면</h2>
+      <img src='./lamen1.jpg' style='width: 100%;'>
+      <h2>1.수석개발자: 국밥</h2>
+      <img src='./gookbab.jpg' style='width: 100%;'> 
    
   
 </body>
