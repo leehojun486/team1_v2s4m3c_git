@@ -21,6 +21,7 @@
       <img src='./images/jihyun2.jpg' style='width: 100%;'>
       <h2>2.수석개발자: 아린!</h2>
       <img src='./images/arin.jpg' style='width: 100%;'>  
-
+      <h2>3.웹퍼블리셔: 톰하디</h2>
+      <img src='./images/tom.jpg' style='width: 100%;'>  
 </body>
 </html>
