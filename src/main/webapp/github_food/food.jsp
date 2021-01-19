@@ -21,7 +21,7 @@
       <img src='./lamen1.jpg' style='width: 100%;'>
       <h2>1.수석개발자: 국밥</h2>
       <img src='./gookbab.jpg' style='width: 100%;'> 
-      <h2>1.웹 퍼블리셔: 국밥</h2>
+      <h2>3.웹 퍼블리셔: 김밥</h2>
       <img src='./kimbab.jpg' style='width: 100%;'> 
       <h2>4.데이터 아키텍처: 바다</h2>
       <img src='./sea.jpg' style='width: 100%;'>
