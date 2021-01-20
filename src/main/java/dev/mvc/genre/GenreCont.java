@@ -30,7 +30,7 @@ public class GenreCont {
   }
 
   /**
-   * µî·ÏÆû http://localhost:9090/team1/genre/create.do
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/team1/genre/create.do
    * 
    * @return
    */
@@ -42,25 +42,25 @@ public class GenreCont {
   }
 
   /**
-   * µî·Ï Ã³¸® http://localhost:9090/resort/categrp/create.do
+   * ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ http://localhost:9090/resort/categrp/create.do
    * 
    * @return
    */
   @RequestMapping(value = "/genre/create.do", method = RequestMethod.POST)
   public ModelAndView create(GenreVO genreVO) {
-    // request.setAttribute("genreVO", genreVO) ÀÚµ¿ ½ÇÇà
+    // request.setAttribute("genreVO", genreVO) ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/genre/create_msg"); // /webapp/categrp/create_msg.jsp
 
-    int cnt = this.genreProc.create(genreVO); // µî·Ï Ã³¸®
+    int cnt = this.genreProc.create(genreVO); // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 
     return mav; // forward
   }
 
   /**
-   * ¸ñ·Ï http://localhost:9090/team1/genre/list.do
+   * ï¿½ï¿½ï¿½ http://localhost:9090/team1/genre/list.do
    * 
    * @return
    */
@@ -75,7 +75,7 @@ public class GenreCont {
     return mav; // forward
   }
   /**
-   * ¸ñ·Ï http://localhost:9090/resort/cate/list.do
+   * ï¿½ï¿½ï¿½ http://localhost:9090/resort/cate/list.do
    * 
    * @return
    */
@@ -96,7 +96,7 @@ public class GenreCont {
   
   
   /**
-   * Á¶È¸ + ¼öÁ¤Æû http://localhost:9090/team1/genre/read_update.do
+   * ï¿½ï¿½È¸ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/team1/genre/read_update.do
    * 
    * @return
    */
@@ -114,7 +114,7 @@ public class GenreCont {
     return mav; // forward
   }
   /**
-   * ¼öÁ¤ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * 
    * @param genreVO
    * @return
@@ -125,14 +125,14 @@ public class GenreCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.genreProc.update(genreVO);
-    mav.addObject("cnt", cnt); // request¿¡ ÀúÀå
+    mav.addObject("cnt", cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     mav.setViewName("/genre/update_msg"); // webapp/genre/update_msg.jsp
 
     return mav;
   }
   /**
-   * »èÁ¦Æû http://localhost:9090/resort/genre/read_delete.do
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/resort/genre/read_delete.do
    * @return
    */
   @RequestMapping(value = "/genre/read_delete.do", method = RequestMethod.GET)
@@ -150,7 +150,7 @@ public class GenreCont {
     return mav; // forward
   }
   /**
-   * »èÁ¦ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param genreno
    * @return
    */
@@ -159,7 +159,7 @@ public class GenreCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.genreProc.delete(genreno);
-    mav.addObject("cnt", cnt); // request¿¡ ÀúÀå
+    mav.addObject("cnt", cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     mav.setViewName("/genre/delete_msg"); // /webapp/genre/delete_msg.jsp
 
@@ -167,7 +167,7 @@ public class GenreCont {
   }
 //http://localhost:9090/resort/cate/list_join.do
  /**
-  * categrp + cate join ÀüÃ¼ ¸ñ·Ï
+  * categrp + cate join ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
   * @return
   */
  @RequestMapping(value="/genre/list_join.do", method=RequestMethod.GET )
