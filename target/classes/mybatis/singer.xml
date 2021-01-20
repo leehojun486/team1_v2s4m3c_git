@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.music.MusicDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.singer.SingerDAOInter">
+
+  <insert id="create" parameterType="SingerVO">
+    INSERT INTO singer(singerno, singer, agency, age, sex)
+    VALUES(singer_seq.nextval, #{singer}, #{agency}, #{age}, #{sex})
+  </insert>
+  
+  <select id="list_singer" resultType="SingerVO"> 
+     SELECT singerno, singer, agency, age, sex
+     FROM singer
+     ORDER BY singerno DESC
+  </select>
+  
+  <select id="read" resultType="SingerVO" parameterType="int">
+    SELECT singerno, singer, agency, age, sex 
+    FROM singer
+    WHERE singerno = #{singerno }
+  </select>
+  
+  <update id="update" parameterType="singerVO">
+    UPDATE singer
+    SET singer = #{singer}, agency = #{agency}, age = #{age}, sex = #{sex} 
+    WHERE singerno = #{singerno }
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM singer
+    WHERE singerno = #{singerno }
+  </delete>
+  
+  
+  
+</mapper>
+
+
+
+
+

@@ -30,6 +30,13 @@
   <context:component-scan base-package="dev.mvc.music_playlist" /> <!-- 재생목록 -->
   <context:component-scan base-package="dev.mvc.notice" /> <!-- 공지사항 -->
   
+  <context:component-scan base-package="dev.mvc.album" /> <!-- album.경진 -->
+  <context:component-scan base-package="dev.mvc.genre" /> <!-- genre.경진 -->
+  <context:component-scan base-package="dev.mvc.singer" /> <!-- singer.경진 -->
+  <context:component-scan base-package="dev.mvc.music" /> <!-- music.경진 -->
+  <context:component-scan base-package="dev.mvc.membermusic" /> <!-- membermusic.경진 -->
+  
+  
 
   <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"

@@ -31,8 +31,13 @@
                              dev.mvc.faq,
                              dev.mvc.admin,
                              dev.mvc.playlist,
-                             dev,mvc.music_playlist,
-                             dev,mvc.notice
+                             dev.mvc.music_playlist,
+                             dev.mvc.notice,
+                             dev.mvc.album,
+                             dev.mvc.genre,
+                             dev.mvc.singer,
+                             dev.mvc.membermusic,
+                             dev.mvc.music
                             "      
                                       
                    />

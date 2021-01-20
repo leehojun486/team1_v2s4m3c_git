@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.music.MusicDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.music.MusicDAOInter">
+
+  <!-- <insert id="create" parameterType="MusicVO">
+    <selectKey keyProperty="musicno" resultType="int" order="BEFORE">
+      SELECT music_seq.nextval FROM dual
+    </selectKey>
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, 
+                      musiclong, singerno, albumno, passwd)
+    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{file1}, #{thumb1}, #{size1}, 
+                      #{musiclong }, #{singerno }, #{albumno }, #{passwd })
+  </insert> -->
+  
+  <insert parameterType="MusicVO" id="create"> 
+    <selectKey keyProperty="musicno" resultType="int" order="BEFORE">
+      SELECT music_seq.nextval FROM dual 
+    </selectKey>
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno, passwd, memberno)
+    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{file1}, #{thumb1}, #{size1},#{musiclong }, #{singerno }, #{albumno }, #{passwd }, #{memberno }) 
+  </insert>
+  
+  <select id="list" resultType="MusicVO">
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno, cnt
+    FROM music
+    ORDER BY musicno ASC
+  </select>
+  
+  <select id="list_seqno_asc" resultType="MusicVO">
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno, cnt
+    FROM music
+    ORDER BY musicno ASC
+  </select>
+  
+  <select id="list_by_singerno" resultType="MusicVO"> 
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno
+    FROM music 
+    WHERE singerno = #{singerno}
+    ORDER BY musicno ASC  
+  </select>
+  
+  <select id="read" resultType="MusicVO" parameterType="int">
+    SELECT *
+    FROM music 
+    WHERE musicno = #{musicno}
+  </select>
+  
+  <update id="add_likelist" parameterType="MusicVO">
+    UPDATE music
+    SET likelist=#{likelist}
+    WHERE musicno=#{musicno}
+  </update>
+  
+  <update id="delete_likelist" parameterType="MusicVO">
+    UPDATE music
+    SET likelist=#{likelist}
+    WHERE musicno=#{musicno}
+  </update>
+  
+  <select id="list_search" resultType="MusicVO" parameterType="MusicVO">
+    SELECT *
+    FROM music
+    WHERE (singer LIKE '%' || #{word} || '%'
+        or title LIKE '%' || #{word} || '%' 
+        or album LIKE '%' || #{word} || '%' 
+        or lyrics LIKE '%' || #{word} || '%')
+    ORDER BY musicno DESC
+  </select>
+  
+  <!-- Join Genre 별 music 목록 -->
+  <select id="list_join_by_genreno" resultType="Genre_Music_Join" parameterType="int">
+    SELECT g.genreno as g_genreno, g.genre as g_genre,
+              m.musicno, m.title, m.singer, m.album, m.mp3, m.singerno, m.albumno, m.cnt
+    FROM genre g, music m
+    WHERE (g.genreno = m.genreno) AND g.genreno=#{genreno}
+    ORDER BY g.genreno ASC
+  </select>
+  
+  <select id="total_count" resultType="int">
+    SELECT COUNT(*) as cnt
+    FROM music
+  </select>
+  
+  <select id="list_by_genreno_search_paging" resultType="MusicVO"  parameterType="HashMap"> 
+    SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno, r
+    FROM (
+             SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno, rownum as r
+             FROM (
+                      SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno
+                      FROM music
+                      <choose>
+                        <when test="word == null or word == ''">  <!-- 검색하지 않는 경우 -->
+                          WHERE genreno= #{genreno}
+                        </when>
+                        <otherwise>
+                          WHERE genreno= #{genreno} AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
+                                                                 OR singer LIKE '%' || #{word} || '%'
+                                                                 OR album LIKE '%' || #{word} || '%' 
+                                                                 OR lyrics LIKE '%' || #{word} || '%')
+                        </otherwise>
+                      </choose>
+                      ORDER BY musicno DESC
+             )
+    )
+    WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+  </select>
+  
+ 
+  <!-- 장르별 검색 레코드 갯수 --> 
+  <select id="search_count" resultType="int" parameterType="HashMap">
+    SELECT COUNT(*) as cnt
+    FROM music
+    <choose>
+      <when test="word == null or word == ''"> <!-- 검색 x -->
+        WHERE genreno = #{genreno}
+      </when>
+    <otherwise> <!-- 검색 o -->
+      WHERE genreno = #{genreno} AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
+                                              OR singer LIKE '%' || #{word} || '%'
+                                              OR album LIKE '%' || #{word} || '%' 
+                                              OR lyrics LIKE '%' || #{word} || '%') 
+    </otherwise>
+    </choose>
+  </select>
+  
+  
+  
+</mapper>
