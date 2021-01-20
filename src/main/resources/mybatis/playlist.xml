@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.playlist.PlaylistDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.playlist.PlaylistDAOInter">
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체의 타입
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{}: ? 동일
+  #{name}: public String getName() 자동 호출
+   --> 
+  
+  <insert id="create" parameterType="PlaylistVO">
+    INSERT INTO playlist(playlistno, playlistname,  memberno )
+    VALUES(playlist_seq.nextval, #{playlistname}, #{memberno} )
+  </insert>
+  
+  <select id="list_playlistno_asc" resultType="PlaylistVO">
+    SELECT playlistno, playlistname, cntmusic, memberno, likes
+    FROM playlist
+    ORDER BY playlistno ASC
+  </select>
+  
+  <select id="read" parameterType="int" resultType="PlaylistVO">
+    SELECT playlistno, playlistname, cntmusic, memberno, likes
+    FROM playlist
+    WHERE playlistno=#{playlistno}
+  </select>
+  
+  <select id="read_by_memberno" parameterType="int" resultType="PlaylistVO">
+    SELECT playlistno, playlistname, cntmusic, memberno, likes
+    FROM playlist
+    WHERE memberno=#{memberno}
+  </select>
+  
+  <update id="update" parameterType="PlaylistVO" >
+    UPDATE playlist
+    SET playlistname=#{playlistname}, cntmusic=#{cntmusic}, likes=#{likes}
+    WHERE playlistno=#{playlistno}
+  </update>
+  
+  <update id="user_update" parameterType="PlaylistVO" >
+    UPDATE playlist
+    SET playlistname=#{playlistname}
+    WHERE playlistno=#{playlistno} AND memberno=#{memberno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE playlist
+    WHERE playlistno = #{playlistno}
+  </delete>
+  
+  <delete id="user_delete" parameterType="HashMap">
+    DELETE playlist
+    WHERE playlistno =#{playlistno} AND memberno=#{memberno}
+  </delete>
+  
+  <update id="likes_up" parameterType="int" >
+    UPDATE playlist
+    SET likes= likes+1
+    WHERE playlistno=#{playlistno}
+  </update>
+  
+  
+</mapper>

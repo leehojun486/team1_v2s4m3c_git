@@ -29,7 +29,10 @@
     <property name="typeAliasesPackage" 
                    value="dev.mvc.member,
                              dev.mvc.faq,
-                             dev.mvc.admin
+                             dev.mvc.admin,
+                             dev.mvc.playlist,
+                             dev,mvc.music_playlist,
+                             dev,mvc.notice
                             "      
                                       
                    />

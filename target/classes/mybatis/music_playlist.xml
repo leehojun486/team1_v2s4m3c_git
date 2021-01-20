@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- dev.mvc.playlist.PlaylistDAOInter 패키지에 등록된 interface 명시,
+      패키지명과 인터페이스명은 실제로 존재해야함,
+      Spring이 내부적으로 자동으로 interface를 구현해줌. -->
+<mapper namespace="dev.mvc.music_playlist.Music_PlaylistDAOInter">
+  <!-- 
+  insert: INSERT SQL 실행
+  id: Spring에서 호출시 사용
+  parameterType: 전달받는 데이터 객체의 타입
+  return: 등록한 레코드 갯수 리턴
+  SQL선언시 ';'은 삭제
+  #{}: ? 동일
+  #{name}: public String getName() 자동 호출
+   --> 
+  
+  <insert id="create" parameterType="Music_PlaylistVO">
+    INSERT INTO music_playlist(music_playlistno, playlistno, playing_seq, musicno)
+    VALUES(music_playlist_seq.nextval, #{playlistno}, #{playing_seq}, #{musicno})
+  </insert>
+  
+  <select id="list_music_playlistno_asc" resultType="Music_PlaylistVO">
+    SELECT music_playlistno, playlistno, playing_seq, musicno
+    FROM music_playlist
+    ORDER BY playlistno ASC
+  </select>
+  
+  <select id="read" parameterType="int" resultType="Music_PlaylistVO">
+    SELECT music_playlistno, playlistno, playing_seq, musicno
+    FROM music_playlist
+    WHERE music_playlistno=#{music_playlistno}
+  </select>
+  
+  
+<!--   <select id="read" parameterType="int" resultType="Music_PlaylistVO">
+    SELECT music_playlistno, playlistno, playing_seq, musicno
+    FROM music_playlist
+    WHERE music_playlistno=#{music_playlistno}
+  </select> -->
+  
+  <update id="update" parameterType="Music_PlaylistVO" >
+    UPDATE music_playlist
+    SET musicno=#{musicno}, playing_seq=#{playing_seq}
+    WHERE music_playlistno=#{music_playlistno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE music_playlist
+    WHERE music_playlistno = #{music_playlistno}
+  </delete>
+  
+  <select id="list_by_playlistno" resultType="Music_PlaylistVO" parameterType="int">
+    SELECT music_playlistno, playlistno, playing_seq, musicno
+    FROM music_playlist
+    WHERE playlistno=#{playlistno}
+  </select>
+  
+  <select id="list_by_join" resultType="Music_Playlist_Music_joinVO" parameterType="int">
+    SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+    FROM music_playlist mp, music m
+    WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+    ORDER BY playing_seq ASC
+  </select>
+  
+  <!-- 음악별 검색 목록 -->
+   <select id="list_by_join_search" resultType="Music_Playlist_Music_joinVO" parameterType="HashMap">
+     SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+     FROM music_playlist mp, music m
+     <choose>
+       <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우 이따가 m.music으로 실험 -->
+         WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+       </when>
+       <otherwise> <!-- 검색하는 경우 -->
+          WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+                                                         AND (m.music LIKE '%' || #{m_music} || '%' )
+       </otherwise>
+     </choose>
+     ORDER BY playing_seq ASC  
+   </select>
+   
+   <!-- 음악별 검색 레코드 갯수 -->
+   <select id="search_count" resultType="int" parameterType="HashMap">
+     SELECT COUNT(*) as cnt
+     FROM music_playlist mp, music m
+     <choose>
+       <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+         WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+       </when>
+       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+         WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+                                                         AND (m.music LIKE '%' || #{m_music} || '%')
+       </otherwise>
+     </choose>
+   </select>
+  
+  <select id="count_music" parameterType="int" resultType="int">
+    SELECT COUNT(musicno)
+    FROM music_playlist
+    WHERE playlistno=#{playlistno}
+  </select>
+  
+  <select id="list_by_join_search_paging" resultType="Music_Playlist_Music_joinVO" parameterType="HashMap">
+  SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, r
+  FROM(
+    SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r
+    FROM(
+        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+        FROM music_playlist mp, music m
+        <choose>
+       <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우 이따가 m.music으로 실험 -->
+         WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+       </when>
+       <otherwise> <!-- 검색하는 경우 -->
+          WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
+                                                         AND (m.music LIKE '%' || #{m_music} || '%' )
+       </otherwise>
+     </choose>
+     )
+  )
+  WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+  
+  </select>
+  
+</mapper>
