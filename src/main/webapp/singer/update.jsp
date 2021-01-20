@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -21,7 +22,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class='title_line'>
-    ${singerVO.singer } 
+    ${singerVO.name } 
   </DIV>
 
   <ASIDE class="aside_left">
@@ -35,49 +36,65 @@
   <div class='menu_line'></div>
   
   <DIV style='width: 100%;'>
-    <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
-      <!-- FK memberno 지정 -->
-      <!-- <input type='hidden' name='memberno' id='memberno' value='1'> -->
-      <!-- FK categrpno 지정 -->
-      <!-- <input type='hidden' name='cateno' id='cateno' value='1'> -->
-      
-      <input type='hidden' name='singerno' id='singerno' value='${singerVO.singerno }'>
-      
-      <div class="form-group">   
-        <div class="col-md-12">
-          <input type='text' class="form-control" name='singer' value='${singerVO.singer }' placeholder="singer" required="required" style='width: 50%;'>
-        </div>
-      </div>   
-      
-      <div class="form-group">   
-        <div class="col-md-12">
-          <input type='text' class="form-control" name='agency' value='${singerVO.agency }'  placeholder="소속사" style='width: 50%;'>
-        </div>
-      </div>
+    <FORM name='frm' method='POST' action='./update.do' class="form-horizontal">      
+    <input type='hidden' name='singerno' id='singerno' value='${singerVO.singerno }'>
 
       <div class="form-group">   
         <div class="col-md-12">
-          <input type="number" class="form-control" name='age' value='${singerVO.age }' placeholder="나이" style='width: 50%;'>
+          <input type='text' class="form-control" name='name' id='name' value='${singerVO.name }' placeholder="이름" required="required" style='width: 50%;'>
         </div>
-      </div>   
+      </div>
+      
+      <div class="form-group">
+        <div class="col-md-12">
+          <select name='sex' class="form-control" id='sex' style='width: 30%;'>
+            <c:if test="${singerVO.sex == '남성' }">
+              <option value='남성' selected="selected">남성</option>
+              <option value='여성'>여성</option>
+              <option value='혼성'>혼성</option>
+            </c:if>
+            <c:if test="${singerVO.sex == '여성' }">
+              <option value='남성'>남성</option>
+              <option value='여성' selected="selected">여성</option>
+              <option value='혼성'>혼성</option>
+            </c:if>
+            <c:if test="${singerVO.sex == '혼성' }">
+              <option value='남성'>남성</option>
+              <option value='여성'>여성</option>
+              <option value='혼성' selected="selected">혼성</option>
+            </c:if>
+         </select>
+        </div>
+      </div>
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='sex'  value='${singerVO.sex }' placeholder="성별" style='width: 50%;'>
+          <input type='text' class="form-control" name='country' id='country' value='${singerVO.country }' placeholder="국적" style='width: 50%;'>
         </div>
       </div>
-
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <input type='text' class="form-control" name='genre' id='genre' value='${singerVO.genre }' placeholder="장르" style='width: 50%;'>
+        </div>
+      </div>
+      
+      <div class="form-group">   
+        <div class="col-md-12">
+          <textarea class="form-control" name='intro' id='intro' rows='6' placeholder="소개">${singerVO.intro }</textarea>
+        </div>
+      </div>
+      
       <DIV class='content_bottom_menu'>
-        <button type="submit" class="btn btn-info">수정</button>
+        <button type="submit" class="btn btn-info">가수편집</button>
         <button type="button" 
-                    onclick="location.href='./list.do?categrpno=${param.singerno}'" 
+                    onclick="location.href='./list.do'" 
                     class="btn btn-info">취소[목록]</button>
       </DIV>
        
     </FORM>
   </DIV>
 
-  
 <jsp:include page="/menu/bottom.jsp" flush='false' />
 </body>
  

@@ -2,46 +2,81 @@ package dev.mvc.singer;
 
 import java.util.List;
 
+
 public interface SingerDAOInter {
   
   /**
-   * 가수 등록 <Xmp> <insert id="create" parameterType="SingerVO"> </Xmp> 
    * @param singerVO
    * @return
    */
   public int create(SingerVO singerVO);
   
   /**
-   * 가수 (전체목록)조회 <Xmp> <select id="list_singer" resultType="SingerVO"> </Xmp>
    * @return SingerVO
    */
-  public List<SingerVO> list_singer();
+  public List<SingerVO> list_singerno_asc();
   
   /**
-   * 가수 조회 <Xmp> <select id="read" resultType="SingerVO" parameterType="int"> </Xmp>
    * @param singerno
    * @return
    */
   public SingerVO read(int singerno);
   
   /**
-   * 수정 목적 조회 <Xmp> <select id="read" resultType="SingerVO" parameterType="int"> </Xmp>
    * @param singerno
    * @return
    */
   public SingerVO read_update(int singerno);
   
   /**
-   * 수정 <Xmp> <update id="update" parameterType="singerVO"> </Xmp>
    * @param singerVO
    * @return
    */
   public int update(SingerVO singerVO);
   
   /**
-   * 삭제 <Xmp>  <delete id="delete" parameterType="int"> </Xmp>
    * @param singerno
    * @return
    */
   public int delete(int singerno);
+  
+  /**
+   * 이미지수정 처리
+   * <xmp>
+   *   <update id="update_img" parameterType="ContentsVO"> 
+   * </xmp>
+   * @param contentsVO
+   * @return 처리된 레코드 갯수
+   */
+  public int update_img(SingerVO singerVO);
+  
+  /**
+   * 좋아요 상향
+   * <xmp>
+   * <update id="update_singerrec_up" parameterType="int">
+   * </xmp>
+   * @param singerno
+   * @return 처리된 레코드 갯수
+   */
+  public int update_singerrec_up(int singerno);
+  
+  /**
+   * 좋아요 하향
+   * <xmp>
+   * <update id="update_singerrec_down" parameterType="int">
+   * </xmp>
+   * @param singerno
+   * @return 처리된 레코드 갯수
+   */
+  public int update_singerrec_down(int singerno);
+  
+  /**
+   * <xmp>
+   *  통합 VO 기반 join
+   *  <select id="list_join" resultType="Singer_Singer_Review_join"> 
+   * </xmp>
+   * @return
+   */
+  public List<Singer_Singer_Review_join> read_join(int singerno); 
+  
 }

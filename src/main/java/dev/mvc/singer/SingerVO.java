@@ -1,62 +1,142 @@
 package dev.mvc.singer;
 
-//   CREATE TABLE singer(
-//       singerno                          NUMBER(10)     NOT NULL    PRIMARY KEY,
-//       singer                            VARCHAR2(20)     NOT NULL,
-//       agency                            VARCHAR2(30)     NOT NULL,
-//       age                               NUMBER(10)     NOT NULL,
-//       sex                               VARCHAR2(5)    NOT NULL
-//   );
-//
-//   COMMENT ON TABLE singer is 'Í∞ÄÏàò';
-//   COMMENT ON COLUMN singer.singerno is 'Í∞ÄÏàò Î≤àÌò∏';
-//   COMMENT ON COLUMN singer.singer is 'Í∞ÄÏàò';
-//   COMMENT ON COLUMN singer.agency is 'ÏÜåÏÜçÏÇ¨';
-//   COMMENT ON COLUMN singer.age is 'ÎÇòÏù¥';
-//   COMMENT ON COLUMN singer.sex is 'ÏÑ±Î≥Ñ';
+import org.springframework.web.multipart.MultipartFile;
+
+/*CREATE TABLE singer(
+    singerno                            NUMBER(10)       NOT NULL       PRIMARY KEY,
+    name                              VARCHAR2(50)       NOT NULL,
+    sex                                 VARCHAR2(10)       NOT NULL,
+    country                           VARCHAR2(50)        DEFAULT '-' NOT NULL,
+    intro                               VARCHAR2(1000)      DEFAULT '-' NOT NULL,
+    portrait                           VARCHAR(100)          NULL,
+    thumb1                          VARCHAR(100)          NULL,
+    size1                                 NUMBER(10)      DEFAULT 0 NULL,
+    singerrec                         NUMBER(10)      DEFAULT '0'   NOT NULL
+);
+
+COMMENT ON TABLE singer is '∞°ºˆ';
+COMMENT ON COLUMN singer.singerno is '∞°ºˆ π¯»£';
+COMMENT ON COLUMN singer.name is '¿Ã∏ß';
+COMMENT ON COLUMN singer.sex is 'º∫∫∞';
+COMMENT ON COLUMN singer.country is '±π¿˚';
+COMMENT ON COLUMN singer.intro is 'º“∞≥';
+COMMENT ON COLUMN singer.portrait is '√ ªÛ»≠';
+COMMENT ON COLUMN singer.thumb1 is '√ ªÛ»≠ Preview';
+COMMENT ON COLUMN singer.size1 is '√ ªÛ»≠ ≈©±‚';
+COMMENT ON COLUMN singer.singerrec is '∞°ºˆ√ﬂ√µºˆ';
+
+*/
 
 public class SingerVO {
-  /** Í∞ÄÏàò Î≤àÌò∏*/
-  int singerno;
-  /** Í∞ÄÏàò Ïù¥Î¶Ñ*/
-  String singer = "";
-  /** ÏÜåÏÜçÏÇ¨*/
-  String agency = "";
-  /** ÎÇòÏù¥*/
-  int age;
-  /** ÏÑ±Î≥Ñ*/
-  String sex ="";
+  /** ∞°ºˆπ¯»£*/
+  private int singerno;
+  /** ¿Ã∏ß*/
+  private String name = "";
+  /** º∫∫∞*/
+  private String sex = "";
+  /** ±π¿˚*/
+  private String country = "";
+  /** º“∞≥*/
+  private String intro ="";
+  /** √ ªÛ»≠*/
+  private String portrait = "";
+  /** √ ªÛ»≠ Preview*/
+  private String thumb1 = "";
+  /** √ ªÛ»≠ ≈©±‚ */
+  private long size1;
+  /** ∞°ºˆ√ﬂ√µºˆ */
+  private int singerrec;
+  /** √ ªÛ»≠ Preview*/
+  private String genre = "";
   
+  public String getGenre() {
+    return genre;
+  }
+
+  public void setGenre(String genre) {
+    this.genre = genre;
+  }
+
+  public int getSingerrec() {
+    return singerrec;
+  }
+
+  public void setSingerrec(int singerrec) {
+    this.singerrec = singerrec;
+  }
+
+  private MultipartFile portraitMF;
+
   public int getSingerno() {
     return singerno;
   }
+
   public void setSingerno(int singerno) {
     this.singerno = singerno;
   }
-  public String getSinger() {
-    return singer;
+
+  public String getName() {
+    return name;
   }
-  public void setSinger(String singer) {
-    this.singer = singer;
+
+  public void setName(String name) {
+    this.name = name;
   }
-  public String getAgency() {
-    return agency;
-  }
-  public void setAgency(String agency) {
-    this.agency = agency;
-  }
-  public int getAge() {
-    return age;
-  }
-  public void setAge(int age) {
-    this.age = age;
-  }
+
   public String getSex() {
     return sex;
   }
+
   public void setSex(String sex) {
     this.sex = sex;
   }
-  
 
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  public String getIntro() {
+    return intro;
+  }
+
+  public void setIntro(String intro) {
+    this.intro = intro;
+  }
+
+  public String getPortrait() {
+    return portrait;
+  }
+
+  public void setPortrait(String portrait) {
+    this.portrait = portrait;
+  }
+
+  public String getThumb1() {
+    return thumb1;
+  }
+
+  public void setThumb1(String thumb1) {
+    this.thumb1 = thumb1;
+  }
+
+  public long getSize1() {
+    return size1;
+  }
+
+  public void setSize1(long size1) {
+    this.size1 = size1;
+  }
+
+  public MultipartFile getPortraitMF() {
+    return portraitMF;
+  }
+
+  public void setPortraitMF(MultipartFile portrait1mf) {
+    portraitMF = portrait1mf;
+  }
+  
 }

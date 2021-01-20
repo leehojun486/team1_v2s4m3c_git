@@ -32,9 +32,11 @@
   
   <context:component-scan base-package="dev.mvc.album" /> <!-- album.경진 -->
   <context:component-scan base-package="dev.mvc.genre" /> <!-- genre.경진 -->
-  <context:component-scan base-package="dev.mvc.singer" /> <!-- singer.경진 -->
   <context:component-scan base-package="dev.mvc.music" /> <!-- music.경진 -->
   <context:component-scan base-package="dev.mvc.membermusic" /> <!-- membermusic.경진 -->
+  
+  <context:component-scan base-package="dev.mvc.singer_review" /> <!-- 가수댓글 -->
+  <context:component-scan base-package="dev.mvc.singer" /> <!-- 가수 -->
   
   
 

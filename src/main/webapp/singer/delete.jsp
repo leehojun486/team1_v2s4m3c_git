@@ -23,7 +23,7 @@
   </DIV>
 
   <ASIDE class="aside_left">
-    <A href='./list.do'>가수</A> > ${singerVO.singer } >  삭제
+    <A href='./list.do'>가수</A> > ${singerVO.name } >  삭제
   </ASIDE>
   <ASIDE class="aside_right">
     <A href='./list.do'>목록</A>
@@ -38,15 +38,10 @@
             
       <div class="form-group">   
         <div class="col-md-12" style='text-align: center; margin: 30px;'>
-          삭제 되는 가수: ${singerVO.singer }<br><br>
+          삭제 되는 가수: ${singerVO.name }<br><br>
           삭제하시겠습니까? <br>
           삭제하시면 복구 할 수 없습니다.<br><br>
           
-        <div class="form-group">   
-        <div class="col-md-12">
-          <input type='password' class="form-control" name='passwd'  value='' placeholder="패스워드" style='width: 20%; margin: 10px auto;'>
-        </div>
-      </div>
           
           <button type = "submit" class="btn btn-info">삭제 진행</button>
           <button type = "button" onclick = "history.back()" class="btn btn-info">취소</button>

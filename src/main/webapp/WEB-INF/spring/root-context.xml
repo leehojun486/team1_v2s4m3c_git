@@ -36,6 +36,7 @@
                              dev.mvc.album,
                              dev.mvc.genre,
                              dev.mvc.singer,
+                             dev.mvc.singer_review,
                              dev.mvc.membermusic,
                              dev.mvc.music
                             "      

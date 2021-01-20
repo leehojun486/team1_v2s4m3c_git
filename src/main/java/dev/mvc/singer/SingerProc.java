@@ -11,7 +11,7 @@ public class SingerProc implements SingerProcInter {
   public SingerDAOInter singerDAO;
   
   public SingerProc() {
-    System.out.println("--team1> SingerProc Created !");
+    System.out.println("--> SingerProc Created !");
   }
   /*      ---------------------------------------------        */
   
@@ -23,8 +23,8 @@ public class SingerProc implements SingerProcInter {
   }
 
   @Override
-  public List<SingerVO> list_singer() {
-    List<SingerVO> list = this.singerDAO.list_singer();
+  public List<SingerVO> list_singerno_asc() {
+    List<SingerVO> list = this.singerDAO.list_singerno_asc();
 
     return list;
   }
@@ -56,8 +56,42 @@ public class SingerProc implements SingerProcInter {
     
     return cnt;
   }
+  
+  @Override
+  public int img_update(SingerVO singerVO) {
+    int cnt = this.singerDAO.update_img(singerVO);
+    return cnt;
+  }
+  
+  @Override
+  public int img_delete(SingerVO singerVO) {
+    int cnt = this.singerDAO.update_img(singerVO);
+    return cnt;
+  }
+  
+  @Override
+  public int img_create(SingerVO singerVO) {
+    int cnt = this.singerDAO.update_img(singerVO);
+    return cnt;
+  }
 
- 
+  @Override
+  public int update_singerrec_up(int singerno) {
+    int cnt = this.singerDAO.update_singerrec_up(singerno);
+    return cnt;
+  }
+  
+  @Override
+  public int update_singerrec_down(int singerno) {
+    int cnt = this.singerDAO.update_singerrec_down(singerno);
+    return cnt;
+  }
+  
+  @Override
+  public List<Singer_Singer_Review_join> read_join(int singerno) {
+    List<Singer_Singer_Review_join> list = this.singerDAO.read_join(singerno);
+    return list;
+  }
 
   
 }

@@ -35,43 +35,54 @@
  
   <div class='menu_line'></div>
   <DIV style='width: 100%;'>
-    <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
-      <!-- FK memberno 지정 -->
-      <!-- <input type='hidden' name='memberno' id='memberno' value='1'> -->
-      <!-- FK categrpno 지정 -->
-      <!-- <input type='hidden' name='cateno' id='cateno' value='1'> -->      
+    <FORM name='frm' method='POST' action='./create.do' class="form-horizontal"
+                enctype="multipart/form-data">      
+    <!-- <input type='hidden' name='singerno' id='singerno' value='1'> -->
+    
+    <div class="form-group">   
+        <div class="col-md-12">
+          <%-- 실제 컬럼명: portrait, Spring File 객체 대응: portraitMF --%>
+          <input type='file' class="form-control" name='portraitMF' id='portraitMF' 
+                    value='' placeholder="이미지선택" multiple="multiple">
+        </div>
+      </div>
+    
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='singer' value='가수명' placeholder="가수명" required="required" style='width: 50%;'>
+          <input type='text' class="form-control" name='name' id='name' value='' placeholder="이름" required="required" style='width: 50%;'>
         </div>
-      </div>   
+      </div>
+      
+      <div class="form-group">
+        <div class="col-md-12">
+          <select name='sex' class="form-control" id='sex' style='width: 30%;'>
+            <option value='남성' selected="selected">남성</option>
+            <option value='여성'>여성</option>
+            <option value='혼성'>혼성</option>
+         </select>
+        </div>
+      </div>
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='agency' value='소속사' placeholder="소속사" style='width: 50%;'>
+          <input type='text' class="form-control" name='country' id='country' value='' placeholder="국적" style='width: 50%;'>
         </div>
       </div>
-
-      <div class="form-group">   
-        <div class="col-md-12">
-          <input type="number" class="form-control" name='age' value='나이' placeholder="나이" style='width: 50%;'>
-        </div>
-      </div>   
       
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='sex'  value='성별' placeholder="성별" style='width: 50%;'>
+          <input type='text' class="form-control" name='genre' id='genre' value='' placeholder="장르" style='width: 50%;'>
         </div>
       </div>
-
+      
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='password' class="form-control" name='passwd'  value='1234' placeholder="패스워드" style='width: 20%;'>
+          <textarea class="form-control" name='intro' id='intro' rows='6' placeholder="소개"></textarea>
         </div>
       </div>
       
       <DIV class='content_bottom_menu'>
-        <button type="submit" class="btn btn-info">등록</button>
+        <button type="submit" class="btn btn-info">가수등록</button>
         <button type="button" 
                     onclick="location.href='./list.do'" 
                     class="btn btn-info">취소[목록]</button>

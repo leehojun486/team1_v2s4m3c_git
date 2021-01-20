@@ -40,12 +40,12 @@
           <c:choose>
             <c:when test="${cnt == 1}"> <!-- 글 삭제 성공 -->
               <LI class='li_none'>
-                <span class='span_success'>『${singer }』 가수정보를 삭제했습니다.</span>
+                <span class='span_success'>『${name }』 가수정보를 삭제했습니다.</span>
               </LI>
             </c:when>
             <c:otherwise>    <!-- 글 삭제 실패 -->
               <LI class='li_none'>
-                <span class='span_fail'>『${singer }』 가수정보 삭제에 실패했습니다.</span>
+                <span class='span_fail'>『${name }』 가수정보 삭제에 실패했습니다.</span>
               </LI>
               <LI class='li_none'>
                 <span class='span_fail'>다시 시도해주세요.</span>
