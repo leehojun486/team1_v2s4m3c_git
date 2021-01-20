@@ -6,11 +6,90 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
 
 <mapper namespace="dev.mvc.faq.FaqDAOInter">
+
   <insert id="create" parameterType="FaqVO">
-    INSERT INTO faq(faqno,  faqtitle, faqcontent)
-    VALUES(faq_seq.nextval, #{faqtitle}, #{faqcontent}
+       <selectKey keyProperty="faqno" resultType="int" order="BEFORE">
+      SELECT faq_seq.nextval FROM dual
+    </selectKey>
+    INSERT INTO faq(faqno, adminno, adminpass, faqtitle , faqcontent, faqword , faqrdate ,
+                            faqgrpno , faqindent , faqansnum)
+    VALUES(faq_seq.nextval , #{adminno} , #{adminpass},#{faqtitle} , #{faqcontent}, 
+                 #{faqword} , sysdate  , (SELECT NVL(MAX(faqgrpno), 0) + 1 FROM faq) ,0, 0)
   </insert>
-
-
+ 
+    <select id="read" resultType="faqVO" parameterType="int">
+    SELECT faqno, adminno, faqtitle, faqcontent
+    FROM faq
+    WHERE faqno = #{faqno}
+  </select> 
+  
+    <update id="update" parameterType="FaqVO">
+    UPDATE faq 
+    SET faqtitle=#{faqtitle}, faqcontent=#{faqcontent}
+    WHERE faqno=#{faqno}
+  </update>
+  
+    <select id="passwd_check" parameterType="HashMap" resultType="int">
+    SELECT COUNT(*) as passwd_cnt
+    FROM faq
+    WHERE faqno=#{faqno} AND adminpass=#{adminpass}
+  </select>
+  
+    <delete id="delete" parameterType="int">
+    DELETE FROM faq
+    WHERE faqno=#{faqno}
+  </delete>
+  
+     <!-- 카테고리별 검색 레코드 갯수 -->
+   <select id="search_count" resultType="int" parameterType="HashMap">
+     SELECT COUNT(*) as cnt
+     FROM faq
+     <choose>
+       <when test="faqword == null or faqword == ''"> <!-- 검색하지 않는 경우의 레코드 갯수 -->
+         WHERE faqno=#{faqno}
+       </when>
+       <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
+         WHERE  (faqtitle LIKE '%' || #{faqword} || '%' 
+                                                        OR faqcontent LIKE '%' || #{faqword} || '%' 
+                                                        OR faqword LIKE '%' || #{faqword} || '%')
+       </otherwise>
+     </choose>
+   </select>    
+  
+  <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 + 답변형 -->
+   <select id="list_all_search_paging_join" 
+              resultType="Faq_AdminVO" parameterType="HashMap">
+     SELECT faqno, adminno, faqtitle, faqcontent, faqreplycnt, faqrdate, faqword,
+                faqgrpno, faqindent, faqansnum, aid, r
+     FROM (
+                SELECT faqno, adminno, faqtitle, faqcontent, faqreplycnt, faqrdate, faqword,
+                          faqgrpno, faqindent, faqansnum, aid, rownum as r
+                FROM (
+                          SELECT f.faqno, a.adminno, f.faqtitle, f.faqcontent, f.faqreplycnt, f.faqrdate, f.faqword, 
+                                    f.faqgrpno, f.faqindent, f.faqansnum,
+                                    a.adminid as aid
+                          FROM faq f, admin a
+                          <choose>
+                            <when test="faqword == null or faqword == ''"> <!-- 검색하지 않는 경우 -->
+                              WHERE  f.adminno = a.adminno
+                            </when>
+                            <otherwise>
+                              WHERE 
+                                         f.adminno = a.adminno
+                                        AND (faqtitle LIKE '%' || #{faqword} || '%' 
+                                                OR faqcontent LIKE '%' || #{faqword} || '%' 
+                                                OR faqword LIKE '%' || #{faqword} || '%')
+                            </otherwise>
+                          </choose>
+                          ORDER BY faqgrpno DESC, faqansnum ASC
+                )
+     )
+     WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
+   </select> 
+   
+     <select id="total_count" resultType="int">
+    SELECT COUNT(*) as cnt
+    FROM faq
+  </select>
 
 </mapper>
