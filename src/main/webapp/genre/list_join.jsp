@@ -33,7 +33,7 @@
     <FORM name='frm_create' id='frm_create' method='POST' action='./create.do'>
       <!-- <input type='hidden' name='lang' id='lang' value='en'> --> <!-- ko, en -->
         
-              <label>메뉴 번호</label>
+       <label>메뉴 번호</label>
       <input type='number' name='homeno' value="${homeVO.homeno }" required="required" 
                 min="1" max="99999" step="1" style='width: 5%;'>
          
@@ -77,18 +77,24 @@
     </thead>
     
     <tbody>
-    <c:forEach var="genreVO" items="${list }">  <!-- request 객체에 접근 -->
-      <c:set var="genreno" value="${genreVO.genreno}" />
+    <c:forEach var="home_Genre_join" items="${list }">  <!-- request 객체에 접근 -->
+    <c:set var="homeno" value="${home_Genre_join.homeno}" />
+    <c:set var="home_name" value="${home_Genre_join.r_name}" />
+    <c:set var="homeno" value="${home_Genre_join.homeno}" />
+    <c:set var="seqno" value="${home_Genre_join.seqno}" />
+    <c:set var="genrename" value="${home_Genre_join.genrename}" />
+    <c:set var="rdate" value="${home_Genre_join.rdate}" />
+
       <TR>
-        <TD class="td_bs">${genreVO.homeno }-${genreVO.genreno }</TD>
-        <TD class="td_bs">${genreVO.seqno }</TD>
-        <TD class="td_bs_left"><A href="../music/list.do?genrename=${genreVO.genrename }">${genreVO.genrename }</A></TD>
-        <TD class="td_bs">${genreVO.rdate.substring(0, 10) }</TD>
+        <TD class="td_bs">${home_name}
+        <TD class="td_bs">${seqno }</TD>
+        <TD class="td_bs_left"><A href="../music/list.do?genrename=${genrename }">${genrename }</A></TD>
+        <TD class="td_bs">${rdate.substring(0, 10) }</TD>
         <TD class="td_bs">
         </TD>
         <TD class="td_bs">
-          <A href="./read_update.do?genrename=${genreVO.genrename }&homeno=${param.homeno}"><span class="glyphicon glyphicon-pencil"></span></A>
-          <A href="./read_delete.do?genrename=${genreVO.genrename }&homeno=${param.homeno}"><span class="glyphicon glyphicon-trash"></span></A>
+          <A href="./read_update.do?genrename=${genrename }&homeno=${homeno}"><span class="glyphicon glyphicon-pencil"></span></A>
+          <A href="./read_delete.do?genrename=${genrename }&homeno=${homeno}"><span class="glyphicon glyphicon-trash"></span></A>
         
         </TD>             
       </TR>

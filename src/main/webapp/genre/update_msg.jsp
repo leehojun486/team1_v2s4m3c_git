@@ -6,7 +6,7 @@
 <head> 
 <meta charset="UTF-8"> 
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
-<title>Music world</title>
+<title>Resort world</title>
  
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
   <link href="../css/menu.css" rel="Stylesheet" type="text/css">
@@ -29,12 +29,12 @@
       <c:choose>
         <c:when test="${cnt == 1}">
           <LI class='li_none'>
-            <span class="span_success">새로운 장르를 등록했습니다.</span>
+            <span class="span_success">카테고리 그룹을 수정했습니다.</span>
           </LI>
         </c:when>
         <c:otherwise>
           <LI class='li_none_left'>
-            <span class="span_fail">장르 등록에 실패했습니다.</span>
+            <span class="span_fail">카테고리 그룹 수정에 실패했습니다.</span>
           </LI>
           <LI class='li_none_left'>
             <span class="span_fail">다시 시도해주세요.</span>
@@ -43,8 +43,10 @@
       </c:choose>
       <LI class='li_none'>
         <br>
-        <button type='button' onclick="location.href='./list.do?homeno=${param.homeno}'" class="btn btn-primary">새로운 카테고리 그룹 등록</button>
-        <button type='button' onclick="location.href='./list.do?homeno=${param.homeno}'"  class="btn btn-primary">목록</button>
+        <c:if test="${cnt != 1 }">
+          <button type='button' onclick="history.back()" class="btn btn-primary">다시 시도</button>
+        </c:if>
+        <button type='button' onclick="location.href='./list.do?homeno=${param.homeno}'" class="btn btn-primary">목록</button>
       </LI>
     </UL>
   </fieldset>
@@ -55,4 +57,6 @@
 </body>
 
 </html>
+
+
 

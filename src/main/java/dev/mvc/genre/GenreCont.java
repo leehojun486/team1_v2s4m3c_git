@@ -2,199 +2,185 @@ package dev.mvc.genre;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;import org.springframework.validation.BindingResult;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import dev.mvc.home.HomeProcInter;
+import dev.mvc.home.HomeVO;
+
+
+
 
 
 @Controller
 public class GenreCont {
-  
   @Autowired
   @Qualifier("dev.mvc.genre.GenreProc")
   private GenreProcInter genreProc;
-    
+
+  @Autowired
+  @Qualifier("dev.mvc.home.HomeProc")
+  private HomeProcInter homeProc;
   public GenreCont() {
-    System.out.println("--team1> GenreCont Created !");
+    System.out.println("--> genreCont created.");
   }
-  /*      ---------------------------------------------        */
-  
-  /**
-   * ÏÉùÏÑ±    ::   http://localhost:9090/team1/genre/create.do
-   * @param genreVO
-   * @return
-   */
-  @RequestMapping(value = "/genre/create.do", method = RequestMethod.GET)
-  public ModelAndView create(GenreVO genreVO) {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/genre/create");
-    
-    return mav;
-  }
-  
-  /**
-   * Îì±Î°ùÏ≤òÎ¶¨     :: http://localhost:9090/team1/genre/create.do
-   * @param request
-   * @param genreVO
-   * @return
-   */
- @RequestMapping(value = "/genre/create.do", method = RequestMethod.POST)
- public ModelAndView create(HttpServletRequest request,GenreVO genreVO) {
-   ModelAndView mav = new ModelAndView();
-   mav.setViewName("/genre/create_msg"); // /wepapp/genre/create_msg.jsp
 
-   int cnt = this.genreProc.create(genreVO);
-   mav.addObject("cnt", cnt);// request.setAttribute("cnt", cnt)
-
-   return mav;
- }
- 
-   /**
-    * Îì±Î°ùÏ≤òÎ¶¨ _Ajax    :: http://localhost:9090/team1/genre/create.do
-    * @param request
-    * @param genreVO
-    * @return
-    */
-  @ResponseBody
-  @RequestMapping(value = "/genre/create_ajax.do", method = RequestMethod.POST,
-                  produces = "text/plain;charset=UTF-8")
-  public String create_ajax(GenreVO genreVO) {
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    
-    int cnt = this.genreProc.create(genreVO); // Îì±Î°ù Ï≤òÎ¶¨
-    
-    JSONObject json = new JSONObject();
-    json.put("cnt", cnt);
-  
-    return json.toString();
-  } 
-  
-//    /**
-//     * Î™©Î°ù    ::    http://localhost:9090/team1/genre/list.do
-//     * @return
-//     */
-//   @RequestMapping(value = "/genre/list.do", method=RequestMethod.GET)
-//    public ModelAndView list() {
-//      ModelAndView mav = new ModelAndView();
-//      mav.setViewName("genre/list");
-//      
-//      List<GenreVO> list = this.genreProc.list();
-//      mav.addObject("list", list);
-//      
-//      return mav;
-//    }
- 
-   /**
-    * Î™©Î°ù_Ajax    ::    http://localhost:9090/team1/genre/list_ajax.do
-    * @return
-    */
-  @RequestMapping(value = "/genre/list_ajax.do", method=RequestMethod.GET)
-   public ModelAndView list() {
-     ModelAndView mav = new ModelAndView();
-     mav.setViewName("genre/list_ajax");
-     
-     List<GenreVO> list = this.genreProc.list();
-     mav.addObject("list", list);
-     
-     return mav;
-   }
- 
-//   /**
-//    * Ï°∞Ìöå ::
-//    * http://localhost:9090/team1/read.do
-//    * @param genreno
-//    * @return
-//    */
-//   @RequestMapping(value = "/genre/read.do", method = RequestMethod.GET)
-//    public ModelAndView read(int genreno) {
-//      ModelAndView mav = new ModelAndView();
-//      mav.setViewName("/genre/read"); // :: /webapp/genre/read.jsp 
-//      
-//      GenreVO genreVO = this.genreProc.read(genreno);
-//      mav.addObject("genreVO", genreVO);
-//      return mav;
-//    }
- 
- /**
-  * Ï°∞Ìöå_ajax ::
-  * http://localhost:9090/team1/read_ajax.do
-  * @param genreno
-  * @return
-  */
-  @ResponseBody
-  @RequestMapping(value = "/genre/read_ajax.do", method = RequestMethod.GET,
-                  produces = "text/plain;charset=UTF-8")
-  public String read_ajax(int genreno) {
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    
-    GenreVO genreVO = this.genreProc.read(genreno);
-    
-    JSONObject json = new JSONObject();
-    json.put("genreno", genreno);
-    json.put("genre", genreVO.getGenre());
-    
-    return json.toString();
-  }
-  
   /**
-   * Ajax Í∏∞Î∞ò Îì±Î°ù Ï≤òÎ¶¨ http://localhost:9090/resort/genre/update_ajax.do
+   * µÓ∑œ∆˚ http://localhost:9090/team1/genre/create.do
    * 
    * @return
    */
-  @ResponseBody
-  @RequestMapping(value = "/genre/update_ajax.do", method = RequestMethod.POST,
-                          produces = "text/plain;charset=UTF-8")
-  public String update_ajax(GenreVO genreVO) {
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    
-    int cnt = this.genreProc.update(genreVO); // Îì±Î°ù Ï≤òÎ¶¨
-    
-    JSONObject json = new JSONObject();
-    json.put("cnt", cnt);
+  @RequestMapping(value = "/genre/create.do", method = RequestMethod.GET)
+  public ModelAndView create() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/create"); // /webapp/genre/create.jsp
+    return mav; // forward
+  }
 
-    return json.toString();
+  /**
+   * µÓ∑œ √≥∏Æ http://localhost:9090/resort/categrp/create.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/genre/create.do", method = RequestMethod.POST)
+  public ModelAndView create(GenreVO genreVO) {
+    // request.setAttribute("genreVO", genreVO) ¿⁄µø Ω««‡
+
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/create_msg"); // /webapp/categrp/create_msg.jsp
+
+    int cnt = this.genreProc.create(genreVO); // µÓ∑œ √≥∏Æ
+    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+
+    return mav; // forward
+  }
+
+  /**
+   * ∏Ò∑œ http://localhost:9090/team1/genre/list.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/genre/list_all.do", method = RequestMethod.GET)
+  public ModelAndView list_all() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/list_all"); // /webapp/genre/list.jsp
+
+    List<GenreVO> list = this.genreProc.list_genreno_asc();
+    mav.addObject("list", list);
+
+    return mav; // forward
+  }
+  /**
+   * ∏Ò∑œ http://localhost:9090/resort/cate/list.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/genre/list.do", method = RequestMethod.GET)
+  public ModelAndView list(int homeno) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/list"); // /webapp/cate/list.jsp
+ 
+    HomeVO homeVO = this.homeProc.read(homeno);
+    mav.addObject("homeVO",homeVO);
+    
+    // List<CateVO> list = this.cateProc.list_cateno_asc();
+    List<GenreVO> list = this.genreProc.list_by_homeno(homeno);
+    mav.addObject("list", list);
+
+    return mav; // forward
   }
   
+  
   /**
-   * ÏÇ≠Ï†úÏ≤òÎ¶¨_Ajax
+   * ¡∂»∏ + ºˆ¡§∆˚ http://localhost:9090/team1/genre/read_update.do
+   * 
+   * @return
+   */
+  @RequestMapping(value = "/genre/read_update.do", method = RequestMethod.GET)
+  public ModelAndView read_update(String genrename, int homeno) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/read_update"); // /webapp/genre/read_update.jsp
+
+    GenreVO genreVO = this.genreProc.read(genrename);
+    mav.addObject("genreVO", genreVO);
+
+    List<GenreVO> list = this.genreProc.list_by_homeno(homeno);
+    mav.addObject("list", list);
+
+    return mav; // forward
+  }
+  /**
+   * ºˆ¡§ √≥∏Æ
+   * 
+   * @param genreVO
+   * @return
+   */
+  @RequestMapping(value = "/genre/update.do", method = RequestMethod.POST)
+  public ModelAndView update(GenreVO genreVO) {
+
+    ModelAndView mav = new ModelAndView();
+
+    int cnt = this.genreProc.update(genreVO);
+    mav.addObject("cnt", cnt); // requestø° ¿˙¿Â
+
+    mav.setViewName("/genre/update_msg"); // webapp/genre/update_msg.jsp
+
+    return mav;
+  }
+  /**
+   * ªË¡¶∆˚ http://localhost:9090/resort/genre/read_delete.do
+   * @return
+   */
+  @RequestMapping(value = "/genre/read_delete.do", method = RequestMethod.GET)
+  public ModelAndView read_delete(String genrename,int homeno) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/genre/read_delete"); // /webapp/genre/read_delete.jsp
+
+    GenreVO genreVO = this.genreProc.read(genrename);
+    mav.addObject("genreVO", genreVO);
+
+    List<GenreVO> list = this.genreProc.list_by_homeno(homeno);
+    mav.addObject("list", list);
+    
+  
+    return mav; // forward
+  }
+  /**
+   * ªË¡¶ √≥∏Æ
    * @param genreno
    * @return
    */
-  @ResponseBody
-  @RequestMapping(value = "/genre/delete_ajax.do", method = RequestMethod.POST,
-                          produces = "text/plain;charset=UTF-8")
-  public String delete_ajax(int genreno) {
-    try {
-      Thread.sleep(500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
-    
+  @RequestMapping(value = "/genre/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(int genreno) {
+    ModelAndView mav = new ModelAndView();
+
     int cnt = this.genreProc.delete(genreno);
-    
-    JSONObject json = new JSONObject();
-    json.put("cnt", cnt);
-    
-    return json.toString();
+    mav.addObject("cnt", cnt); // requestø° ¿˙¿Â
+
+    mav.setViewName("/genre/delete_msg"); // /webapp/genre/delete_msg.jsp
+
+    return mav;
   }
-  
+//http://localhost:9090/resort/cate/list_join.do
+ /**
+  * categrp + cate join ¿¸√º ∏Ò∑œ
+  * @return
+  */
+ @RequestMapping(value="/genre/list_join.do", method=RequestMethod.GET )
+ public ModelAndView list_join() {
+   ModelAndView mav = new ModelAndView();
+   
+   List<Home_Genre_join> list = this.genreProc.list_join();
+   mav.addObject("list", list); // request.setAttribute("list", list);
+
+   mav.setViewName("/genre/list_join"); // webapp/cate/list_join.jsp
+   return mav;
+ }
+ 
+
 }
+

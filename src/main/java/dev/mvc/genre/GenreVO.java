@@ -1,41 +1,54 @@
 package dev.mvc.genre;
 
-//CREATE TABLE genre(
-//    genreno                             NUMBER(10)     NOT NULL    PRIMARY KEY,
-//    genre                               VARCHAR(50)    NOT NULL        
-//    cnt                                 NUMBER(7)      DEFAULT 0     NOT NULL,
-//    );
-//
-//COMMENT ON TABLE genre is 'ìž¥ë¥´';
-//COMMENT ON COLUMN genre.genreno is 'ìž¥ë¥´ ë²ˆí˜¸';
-//COMMENT ON COLUMN genre.genre is 'ìž¥ë¥´';
-//COMMENT ON COLUMN genre.cnt is 'ìž¥ë¥´ ìˆ˜';
-
 public class GenreVO {
-  int genreno;
-  String genre = "";
-  int cnt;
   
-  /*-*/
   
-  public int getGenreno() {
+  /*Àå¸£ ¹øÈ£ */
+  private int genreno = 0;
+  /*Àå¸£ ¹øÈ£ */
+  private int homeno = 0;
+  /*Àå¸£ ÀÌ¸§ */
+  private String genrename = "";
+  /*³¯Â¥ */
+  private String rdate="";
+  /** Ãâ·Â ¸ðµå */
+  private int seqno;
+
+  
+  
+    public int getGenreno() {
     return genreno;
   }
   public void setGenreno(int genreno) {
     this.genreno = genreno;
   }
-  public String getGenre() {
-    return genre;
+  public int getHomeno() {
+    return homeno;
   }
-  public void setGenre(String genre) {
-    this.genre = genre;
+  public void setHomeno(int homeno) {
+    this.homeno = homeno;
   }
-  public int getCnt() {
-    return cnt;
+  public String getGenrename() {
+    return genrename;
   }
-  public void setCnt(int cnt) {
-    this.cnt = cnt;
+  public void setGenrename(String genrename) {
+    this.genrename = genrename;
   }
-  
-  
+  public String getRdate() {
+    return rdate;
+  }
+  public void setRdate(String rdate) {
+    this.rdate = rdate;
+  }
+  public int getSeqno() {
+    return seqno;
+  }
+  public void setSeqno(int seqno) {
+    this.seqno = seqno;
+  }
+
+    
+    
+
+
 }

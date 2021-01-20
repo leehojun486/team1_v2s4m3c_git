@@ -1,51 +1,78 @@
 package dev.mvc.genre;
 
-import java.util.HashMap;
 import java.util.List;
 
-import dev.mvc.music.MusicVO;
+
 
 public interface GenreDAOInter {
-  
   /**
-   * ìƒì„± <Xmp> <insert id="create" parameterType="GenreVO"> </Xmp>
+   * <Xmp>
+   * Ä«Å×°í¸® ±×·ì µî·Ï
+   * <insert id="create" parameterType="genreVO"> 
+   * </Xmp>
    * @param genreVO
-   * @return
+   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
    */
   public int create(GenreVO genreVO);
   
   /**
-   * ëª©ë¡ ì¡°íšŒ <Xmp> <select id="list" resultType="GenreVO"> </Xmp>
-   * @return GenreVO
+   * ¸ñ·Ï
+   * <xmp>
+   * <select id="list_genreno_asc" resultType="genreVO">
+   * </xmp> 
+   * @return ·¹ÄÚµå ¸ñ·Ï
    */
-  public List<GenreVO> list();
+  public List<GenreVO> list_genreno_asc();
   
   /**
-   * ëª©ë¡ - ì¶œë ¥ìˆœì„œ ì •ë ¬
-   *  :: <select id="list_seqno_asc" resultType="GenreVO">
-   * @return
+   * ¸ñ·Ï
+   * <xmp>
+   * <select id="list_genreno_asc" resultType="genreVO">
+   * </xmp> 
+   * @return ·¹ÄÚµå ¸ñ·Ï
    */
-  public List<GenreVO> list_seqno_asc();
+  public List<GenreVO> list_by_homeno(int homeno);
   
   /**
-   * ë‹¨ì¼ ì¡°íšŒ<Xmp> <select id="read" resultType="GenreVO" parameterType="int"> </Xmp>
+   * Á¶È¸
+   * <xmp>
+   *   <select id="read" resultType="genreVO" parameterType="int">
+   * </xmp>  
    * @param genreno
    * @return
    */
-  public GenreVO read(int genreno);
+  public GenreVO read(String genrename);
   
   /**
-   * ìˆ˜ì • <Xmp> <update id="update" parameterType="GenreVO"> </Xmp>
+   * ¼öÁ¤ Ã³¸®
+   * <xmp>
+   *   <update id="update" parameterType="genreVO"> 
+   * </xmp>
    * @param genreVO
-   * @return
+   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
    */
   public int update(GenreVO genreVO);
   
   /**
-   * ì‚­ì œ <Xmp> <delete id="delete" parameterType="int"> </Xmp>
+   * »èÁ¦ Ã³¸®
+   * <xmp>
+   *   <delete id="delete" parameterType="int">
+   * </xmp> 
    * @param genreno
-   * @return
+   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
    */
   public int delete(int genreno);
 
+  /**
+   *  ÅëÇÕ VO ±â¹İ join
+   * @return
+   */
+  public List<Home_Genre_join> list_join();  
+  
+  /**
+   *  ÅëÇÕ VO ±â¹İ join
+   * @return
+   */
+  public List<Home_Genre_join> list_join_by_homeno(int homeno);  
+  
 }
