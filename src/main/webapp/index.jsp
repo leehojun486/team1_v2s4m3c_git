@@ -20,16 +20,12 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   
-  <DIV style='width: 80%; margin: 30px auto;'>
-    <IMG src='./menu/images/resort01.jpg' style='width: 100%;'>
+  
+  <DIV style='width: 30%; margin: 20px auto;'>
+  
+    <IMG src='./menu/images/images.jpg' style='width: 100%;'>
   </DIV>
   
-  <DIV style='margin: 0px auto; width: 90%;'>
-    <DIV style='float: left; width: 50%;'>
-     </DIV>
-     <DIV style='float: left; width: 50%;'>
-    </DIV>  
-  </DIV>
  
   <DIV style='width: 94.8%; margin: 0px auto;'>
   </DIV>  
