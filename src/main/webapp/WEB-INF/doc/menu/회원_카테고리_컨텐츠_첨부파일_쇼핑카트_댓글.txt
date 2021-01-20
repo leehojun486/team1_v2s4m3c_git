@@ -8,3 +8,7 @@ http://localhost:9090/team1_git/faq/list_all.do  <- faq 페이지
 http://localhost:9090/team1_git/admin/login.do <- 관리자 로그인
 http://localhost:9090/team1_git/admin/logout.do <- 관리자 로그아웃
 http://localhost:9090/team1_git/member/list.do <- 회원목록
+http://localhost:9090/team1_git/notice/list_all.do ** 공지사항 목록
+http://localhost:9090/team1_git/playlist/read_by_memberno.do  ** 회원별 플레이리스트
+http://localhost:9090/team1_git/playlist/list.do/list.do ** 전체 플레이리스트
+http://localhost:9090/team1_git/music_playlist/list_all.do ** 전체 재생목록
