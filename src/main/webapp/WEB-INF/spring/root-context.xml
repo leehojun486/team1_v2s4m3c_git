@@ -38,7 +38,8 @@
                              dev.mvc.singer,
                              dev.mvc.singer_review,
                              dev.mvc.membermusic,
-                             dev.mvc.music
+                             dev.mvc.music,
+                             dev.mvc.home
                             "      
                    />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
