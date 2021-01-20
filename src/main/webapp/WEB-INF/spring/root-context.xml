@@ -39,7 +39,6 @@
                              dev.mvc.membermusic,
                              dev.mvc.music
                             "      
-                                      
                    />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
   </bean>
