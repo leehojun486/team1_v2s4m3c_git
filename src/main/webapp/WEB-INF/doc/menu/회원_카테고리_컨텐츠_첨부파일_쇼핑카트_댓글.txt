@@ -1,0 +1,10 @@
+
+http://localhost:9090/team1_git/member/create.do  <- 회원 생성
+http://localhost:9090/team1_git/member/login.do  <-  회원 로그인 페이지
+http://localhost:9090/team1_git/member/logout.do
+
+http://localhost:9090/team1_git/faq/list_all.do  <- faq 페이지
+
+http://localhost:9090/team1_git/admin/login.do <- 관리자 로그인
+http://localhost:9090/team1_git/admin/logout.do <- 관리자 로그아웃
+http://localhost:9090/team1_git/member/list.do <- 회원목록

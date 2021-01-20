@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
-encoding/<project>=UTF-8
+encoding//src/main/java/dev/mvc/album=UTF-8
+encoding//src/main/java/dev/mvc/genre=UTF-8
+encoding//src/main/java/dev/mvc/genre/GenreCont.java=UTF-8
+encoding//src/main/java/dev/mvc/home=UTF-8
+encoding//src/main/java/dev/mvc/membermusic=UTF-8
