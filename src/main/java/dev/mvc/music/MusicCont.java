@@ -350,7 +350,7 @@ public class MusicCont {
      GenreVO genreVO = genre_list.get(index); // 하나의 장르 추출
      
      // 장르명 추가
-     name_title_list.add("<LI class='genre_name'>"+ genreVO.getGenre() + "</LI>");
+     name_title_list.add("<LI class='genre_name'>"+ genreVO.getGenrename() + "</LI>");
 
      // 음악 Join 목록, 특정 장르에 해당하는 음악가져옴.
      List<Genre_Music_Join> music_list = musicProc.list_join_by_genreno(genreVO.getGenreno()); 

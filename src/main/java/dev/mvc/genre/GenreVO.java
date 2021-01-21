@@ -23,10 +23,10 @@ public class GenreVO {
   public void setGenreno(int genreno) {
     this.genreno = genreno;
   }
-  public String getGenre() {
+  public String getGenrename() {
     return genrename;
   }
-  public void setGenre(String genrename) {
+  public void setGenrename(String genrename) {
     this.genrename = genrename;  
   }
   

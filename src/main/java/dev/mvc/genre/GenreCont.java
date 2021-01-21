@@ -146,7 +146,7 @@ public class GenreCont {
     
     JSONObject json = new JSONObject();
     json.put("genreno", genreno);
-    json.put("genre", genreVO.getGenre());
+    json.put("genrename", genreVO.getGenrename());
     
     return json.toString();
   }
