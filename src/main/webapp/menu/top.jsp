@@ -5,8 +5,7 @@
 // ${pageContext.request.contextPath}
 %>
 
-
-<link href="css/menu.css" rel="stylesheet" type="text/css">
+<link href="css/style.css" rel="stylesheet" type="text/css">
 
 <!--가로형 3단 드롭다운 메뉴-->
 
@@ -15,34 +14,29 @@
     <div class="first_header">
       <div class="first_header_inner">
         <ul class="etc">
+           <c:choose>
+        <c:when test="${sessionScope.id == null}">
        <a href="${pageContext.request.contextPath}/member/create.do">Create Account  </a> /
-      <a href="${pageContext.request.contextPath}/member/create.do">  Login</a>
+       <a href="${pageContext.request.contextPath}/member/login.do">  Login</a>
+          </c:when>
+        <c:otherwise>
+            ${sessionScope.id } <a   href='${pageContext.request.contextPath}/member/logout.do' >Logout</A>
+        </c:otherwise>
+      </c:choose>      
         </ul>
       </div>
     </div>
     </div>
-<div id="menu">
 
-    <ul class="main1">
+  <div class="menu">
+    <ul>
+      <li><a class="active" href="http://localhost:9090/team1/">Home</a></li>
+      <li><a href="${pageContext.request.contextPath}/playlist/list.do/list.do">Stream</a></li>
+      <li><a href="${pageContext.request.contextPath}/notice/list_all.do">Notice</a></li>
+      <li><a href="${pageContext.request.contextPath}/faq/list_all.do ">FAQ</a></li>
 
-        <li><a href="#">Menu</a>
-
-            <ul class="main2">
-
-                <li><a href='${pageContext.request.contextPath}/index.jsp' > 홈</a></li>
-
-                <li><A  href='${pageContext.request.contextPath}/genre/list_all.do'>장르</A></li>
-
-
-                <li><A  href='${pageContext.request.contextPath}/music/list_all.do'>음악 목록</A></li>
-
-
-            </ul>
-
-        </li>
-
-       </ul>
-
+      
+    </ul>
 </div>
 <!-- 화면을 2개로 분할하여 좌측은 메뉴, 우측은 내용으로 구성 -->  
   <DIV class="row" style='margin-top: 2px;'>
