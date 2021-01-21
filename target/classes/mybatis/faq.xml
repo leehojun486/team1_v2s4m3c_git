@@ -11,10 +11,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        <selectKey keyProperty="faqno" resultType="int" order="BEFORE">
       SELECT faq_seq.nextval FROM dual
     </selectKey>
-    INSERT INTO faq(faqno, adminno, adminpass, faqtitle , faqcontent, faqword , faqrdate ,
-                            faqgrpno , faqindent , faqansnum)
+    INSERT INTO faq(faqno, adminno, adminpass, faqtitle , faqcontent, faqword , faqrdate)
     VALUES(faq_seq.nextval , #{adminno} , #{adminpass},#{faqtitle} , #{faqcontent}, 
-                 #{faqword} , sysdate  , (SELECT NVL(MAX(faqgrpno), 0) + 1 FROM faq) ,0, 0)
+                 #{faqword} , sysdate)
   </insert>
  
     <select id="read" resultType="faqVO" parameterType="int">
@@ -59,14 +58,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <!-- 카테고리별 검색 목록 + 페이징 + 메인 이미지 + 답변형 -->
    <select id="list_all_search_paging_join" 
               resultType="Faq_AdminVO" parameterType="HashMap">
-     SELECT faqno, adminno, faqtitle, faqcontent, faqreplycnt, faqrdate, faqword,
-                faqgrpno, faqindent, faqansnum, aid, r
+     SELECT faqno, adminno, faqtitle, faqcontent, faqrdate, faqword,
+               aid, r
      FROM (
-                SELECT faqno, adminno, faqtitle, faqcontent, faqreplycnt, faqrdate, faqword,
-                          faqgrpno, faqindent, faqansnum, aid, rownum as r
+                SELECT faqno, adminno, faqtitle, faqcontent,  faqrdate, faqword,
+                          aid, rownum as r
                 FROM (
-                          SELECT f.faqno, a.adminno, f.faqtitle, f.faqcontent, f.faqreplycnt, f.faqrdate, f.faqword, 
-                                    f.faqgrpno, f.faqindent, f.faqansnum,
+                          SELECT f.faqno, a.adminno, f.faqtitle, f.faqcontent, f.faqrdate, f.faqword, 
                                     a.adminid as aid
                           FROM faq f, admin a
                           <choose>
@@ -81,7 +79,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                                 OR faqword LIKE '%' || #{faqword} || '%')
                             </otherwise>
                           </choose>
-                          ORDER BY faqgrpno DESC, faqansnum ASC
+                          ORDER BY faqno DESC, faqtitle ASC
                 )
      )
      WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>

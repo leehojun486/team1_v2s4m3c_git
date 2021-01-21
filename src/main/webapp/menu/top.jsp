@@ -30,7 +30,7 @@
 
   <div class="menu">
     <ul>
-      <li><a class="active" href="http://localhost:9090/team1/">Home</a></li>
+      <li><a class="active" href="http://localhost:9090/team1_git/">Home</a></li>
       <li><a href="${pageContext.request.contextPath}/playlist/list.do/list.do">Stream</a></li>
       <li><a href="${pageContext.request.contextPath}/notice/list_all.do">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/faq/list_all.do ">FAQ</a></li>

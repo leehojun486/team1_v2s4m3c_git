@@ -10,31 +10,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.genre.GenreDAOInter">
 
   <insert id="create" parameterType="GenreVO">
-    INSERT INTO genre(genreno, genre)
-    VALUES (genre_seq.nextval, #{genre})
+    INSERT INTO genre(genreno, genrename)
+    VALUES (genre_seq.nextval, #{genrename})
   </insert>
   
   <select id="list" resultType="GenreVO"> 
-    SELECT genreno, genre, cnt
+    SELECT genreno, genrename
     FROM genre
     ORDER BY genreno ASC
   </select>
   
   <select id="list_seqno_asc" resultType="GenreVO">
-    SELECT genreno, genre, cnt
+    SELECT genreno, genrename
     FROM genre
     ORDER BY genreno ASC
   </select>
   
   <select id="read" resultType="GenreVO" parameterType="int">
-    SELECT genreno, genre, cnt
+    SELECT genreno, genrename
     FROM genre
     WHERE genreno = #{genreno}
   </select> 
   
   <update id="update" parameterType="GenreVO">
     UPDATE genre
-    SET genre=#{genre} 
+    SET genrename=#{genrename} 
     WHERE genreno=#{genreno}
   </update>
   
