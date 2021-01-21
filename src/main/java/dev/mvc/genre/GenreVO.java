@@ -6,18 +6,17 @@ package dev.mvc.genre;
 //    cnt                                 NUMBER(7)      DEFAULT 0     NOT NULL,
 //    );
 //
-//COMMENT ON TABLE genre is '장르';
-//COMMENT ON COLUMN genre.genreno is '장르 번호';
-//COMMENT ON COLUMN genre.genre is '장르';
-//COMMENT ON COLUMN genre.cnt is '장르 수';
+//COMMENT ON TABLE genre is '�옣瑜�';
+//COMMENT ON COLUMN genre.genreno is '�옣瑜� 踰덊샇';
+//COMMENT ON COLUMN genre.genre is '�옣瑜�';
+//COMMENT ON COLUMN genre.cnt is '�옣瑜� �닔';
 
 public class GenreVO {
   int genreno;
-  String genre = "";
-  int cnt;
+  String genrename = "";
   
   /*-*/
-  
+    
   public int getGenreno() {
     return genreno;
   }
@@ -25,17 +24,10 @@ public class GenreVO {
     this.genreno = genreno;
   }
   public String getGenre() {
-    return genre;
+    return genrename;
   }
-  public void setGenre(String genre) {
-    this.genre = genre;
+  public void setGenre(String genrename) {
+    this.genrename = genrename;  
   }
-  public int getCnt() {
-    return cnt;
-  }
-  public void setCnt(int cnt) {
-    this.cnt = cnt;
-  }
-  
   
 }
