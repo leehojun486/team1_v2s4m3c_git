@@ -33,10 +33,10 @@
       data: params,
       success: function(rdata) {
         if(rdata.cnt > 0) {
-          msg = "『" + $('#genre').val() + "』 장르를 등록했습니다.";
+          msg = "『" + $('#genrename').val() + "』 장르를 등록했습니다.";
           msg += " <button type='button' onclick='location.reload(true)'>확인</button>";
         } else {
-          msg = "『" + $('#genre').val() + "』 장르 등록에 실패했습니다.";
+          msg = "『" + $('#genrename').val() + "』 장르 등록에 실패했습니다.";
         }
         $('#panel1').html(msg);
     }, 
@@ -76,7 +76,7 @@
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         var frm = $('#frm');
         $('#genreno', frm).val(rdata.genreno);
-        $('#genre', frm).val(rdata.genre);
+        $('#genrename', frm).val(rdata.genre);
 
         $('#btn_send').html('수정');
         
@@ -114,10 +114,10 @@
       data: params,      // 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         if (rdata.cnt > 0) {
-          msg = "『" + $('#genre').val() + "』 장르를 수정했습니다."
+          msg = "『" + $('#genrename').val() + "』 장르를 수정했습니다."
           msg += " <button type='button' onclick='location.reload(true)'>확인</button>";
         } else {
-          msg = "『" + $('#genre').val() + "』 장르 수정에 실패했습니다."
+          msg = "『" + $('#genrename').val() + "』 장르 수정에 실패했습니다."
         }
         $('#panel1').html(msg); // 메시지 출력
       },
@@ -153,12 +153,12 @@
       data: params,      // 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         if (rdata.genre.length > 0) {
-          msg = "『" + rdata.genre + "』 장르를 삭제하시겠습니까?<br>";
+          msg = "『" + rdata.genrename + "』 장르를 삭제하시겠습니까?<br>";
           msg += "장르를 삭제하면 복구 할 수 없습니다.";
-          msg += " <button type=\"button\" onclick=\"delete_proc("+genreno+", '"+rdata.genre+"')\">삭제 진행</button>";
+          msg += " <button type=\"button\" onclick=\"delete_proc("+genreno+", '"+rdata.genrename+"')\">삭제 진행</button>";
           msg += " <button type='button' onclick='cancel()'>취소</button>";
         } else {
-          msg = "『" + rdata.genre + "』 장르가 없습니다.";
+          msg = "『" + rdata.genrename + "』 장르가 없습니다.";
           msg += " <button type='button' onclick='location.reload(true)'>확인</button>";
         }
         $('#panel1').html(msg); // 메시지 출력
@@ -182,7 +182,7 @@
     $('#panel1').show(); // 출력 */    
   }
 
-  function delete_proc(genreno, genre) {
+  function delete_proc(genreno, genrename) {
     var params = 'genreno=' + genreno;
 
     var msg = '';
@@ -195,10 +195,10 @@
       data: params,      // 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         if (rdata.cnt > 0) {
-          msg = "『" + genre + "』 장르를 삭제했습니다."
+          msg = "『" + genrename + "』 장르를 삭제했습니다."
           msg += " <button type='button' onclick='location.reload(true)'>확인</button>";
         } else {
-          msg = "『" + genre + "』 장르 삭제에 실패했습니다."
+          msg = "『" + genrename + "』 장르 삭제에 실패했습니다."
         }
         $('#panel1').html(msg); // 메시지 출력
       },
@@ -224,7 +224,7 @@
   
   function cancel() {
     $('#genreno', frm).val(0);
-    $('#genre', frm).val('');
+    $('#genrename', frm).val('');
 
     $('#btn_send').html('등록');
 
@@ -262,7 +262,7 @@
       <input type='hidden' name='genreno' id='genreno' value='0'>
               
       <label>장르</label>
-      <input type='text' name='genre' id='genre' value='장르 입력' required="required" style='width: 25%;'>
+      <input type='text' name='genrename' id='genrename' value='장르 입력' required="required" style='width: 25%;'>
  
       <button type="button" id='btn_send'>등록</button>
       <button type="button" onclick="history.back()">취소</button>
@@ -299,7 +299,7 @@
             <td style='text-align: center;'>${genreVO.genreno}</td>
               <%-- <td style='text-align: center;'>${singerVO.rdate.substring(0, 10)}</td> --%>
               <td style='text-align: center;'>
-                <a href="./read.do?genreno=${genreno}">${genreVO.genre}</a> 
+                <a href="./read.do?genreno=${genreno}">${genreVO.genrename}</a> 
               </td> 
             <td class="td_bs">
               <a href="javascript:update_form(${genreno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
