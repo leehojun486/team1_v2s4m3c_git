@@ -21,49 +21,32 @@
  
   
 </script>
- 
 </head> 
  
 <body>
 <jsp:include page="/menu/top.jsp" />
- 
-  <DIV class='title_line'>공지 사항
-  <a href="./create.do">(공지사항 등록)</a>
-  </DIV>
+
+<DIV class='title_line'>${noticeVO.title}</DIV>
+<FORM name='update' id='frm_update' method='POST' action='./update.do'>
+      <input type='hidden' name='noticeno' id='noticeno' value='${noticeVO.noticeno }'>
+      <label>공지사항 제목</label>
+      <input type="text" name='title' value='${noticeVO.title }'>
+      
+      <label>공지사항 내용</label>
+      <input type="text" name='contents' value='${noticeVO.contents }'>
+      <button type="submit" id='submit'>저장</button>
+      <button type="button" onclick="location.href='./read.do?${noticeVO.noticeno }'">취소</button>
+</FORM>
+  <button type='button' 
+                    onclick="location.href='./list_all.do'"
+                    class="btn btn-info">목록
+  </button>
   
-  <TABLE class='table table-striped'>
-  <colgroup>
-    <col style='width: 10%;'/>
-    <col style='width: 40%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 10%;'/>    
-    <col style='width: 20%;'/>
-  </colgroup>
- 
-  <thead>  
-  <TR>
-    <TH class="th_bs">공지사항 번호</TH>
-    <TH class="th_bs">공지사항 제목</TH>
-    <TH class="th_bs">공지사항  등록 날짜</TH>
-  </TR>
-  </thead>
-  
-  <tbody>
-  <c:forEach var="noticeVO" items="${list}">
-    <c:set var="noticeno" value="${noticeVO.noticeno }" />
-    <TR>
-      <TD class="td_bs">${noticeVO.noticeno }</TD>
-      <TD class="td_bs"><a href="./read.do?noticeno=${noticeno}">${noticeVO.title }</a></TD>
-      <TD class="td_bs">${noticeVO.rdate }</TD>
-      <TD class="td_bs">
-      </TD>   
-    </TR>
-  </c:forEach> 
-  </tbody>
-</TABLE>
- 
  
 <jsp:include page="/menu/bottom.jsp" />
 </body>
  
 </html> 
+ 
+ 
+ 

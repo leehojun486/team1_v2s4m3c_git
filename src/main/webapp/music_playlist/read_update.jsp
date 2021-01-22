@@ -34,7 +34,7 @@
       <input type='hidden' name='music_playlistno' id='music_playlistno' value='${music_PlaylistVO.music_playlistno }'>
         
       <label>플레이 리스트 번호</label>
-      <input type='number' name='playlistno' value='${music_PlaylistVO.music_playlistno }' required="required" 
+      <input type='number' name='playlistno' value='${music_PlaylistVO.playlistno }' required="required" 
                 min='1' max='1000' step='1' style='width: 5%;'>
                 
       <label>재생 순서</label>

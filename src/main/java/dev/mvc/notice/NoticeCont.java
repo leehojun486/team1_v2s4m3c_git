@@ -76,4 +76,33 @@ public class NoticeCont {
     mav.addObject("noticeVO", noticeVO);
     return mav;
   }
+  
+  /**
+   * 수정 폼 http://localhost:9090/team1/notice/read.do
+   * @param noticeno
+   * @return
+   */
+  @RequestMapping(value = "/notice/update_form.do", method = RequestMethod.GET)
+  public ModelAndView update(int noticeno) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/notice/update_form"); // /webapp/notice/read.jsp
+    NoticeVO noticeVO = this.noticeproc.read(noticeno);
+    mav.addObject("noticeVO", noticeVO);
+    return mav;
+  }
+  
+  /**
+   * 수정 처리 http://localhost:9090/team1/notice/read.do
+   * @param noticeno
+   * @return
+   */
+  @RequestMapping(value = "/notice/update.do", method = RequestMethod.POST)
+  public ModelAndView update(NoticeVO noticeVO) {
+    ModelAndView mav = new ModelAndView();
+    int cnt = this.noticeproc.update(noticeVO);
+    mav.setViewName("/notice/update_msg"); // /webapp/notice/update_msg.jsp
+    mav.addObject("cnt", cnt);
+    return mav;
+  }
+  
 }

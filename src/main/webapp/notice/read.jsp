@@ -25,10 +25,19 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" />
+
 <DIV class='title_line'>${noticeVO.title}</DIV>
-  <div>
-    <textarea cols="50" rows="15" style="margin: auto;">${noticeVO.contents }</textarea>
-  </div>
+  <DIV style='width:900px; margin: 0px auto; text-align: center;'>
+      ${noticeVO.contents}
+  </DIV>
+  <button type='button' 
+                    onclick="location.href='./list_all.do'"
+                    class="btn btn-info">목록
+  </button>
+  <button type='button' 
+                    onclick="location.href='./update_form.do?noticeno=${noticeVO.noticeno}'"
+                    class="btn btn-info">수정
+  </button>
  
 <jsp:include page="/menu/bottom.jsp" />
 </body>
