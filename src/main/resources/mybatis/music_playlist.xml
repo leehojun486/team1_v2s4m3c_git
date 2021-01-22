@@ -108,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   FROM(
     SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r
     FROM(
-        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno
         FROM music_playlist mp, music m
         <choose>
        <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우 이따가 m.music으로 실험 -->
