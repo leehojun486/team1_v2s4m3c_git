@@ -156,9 +156,11 @@ public class SingerCont {
      // return msg;
      
      List<Singer_Singer_Review_join> list = this.singerProc.read_join(singerno);
+     List<Singer_Review_Member_join> memberlist = this.singerProc.read_member_join(singerno);
      
      JSONObject obj = new JSONObject();
      obj.put("list", list);
+     obj.put("memberlist", memberlist);
   
      return obj.toString();     
    }

@@ -71,15 +71,22 @@
         
         for (i=0; i < rdata.list.length; i++) {
           var row = rdata.list[i];
+          var row2 = rdata.memberlist[i];
           
           msg += "<DIV style='width: 100%;' id='review_contents'>";
           msg += "  <table style='width: 100%'>";
           msg += "    <tr>";
-          msg += "      <td class='review_membericon' rowspan='4'>멤버아이콘</td>";
+          msg += "      <td class='review_membericon' rowspan='4'>";
+          //사용자의 썸네일 추가//
+          if(row2.memberpreview != null) {
+            msg += "<IMG src='../member/storage/main_images/"+row2.memberpreview+"' width='100px' height='100px' >";
+          }
+          /////////////////////////////
+          msg += "      </td>";
           msg += "    </tr>";
           msg += "    <tr>";
-          msg += "      <td><span class='review_membername'>멤버이름</span>";
-          msg += "        <span class='review_rdate'>"+row.reviewdate.substring(5, 10)+"</span>";
+          msg += "      <td><span class='review_membername'>"+row2.memberid+"</span>";
+          msg += "        <span class='review_rdate'>"+row.reviewdate.substring(5,10)+"</span>";
           msg += "      </td>";
           msg += "    </tr>";
           msg += "    <tr>";
