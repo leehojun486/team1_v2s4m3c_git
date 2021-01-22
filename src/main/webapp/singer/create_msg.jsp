@@ -25,7 +25,7 @@
  
   <ASIDE class="aside_left">
     <!-- <A href=''>카테고리 그룹</A> >  -->
-    <A href='./list.do'>앨범</A> >
+    <A href='./list.do'>가수</A> >
     신규 등록
   </ASIDE>
   <ASIDE class="aside_right">
@@ -41,12 +41,12 @@
       <c:choose>
         <c:when test="${cnt == 1 }">
           <LI class='li_none'>
-            <span class='span_success'>새로운 앨범을 등록했습니다.</span>
+            <span class='span_success'>새로운 가수를 등록했습니다.</span>
           </LI>
         </c:when>
         <c:otherwise>
           <LI class='li_none'>
-            <span class='span_fail'>새로운 앨범 등록에 실패했습니다.</span>
+            <span class='span_fail'>새로운 가수 등록에 실패했습니다.</span>
           </LI>
         </c:otherwise>
       </c:choose>
@@ -55,8 +55,8 @@
         <c:choose>
           <c:when test="${cnt == 1 }">
             <button type='button' 
-                         onclick="location.href='./create.do?albumno=${param.albumno}'"
-                         class="btn btn-info">새로운 앨범 등록</button>
+                         onclick="location.href='./create.do?'"
+                         class="btn btn-info">새로운 가수 등록</button>
           </c:when>
           <c:otherwise>
             <button type='button' 
@@ -66,7 +66,7 @@
         </c:choose>
                     
         <button type='button' 
-                    onclick="location.href='./list.do?albumno=${param.albumno}'"
+                    onclick="location.href='./list.do?'"
                     class="btn btn-info">목록</button>
       </LI>
      </UL>
