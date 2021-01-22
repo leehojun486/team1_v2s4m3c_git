@@ -198,7 +198,7 @@
     </div>  
     
         <div class="form-group">
-      <label for="membernicname" class="col-md-2 control-label" style='font-size: 0.9em;'>닉네임</label>    
+      <label for="membernicname" class="col-md-2 control-label" style='font-size: 0.9em;'>닉네임*</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='membernicname' id='membernicname' 
                    value='' required="required" style='width: 30%;' placeholder="닉네임">
@@ -206,7 +206,7 @@
     </div>    
     
             <div class="form-group">
-      <label for="membereml" class="col-md-2 control-label" style='font-size: 0.9em;'>이메일</label>    
+      <label for="membereml" class="col-md-2 control-label" style='font-size: 0.9em;'>이메일*</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='membereml' id='membereml' 
                    value='' required="required" style='width: 30%;' placeholder="이메일">
