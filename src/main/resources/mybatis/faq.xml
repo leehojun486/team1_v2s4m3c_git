@@ -69,17 +69,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                           FROM faq f, admin a
                           <choose>
                             <when test="faqword == null or faqword == ''"> <!-- 검색하지 않는 경우 -->
-                              WHERE  f.adminno = a.adminno
+                              WHERE  f.faqno = f.faqno
                             </when>
                             <otherwise>
-                              WHERE 
-                                         f.adminno = a.adminno
-                                        AND (faqtitle LIKE '%' || #{faqword} || '%' 
+                              WHERE f.faqno =f.faqno AND
+                                        (faqtitle LIKE '%' || #{faqword} || '%' 
                                                 OR faqcontent LIKE '%' || #{faqword} || '%' 
                                                 OR faqword LIKE '%' || #{faqword} || '%')
                             </otherwise>
                           </choose>
-                          ORDER BY faqno DESC, faqtitle ASC
+                          ORDER BY faqno DESC
                 )
      )
      WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
