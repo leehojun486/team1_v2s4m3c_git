@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <insert id="create" parameterType="Singer_reviewVO">
     INSERT INTO singer_review(reviewno, singerno, memberno, reviewcon, reviewrec, reviewdate, reviewcmtcnt)
-    VALUES(review_seq.nextval, #{singerno}, #{memberno}, #{reviewcon}, 0, sysdate, 0)
+    VALUES(singer_review_seq.nextval, #{singerno}, #{memberno}, #{reviewcon}, 0, sysdate, 0)
   </insert>
   
   <select id="list_date_asc" resultType="Singer_reviewVO">
