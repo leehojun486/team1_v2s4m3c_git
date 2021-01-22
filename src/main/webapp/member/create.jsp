@@ -223,7 +223,7 @@
       </div>
     </div>  
 
-    <div class="form-group">
+    <div class="form-group"> 
       <label for="memberadd1" class="col-md-2 control-label" style='font-size: 0.9em;'>주소</label>    
       <div class="col-md-10">
         <input type='text' class="form-control" name='memberadd1' id='memberadd1' 
