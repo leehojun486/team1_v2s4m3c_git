@@ -31,7 +31,11 @@
   <div class="menu">
     <ul>
       <li><a class="active" href="http://localhost:9090/team1_git/">Home</a></li>
-      <li><a href="${pageContext.request.contextPath}/playlist/list.do">Stream</a></li>
+      <c:choose>
+         <c:when test="${sessionScope.memberid != null}">
+            <li><a href="${pageContext.request.contextPath}/playlist/read_by_memberno.do?memberno=${sessionScope.memberno}">Stream</a></li>
+         </c:when>
+     </c:choose>
       <li><a href="${pageContext.request.contextPath}/notice/list_all.do">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/faq/list_all.do ">FAQ</a></li>
 
