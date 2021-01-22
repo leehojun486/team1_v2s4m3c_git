@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.singer_review.Singer_reviewDAOInter"> 
+
+  <insert id="create" parameterType="Singer_reviewVO">
+    INSERT INTO singer_review(reviewno, singerno, memberno, reviewcon, reviewrec, reviewdate, reviewcmtcnt)
+    VALUES(review_seq.nextval, #{singerno}, #{memberno}, #{reviewcon}, 0, sysdate, 0)
+  </insert>
+  
+  <select id="list_date_asc" resultType="Singer_reviewVO">
+    SELECT reviewno, singerno, memberno, reviewcon, reviewrec, reviewdate, reviewcmtcnt
+    FROM singer_review
+    ORDER BY reviewdate ASC
+  </select>
+  
+  <select id="read" resultType="Singer_reviewVO">
+    SELECT reviewno, singerno, memberno, reviewcon, reviewrec, reviewdate, reviewcmtcnt
+    FROM singer_review
+    WHERE reviewno = #{reviewno}
+  </select>
+  
+  <update id="update" parameterType="Singer_reviewVO">
+   UPDATE singer_review
+   SET reviewcon=#{reviewcon}
+   WHERE  reviewno=#{reviewno}
+  </update>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM singer_review
+    WHERE reviewno=#{reviewno}
+  </delete>
+  
+  <!-- 좋아요 하향, id: update_reviewrec_down, 입력: reviewno, 리턴: int -->
+  <update id="update_reviewrec_down" parameterType="int">
+    UPDATE singer_review
+    SET reviewrec=reviewrec-1
+    WHERE reviewno=#{reviewno}
+  </update>
+  
+  <!-- 좋아요 상향, id: update_reviewrec_up, 입력: reviewno, 리턴: int -->
+  <update id="update_reviewrec_up" parameterType="int">
+    UPDATE singer_review
+    SET reviewrec=reviewrec+1
+    WHERE reviewno=#{reviewno}
+  </update>
+  
+  <!-- 답글수 하향, id: update_reviewrec_down, 입력: reviewno, 리턴: int -->
+  <update id="update_reviewcmtcnt_down" parameterType="int">
+    UPDATE singer_review
+    SET reviewcmtcnt=reviewcmtcnt-1
+    WHERE reviewno=#{reviewno}
+  </update>
+  
+  <!-- 답글수 상향, id: update_reviewrec_up, 입력: reviewno, 리턴: int -->
+  <update id="update_reviewcmtcnt_up" parameterType="int">
+    UPDATE singer_review
+    SET reviewcmtcnt=reviewcmtcnt+1
+    WHERE reviewno=#{reviewno}
+  </update>
+
+</mapper>
