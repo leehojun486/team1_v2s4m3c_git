@@ -14,14 +14,6 @@ public class Faq_AdminVO {
   private int adminno;
   /** 회원 비밀번호**/
   private String adminpass;
-  /**댓글수**/
-  private int faqreplycnt;
-  /** 들여쓰기 / 답변차수**/
-  private int faqindent;
-  /**그룹 번호**/
-  private int faqgrpno;
-  /** 답변 순서**/
-  private int faqansnum;
   /** 검색어**/
   private String faqword;
   /** 등록일**/
@@ -60,30 +52,6 @@ public class Faq_AdminVO {
   public void setAdminpass(String adminpass) {
     this.adminpass = adminpass;
   }
-  public int getFaqreplycnt() {
-    return faqreplycnt;
-  }
-  public void setFaqreplycnt(int faqreplycnt) {
-    this.faqreplycnt = faqreplycnt;
-  }
-  public int getFaqindent() {
-    return faqindent;
-  }
-  public void setFaqindent(int faqindent) {
-    this.faqindent = faqindent;
-  }
-  public int getFaqgrpno() {
-    return faqgrpno;
-  }
-  public void setFaqgrpno(int faqgrpno) {
-    this.faqgrpno = faqgrpno;
-  }
-  public int getFaqansnum() {
-    return faqansnum;
-  }
-  public void setFaqansnum(int faqansnum) {
-    this.faqansnum = faqansnum;
-  }
   public String getFaqword() {
     return faqword;
   }
@@ -102,5 +70,6 @@ public class Faq_AdminVO {
   public void setAid(String aid) {
     this.aid = aid;
   }
+ 
   
   }
