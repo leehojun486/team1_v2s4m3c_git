@@ -15,18 +15,18 @@
       <div class="first_header_inner">
         <ul class="etc">
            <c:choose>
-        <c:when test="${sessionScope.id == null}">
-       <a href="${pageContext.request.contextPath}/member/create.do">Create Account  </a> /
-       <a href="${pageContext.request.contextPath}/member/login.do">  Login</a>
-          </c:when>
-        <c:otherwise>
-            ${sessionScope.id } <a   href='${pageContext.request.contextPath}/member/logout.do' >Logout</A>
-        </c:otherwise>
-      </c:choose>      
-        </ul>
-      </div>
-    </div>
-    </div>
+             <c:when test="${sessionScope.memberid == null}">
+               <a href="${pageContext.request.contextPath}/member/create.do">Create Account  </a> /
+               <a href="${pageContext.request.contextPath}/member/login.do">  Login </a>
+             </c:when>
+             <c:otherwise>
+               ${sessionScope.memberid } <a href='${pageContext.request.contextPath}/member/logout.do' >Logout</a>
+             </c:otherwise>
+           </c:choose>      
+         </ul>
+       </div>
+     </div>
+   </div>
 
   <div class="menu">
     <ul>
