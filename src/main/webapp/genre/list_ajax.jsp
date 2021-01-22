@@ -76,7 +76,7 @@
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         var frm = $('#frm');
         $('#genreno', frm).val(rdata.genreno);
-        $('#genrename', frm).val(rdata.genre);
+        $('#genrename', frm).val(rdata.genrename);
 
         $('#btn_send').html('수정');
         
@@ -152,7 +152,7 @@
       dataType: 'json', // 응답 형식: json, html, xml...
       data: params,      // 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-        if (rdata.genre.length > 0) {
+        if (rdata.genrename.length > 0) {
           msg = "『" + rdata.genrename + "』 장르를 삭제하시겠습니까?<br>";
           msg += "장르를 삭제하면 복구 할 수 없습니다.";
           msg += " <button type=\"button\" onclick=\"delete_proc("+genreno+", '"+rdata.genrename+"')\">삭제 진행</button>";
@@ -299,7 +299,7 @@
             <td style='text-align: center;'>${genreVO.genreno}</td>
               <%-- <td style='text-align: center;'>${singerVO.rdate.substring(0, 10)}</td> --%>
               <td style='text-align: center;'>
-                <a href="./read.do?genreno=${genreno}">${genreVO.genrename}</a> 
+                <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> 
               </td> 
             <td class="td_bs">
               <a href="javascript:update_form(${genreno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
