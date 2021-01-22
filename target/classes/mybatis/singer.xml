@@ -63,6 +63,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY s.singerno ASC, r.reviewrec DESC
   </select>
   
+  <!-- singer_review 와 member 테이블간의 조인(memberlist) -->
+  <select id="read_member_join" resultType="Singer_Review_Member_join" parameterType="int">
+    SELECT r.memberno, r.singerno, r.reviewrec,
+                m.memberno as m_memberno, m.memberid, m.memberpreview
+    FROM singer_review r, member m
+    WHERE (r.memberno = m.memberno) AND r.singerno=#{singerno}
+    ORDER BY r.reviewrec DESC
+  </select>
+  
   <!-- 답글수 하향, id: update_reviewrec_down, 입력: reviewno, 리턴: int
   <update id="update_reviewcmtcnt_down" parameterType="int">
     UPDATE review

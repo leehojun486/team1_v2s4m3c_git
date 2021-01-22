@@ -92,6 +92,13 @@ public class SingerProc implements SingerProcInter {
     List<Singer_Singer_Review_join> list = this.singerDAO.read_join(singerno);
     return list;
   }
+  
+  @Override
+  public List<Singer_Review_Member_join> read_member_join(int singerno) {
+    List<Singer_Review_Member_join> memberlist = this.singerDAO.read_member_join(singerno);
+    return memberlist;
+  }
+  
 
   
 }

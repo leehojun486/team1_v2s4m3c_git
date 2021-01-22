@@ -98,5 +98,14 @@ public interface SingerProcInter {
    */
   public List<Singer_Singer_Review_join> read_join(int singerno); 
   
+  /**
+   * <xmp>
+   *  통합 VO 기반 join
+   *  <select id="list_member_join" resultType="Singer_Review_Member_join"> 
+   * </xmp>
+   * @return
+   */
+  public List<Singer_Review_Member_join> read_member_join(int singerno); 
+  
   
 }

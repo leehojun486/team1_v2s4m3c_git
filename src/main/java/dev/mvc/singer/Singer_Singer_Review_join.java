@@ -1,30 +1,32 @@
+
+
 package dev.mvc.singer;
 
-public class Singer_Singer_Review_join {
+public class Singer_Singer_Review_join{
    //s.singerno,
    //r.singerno as r_singerno, r.reviewno, r.memberno, r.reviewcon, r.reviewrec, r.reviewdate, r.reviewcmtcnt
    //-------------------------------------------------------------------
    // singer table
    // -------------------------------------------------------------------
-   /** ºÎ¸ð Å×ÀÌºí Ä«Å×°í¸® ±×·ì ¹øÈ£ */
+   /** ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ Ä«ï¿½×°ï¿½ ï¿½×·ï¿½ ï¿½ï¿½È£ */
    private int singerno;
    
    // -------------------------------------------------------------------
    // singer_review table
    // -------------------------------------------------------------------  
-   /** ¸®ºä ¹øÈ£ */
+   /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
    private int reviewno;  
-   /** °¡¼ö ¹øÈ£ */
+   /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
    private int r_singerno;
-   /**  ¸â¹ö ¹øÈ£ */
+   /**  ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
    private int memberno;
-   /** ¸®ºä ³»¿ë */
+   /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
    private String reviewcon;
-   /** ÁÁ¾Æ¿ä ¼ö */
+   /** ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ */
    private int reviewrec;
-   /** ¸®ºä ³¯Â¥ */
+   /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥ */
    private String reviewdate;
-   /** ¸®ºä ´ä±Û ¼ö */
+   /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ */
    private int reviewcmtcnt;
    
    // --------------------------------------------------------------------
@@ -79,3 +81,4 @@ public class Singer_Singer_Review_join {
    }
 
 }
+
