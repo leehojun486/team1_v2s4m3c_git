@@ -155,8 +155,7 @@
   <FORM name='frm' method="get" action='./update.do'>
       <input type="hidden" name="singerno" value="${param.singerno}">
       
-      <fieldset class="fieldset_singer">
-        <table class="img_center">
+      <table class="fieldset_singer">
           <tr>
             <td>
               <c:set var="portrait" value="${singerVO.portrait }" />
@@ -191,29 +190,38 @@
               </div>
             </td>
           </tr>
-        </table>
-      </fieldset>
+      </table>
   </FORM>
   
   <DIV style='width: 100%;'>
     <FORM name='frm' method='POST' action='../singer_review/create.do' class="form-horizontal">
                
       <!-- FK memberno 지정 -->
-      <input type='hidden' name='memberno' id='memberno' value='1'>
+      <input type='hidden' name='memberno' id='memberno' value='${sessionScope.memberno }'>
       <!-- FK categrpno 지정 -->
       <input type='hidden' name='singerno' id='singerno' value='${param.singerno }'>
-      
-      <div class="form-group">   
-        <div class="col-md-12">
-          <textarea class="form-control" name='reviewcon' id='reviewcon' rows="4" placeholder="내용"></textarea>
-        </div>
-      </div>
-      <DIV class='content_bottom_menu'>
-        <button type="submit" class="btn btn-info">등록</button>
-        <button type="button" 
-                    onclick="location.href='./list.do?categrpno=${param.categrpno}'" 
-                    class="btn btn-info">취소</button>
-      </DIV>
+      <c:choose>
+        <c:when test="${sessionScope.memberid == null}">
+          <div class="form-group">   
+            <div class="col-md-12">
+              <textarea class="form-control" name='reviewcon' id='reviewcon' rows="4" placeholder="로그인을 하셔야 댓글을 작성할 수 있습니다."></textarea>
+            </div>
+          </div>
+         </c:when>
+        <c:otherwise>
+          <div class="form-group">   
+            <div class="col-md-12">
+              <textarea class="form-control" name='reviewcon' id='reviewcon' rows="4" placeholder="내용"></textarea>
+            </div>
+          </div>
+          <DIV class='singer_bottom_menu'>
+            <button type="submit" class="btn btn-info">등록</button>
+            <button type="button" 
+                          onclick="location.href='./list.do?categrpno=${param.categrpno}'" 
+                          class="btn btn-info">취소</button>
+          </DIV>
+        </c:otherwise>
+      </c:choose>
     </FORM>
   </DIV>
   

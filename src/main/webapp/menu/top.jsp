@@ -6,7 +6,6 @@
 %>
 
 <link href="css/style.css" rel="stylesheet" type="text/css">
-
 <!--가로형 3단 드롭다운 메뉴-->
 
  <!-- 화면 상단 메뉴 -->
@@ -46,6 +45,7 @@
   <DIV class="row" style='margin-top: 2px;'>
 
     </div>
+  <DIV class='container' style='width: 100%;'>  <!-- 상하좌우 공백 담는 컨테이너  -->
       
 
 
