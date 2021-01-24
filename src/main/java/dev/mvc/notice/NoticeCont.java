@@ -105,4 +105,18 @@ public class NoticeCont {
     return mav;
   }
   
+  /**
+   * 삭제 처리http://localhost:9090/team1/notice/read.do
+   * @param noticeno
+   * @return
+   */
+  @RequestMapping(value = "/notice/delete.do", method = RequestMethod.GET)
+  public ModelAndView delete(int noticeno) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/notice/delete_msg"); // /webapp/notice/read.jsp
+    int cnt = this.noticeproc.delete(noticeno);
+    mav.addObject("cnt", cnt);
+    return mav;
+  }
+  
 }

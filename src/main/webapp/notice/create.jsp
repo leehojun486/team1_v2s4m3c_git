@@ -21,10 +21,9 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   <DIV class="title_line">
+  공지사항 등록
   </DIV>
   
- 
- 
   <div class='menu_line'></div>
   
   <DIV style='width: 100%;'>

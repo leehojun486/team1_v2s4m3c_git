@@ -27,7 +27,7 @@
 <jsp:include page="/menu/top.jsp" />
 
 <DIV class='title_line'>${noticeVO.title}</DIV>
-  <DIV style='width:900px; margin: 0px auto; text-align: center;'>
+  <DIV class='container '>
       ${noticeVO.contents}
   </DIV>
   <button type='button' 
@@ -37,6 +37,11 @@
   <button type='button' 
                     onclick="location.href='./update_form.do?noticeno=${noticeVO.noticeno}'"
                     class="btn btn-info">수정
+  </button>
+  
+  <button type='button' 
+                    onclick="location.href='./delete.do?noticeno=${noticeVO.noticeno}'"
+                    class="btn btn-info">삭제
   </button>
  
 <jsp:include page="/menu/bottom.jsp" />

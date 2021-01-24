@@ -28,12 +28,12 @@
       <c:choose>
         <c:when test="${cnt == 1}">
           <LI class='li_none'>
-            <span class="span_success">공지사항을 수정했습니다.</span>
+            <span class="span_success">공지사항을 삭제했습니다.</span>
           </LI>
         </c:when>
         <c:otherwise>
           <LI class='li_none_left'>
-            <span class="span_fail">공지사항 수정에 실패했습니다.</span>
+            <span class="span_fail">공지사항을 삭제에 실패했습니다.</span>
           </LI>
           <LI class='li_none_left'>
             <span class="span_fail">다시 시도해주세요.</span>
