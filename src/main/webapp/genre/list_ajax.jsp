@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
  
 <script type="text/javascript">
   $(function() {
@@ -261,11 +262,35 @@
       <!-- <input type='hidden' name='lang' id='lang' value='en'> --> <!-- ko, en -->
       <input type='hidden' name='genreno' id='genreno' value='0'>
               
-      <label>장르</label>
-      <input type='text' name='genrename' id='genrename' value='장르 입력' required="required" style='width: 25%;'>
+              
+          <%-- <label>장르</label>
+      <input type='text' name='genrename' id='genrename' value='장르 입력' required="required" style='width: 25%;'>           --%>
+      
+       <c:choose>
+         <c:when test="${sessionScope.adminid != null}">
+      <div class="custom-select" >
+      <label>Create Genre</label>
+          <select name='genrename' id='genrename'  style='width: 10%;'>
+          <option value='Classic' selected="selected">Classic</option>
+          <option value='Ballad'>Ballad</option>
+          <option value='Rap'>Rap</option>
+          <option value='Chill'>Chill</option>
+          <option value='Pop'>Pop</option>
+          <option value='Rock'>Rock</option>      
+      </select>           
+      <button type="button" id='btn_send' class="btn btn-secondary">Add</button>
+           <button type="button" onclick="history.back()" class="btn btn-info">Quit</button>
+      </div>
+         </c:when>
+     </c:choose>
+
+  
+            
+  
+
+          
+      
  
-      <button type="button" id='btn_send'>등록</button>
-      <button type="button" onclick="history.back()">취소</button>
     </FORM>
     
   </DIV>
@@ -282,28 +307,60 @@
       </colgroup>
       <%-- table 컬럼 --%>
       <thead>
-        <tr>
+        <tr>       
+        
+     <c:choose>
+         <c:when test="${sessionScope.adminid != null}">
           <th style='text-align: center;'>장르 번호</th>
-          <th style='text-align: center;'>장르명</th>
-          <th style='text-align: center;'>기타</th>
-        </tr>
+         <th style='text-align: center;'>장르명</th>
+         <th style='text-align: center;'>기타</th>
+         </c:when>
+           <c:otherwise>
+         <th style='text-align: center;'>장르명</th>
+             </c:otherwise>
+      </c:choose>
       
+      
+
+
+      
+        </tr>
       </thead>
       
       <%-- table 내용 --%>
       <tbody>
         <c:forEach var="genreVO" items="${list }">
           <c:set var="genreno" value="${genreVO.genreno }" />
-          
-          <tr> 
-            <td style='text-align: center;'>${genreVO.genreno}</td>
-              <%-- <td style='text-align: center;'>${singerVO.rdate.substring(0, 10)}</td> --%>
-              <td style='text-align: center;'>
-                <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> 
-              </td> 
-            <td class="td_bs">
-              <a href="javascript:update_form(${genreno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
-              <a href="javascript:delete_form(${genreno })" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
+              <tr> 
+      
+           <c:choose>
+                 <c:when test="${sessionScope.adminid != null}">
+                    <td style='text-align: center;'>${genreVO.genreno}</td>
+                      <td class="td_bs">
+                      <td style='text-align: center;'>
+                      <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> </td> 
+                <a href="javascript:update_form(${genreno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
+                <a href="javascript:delete_form(${genreno })" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
+                </c:when>
+                  <c:otherwise> 
+                      <td style='text-align: center;'>
+                      <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> </td> 
+                   </c:otherwise>
+           </c:choose>
+         
+         
+              
+   
+              
+         
+            
+            
+          <c:choose>
+           <c:when test="${sessionScope.adminid != null}">
+
+               </c:when>
+           </c:choose>
+         
             </td>   
           </tr>
         </c:forEach>
