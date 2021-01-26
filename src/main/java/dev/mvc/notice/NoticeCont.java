@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -106,17 +108,50 @@ public class NoticeCont {
   }
   
   /**
-   * 昏力 贸府http://localhost:9090/team1/notice/read.do
+   * Ajax + read http://localhost:9090/resort/categrp/read_ajax.do
+   * 
+   * @return
+   */
+  @ResponseBody
+  @RequestMapping(value = "/notice/read_ajax.do", method = RequestMethod.GET,
+                          produces = "text/plain;charset=UTF-8")
+  public String read_ajax(int noticeno) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    
+    NoticeVO noticeVO = this.noticeproc.read(noticeno);
+
+    JSONObject json = new JSONObject();
+    json.put("noticeno", noticeno);
+    json.put("title", noticeVO.getTitle());
+    return json.toString();
+  }
+  
+  /**
+   * 昏力 贸府 + Ajax
    * @param noticeno
    * @return
    */
-  @RequestMapping(value = "/notice/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete(int noticeno) {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/notice/delete_msg"); // /webapp/notice/read.jsp
+  @ResponseBody
+  @RequestMapping(value = "/notice/delete_ajax.do", method = RequestMethod.POST,
+                          produces = "text/plain;charset=UTF-8")
+  public String delete_ajax(int noticeno) {
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    
     int cnt = this.noticeproc.delete(noticeno);
-    mav.addObject("cnt", cnt);
-    return mav;
+    
+    JSONObject json = new JSONObject();
+    json.put("cnt", cnt);
+    System.out.println("cnt:"+ cnt);
+    
+    return json.toString();
   }
   
 }

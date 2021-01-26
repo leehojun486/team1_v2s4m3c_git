@@ -15,6 +15,16 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+  $('#submit').on('click', rep);
+});
+function rep(){
+  var str = $('#contents').val();
+  str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
+  $('#contents').val(str);
+}
+</script>
  
 </head> 
  
@@ -42,7 +52,7 @@
       </div>
       
       <DIV class='content_bottom_menu'>
-        <button type="submit" class="btn btn-info">등록</button>
+        <button type="submit" id='submit' class="btn btn-info">등록</button>
         <button type="button" 
                     onclick="location.href='./list_all.do'" 
                     class="btn btn-info">취소[목록]</button>
