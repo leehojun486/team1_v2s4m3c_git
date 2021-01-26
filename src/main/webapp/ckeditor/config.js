@@ -7,12 +7,12 @@ CKEDITOR.editorConfig = function( config ) {
   // Define changes to default configuration here. For example:
   // config.language = 'fr';
   // config.uiColor = '#AADC6E';
-  config.height = 500;  // ÆíÁı È­¸é ³ôÀÌ
+  config.height = 500;  // í¸ì§‘ í™”ë©´ ë†’ì´
   //config.uiColor = '#9AB8F3';
   config.uiColor = '#D3D3D3';
-  config.enterMode = CKEDITOR.ENTER_BR; //¿£ÅÍÅ° ÅÂ±× 1:<p>, 2:<br>, 3:<div>
-  config.font_defaultLabel = 'Malgun Gothic'; //±âº»±Û¾¾
-  config.font_names = '±¼¸²Ã¼/Gulim;µ¸¿òÃ¼/Dotum;¸¼Àº °íµñ/Malgun Gothic;';
+  config.enterMode = CKEDITOR.ENTER_BR; //ì—”í„°í‚¤ íƒœê·¸ 1:<p>, 2:<br>, 3:<div>
+  config.font_defaultLabel = 'Malgun Gothic'; //ê¸°ë³¸ê¸€ì”¨
+  config.font_names = 'êµ´ë¦¼ì²´/Gulim;ë‹ì›€ì²´/Dotum;ë§‘ì€ ê³ ë”•/Malgun Gothic;';
   config.fontSize_defaultLabel = '14px';
   config.fontSize_sizes = '14/14px;16/16px;20/20px;24/24px;28/28px;36/36px;48/48px;72/72px;';
  
@@ -49,4 +49,3 @@ config.removeDialogTabs = 'image:advanced;link:advanced';
   config.filebrowserImageUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images";
   config.filebrowserFlashUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash";
 };
-  
