@@ -15,6 +15,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+<!-- Fotorama -->
+<link href="fotorama.css" rel="stylesheet">
+<script src="fotorama.js"></script>
+
  
 <script type="text/javascript">
   $(function() {
@@ -246,14 +250,7 @@
     등록된 모든 장르
   </DIV>
   
-  <ASIDE class="aside_left">
-    전체 보기 
-  </ASIDE>
-  <ASIDE class="aside_right">
-  
-    <A href="javascript:location.reload();">새로고침</A>
-    
-  </ASIDE> 
+
   <DIV class='menu_line'></DIV>
   
   <%-- ajax --%>
@@ -316,7 +313,7 @@
          <th style='text-align: center;'>기타</th>
          </c:when>
            <c:otherwise>
-         <th style='text-align: center;'>장르명</th>
+         <th style='text-align: left;'>장르명</th>
              </c:otherwise>
       </c:choose>
       
@@ -336,38 +333,25 @@
            <c:choose>
                  <c:when test="${sessionScope.adminid != null}">
                     <td style='text-align: center;'>${genreVO.genreno}</td>
-                      <td class="td_bs">
                       <td style='text-align: center;'>
-                      <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> </td> 
+                      <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> 
+                      </td> 
+                           <td style='text-align: center;'>
                 <a href="javascript:update_form(${genreno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
                 <a href="javascript:delete_form(${genreno })" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
+                </td>
                 </c:when>
                   <c:otherwise> 
-                      <td style='text-align: center;'>
-                      <a href="../album/list.do?genreno=${genreno}">${genreVO.genrename}</a> </td> 
+                      <td style="text-align: left;height:200px">
+                      <a href="../album/list.do?genreno=${genreno}" style="vertical-align: top;font-size:32px; ">${genreVO.genrename}</a> </td> 
                    </c:otherwise>
            </c:choose>
-         
-         
-              
-   
-              
-         
-            
-            
-          <c:choose>
-           <c:when test="${sessionScope.adminid != null}">
-
-               </c:when>
-           </c:choose>
-         
-            </td>   
+    
           </tr>
         </c:forEach>
         
       </tbody>
     </table>
-    <br><br>
   </div>
  
 <jsp:include page="/menu/bottom.jsp" flush='false' />
