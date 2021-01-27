@@ -78,23 +78,12 @@
         <c:forEach var="faq_AdminVO" items="${list }">
           <c:set var="faqtitle" value="${faq_AdminVO.faqtitle }" />
           <c:set var="faqno" value="${faq_AdminVO.faqno }" />
-          <c:set var="faqindent" value="${faq_AdminVO.faqindent }" />
-          <c:set var="faqansnum" value="${faq_AdminVO.faqansnum }" />
           <c:set var="aid" value="${faq_AdminVO.aid }" />
           <c:set var="faqrdate" value="${faq_AdminVO.faqrdate }" />
                     
           <tr> 
             <td style='vertical-align: middle; text-align: center;'>${faqrdate.substring(0, 10)}</td>
             <td style='vertical-align: middle;'>
-              <c:choose>
-                  <c:when test="${faqansnum == 0 }"> <%-- 부모글인 경우 아이콘 출력 --%>
-                      <img src='./images/ting1.png'>
-                  </c:when>
-                  <c:when test="${faqansnum > 0 }"> <%-- 자식글 아이콘 출력, 들여 쓰기 --%>
-                      <img src='./images/white.png' style='width: ${faqindent * 20}px; height: 20px; opacity: 0.0;'>
-                      <img src='./images/reply3.png'>
-                  </c:when>
-              </c:choose>
             
               <a href="./read.do?faqno=${faqno}&faqword=${param.faqword }&nowPage=${param.nowPage}">${faqtitle}</a> 
             </td> 

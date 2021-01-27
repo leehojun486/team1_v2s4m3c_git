@@ -23,9 +23,9 @@
   //  CKEDITOR.replace('content');  // <TEXTAREA>태그 id 값
   // };
 
-  $(function() {
-
-  });
+$(function(){
+  CKEDITOR.replace('faqcontent');  // <TEXTAREA>태그 id 값
+});
  
 </script>
 

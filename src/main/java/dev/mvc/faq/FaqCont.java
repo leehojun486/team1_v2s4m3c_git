@@ -35,7 +35,7 @@ public class FaqCont {
   
   
   /**
-  * µî·Ï Æû
+  * ï¿½ï¿½ï¿½ ï¿½ï¿½
   * @return
   */
   @RequestMapping(value="/faq/create.do", method=RequestMethod.GET )
@@ -49,7 +49,7 @@ public class FaqCont {
   
 
   /**
-   * µî·ÏÃ³¸®
+   * ï¿½ï¿½ï¿½Ã³ï¿½ï¿½
    * http://localhost:9090/resort/cate/create.do
    * 
    * @return
@@ -67,7 +67,7 @@ public class FaqCont {
     
     
     mav.addObject("faqno", faqVO.getFaqno());
-    mav.addObject("url", "create_continue"); // create_continue.jsp, redirect parameter Àû¿ë
+    mav.addObject("url", "create_continue"); // create_continue.jsp, redirect parameter ï¿½ï¿½ï¿½ï¿½
     mav.setViewName("redirect:/faq/msg.do"); 
     
 
@@ -75,25 +75,25 @@ public class FaqCont {
   }
       
   /**
-   * »õ·Î°íÄ§À» ¹æÁöÇÏ´Â ¸Þ½ÃÁö Ãâ·Â
+   * ï¿½ï¿½ï¿½Î°ï¿½Ä§ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
    * @return
    */
   @RequestMapping(value="/faq/msg.do", method=RequestMethod.GET)
   public ModelAndView msg(String url){
     ModelAndView mav = new ModelAndView();
     
-    // µî·Ï Ã³¸® ¸Þ½ÃÁö: create_msg --> /contents/create_msg.jsp
-    // ¼öÁ¤ Ã³¸® ¸Þ½ÃÁö: update_msg --> /contents/update_msg.jsp
-    // »èÁ¦ Ã³¸® ¸Þ½ÃÁö: delete_msg --> /contents/delete_msg.jsp
+    // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½: create_msg --> /contents/create_msg.jsp
+    // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½: update_msg --> /contents/update_msg.jsp
+    // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ ï¿½Þ½ï¿½ï¿½ï¿½: delete_msg --> /contents/delete_msg.jsp
     mav.setViewName("/faq/" + url); // forward
     
     return mav; // forward
   }
   
   /**
-   * ¸ñ·Ï + °Ë»ö + ÆäÀÌÂ¡ Áö¿ø
+   * ï¿½ï¿½ï¿½ + ï¿½Ë»ï¿½ + ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½
    * http://localhost:9090/resort/contents/list.do
-   * http://localhost:9090/resort/contents/list.do?cateno=1&word=½ºÀ§½º&nowPage=1
+   * http://localhost:9090/resort/contents/list.do?cateno=1&word=ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½&nowPage=1
    * @param cateno
    * @param word
    * @param nowPage
@@ -103,39 +103,39 @@ public class FaqCont {
                                        method = RequestMethod.GET)
   public ModelAndView list_all_search_paging(
       @RequestParam(value="faqno", defaultValue="1") int faqno,
-      @RequestParam(value="faqword", defaultValue="ÀüÃ¼") String faqword,
+      @RequestParam(value="faqword", defaultValue="ì „ì²´") String faqword,
       @RequestParam(value="nowPage", defaultValue="1") int nowPage
       ) { 
     System.out.println("--> nowPage: " + nowPage);
     
     ModelAndView mav = new ModelAndView();
     
-    // ¼ýÀÚ¿Í ¹®ÀÚ¿­ Å¸ÀÔÀ» ÀúÀåÇØ¾ßÇÔÀ¸·Î Obejct »ç¿ë
+    // ï¿½ï¿½ï¿½Ú¿ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Obejct ï¿½ï¿½ï¿½
     HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("faqno" , faqno);
     map.put("faqword", faqword);     // #{word}
-    map.put("nowPage", nowPage);  // ÆäÀÌÁö¿¡ Ãâ·ÂÇÒ ·¹ÄÚµåÀÇ ¹üÀ§¸¦ »êÃâÇÏ±âÀ§ÇØ »ç¿ë     
+    map.put("nowPage", nowPage);  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½     
     
-    // °Ë»ö ¸ñ·Ï
+    // ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
     List<Faq_AdminVO> list = faqProc.list_all_search_paging_join(map);
     mav.addObject("list", list);
     
-    // °Ë»öµÈ ·¹ÄÚµå °¹¼ö
+    // ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
     int search_count = faqProc.search_count(map);
     mav.addObject("search_count", search_count);  
     
 
 
     /*
-     * SPANÅÂ±×¸¦ ÀÌ¿ëÇÑ ¹Ú½º ¸ðµ¨ÀÇ Áö¿ø, 1 ÆäÀÌÁöºÎÅÍ ½ÃÀÛ 
-     * ÇöÀç ÆäÀÌÁö: 11 / 22   [ÀÌÀü] 11 12 13 14 15 16 17 18 19 20 [´ÙÀ½] 
+     * SPANï¿½Â±×¸ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
+     * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 11 / 22   [ï¿½ï¿½ï¿½ï¿½] 11 12 13 14 15 16 17 18 19 20 [ï¿½ï¿½ï¿½ï¿½] 
      * 
-     * @param listFile ¸ñ·Ï ÆÄÀÏ¸í 
-     * @param cateno Ä«Å×°í¸®¹øÈ£ 
-     * @param search_count °Ë»ö(ÀüÃ¼) ·¹ÄÚµå¼ö 
-     * @param nowPage     ÇöÀç ÆäÀÌÁö
-     * @param word °Ë»ö¾î
-     * @return ÆäÀÌÂ¡ »ý¼º ¹®ÀÚ¿­
+     * @param listFile ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¸ï¿½ 
+     * @param cateno Ä«ï¿½×°ï¿½ï¿½ï¿½È£ 
+     * @param search_count ï¿½Ë»ï¿½(ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½Úµï¿½ï¿½ 
+     * @param nowPage     ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+     * @param word ï¿½Ë»ï¿½ï¿½ï¿½
+     * @return ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¿ï¿½
      */ 
     String paging = faqProc.pagingBox("list_all.do"  ,search_count, nowPage, faqword);
     mav.addObject("paging", paging);
@@ -149,7 +149,7 @@ public class FaqCont {
   }    
 //http://localhost:9090/resort/contents/read.do
  /**
-  * ÀüÃ¼ ¸ñ·Ï
+  * ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½
   * @return
   */
  @RequestMapping(value="/faq/read.do", method=RequestMethod.GET )
@@ -166,14 +166,14 @@ public class FaqCont {
  }
  
  /**
-  * ¼öÁ¤ Æû
+  * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
   * @return
   */
  @RequestMapping(value="/faq/update.do", method=RequestMethod.GET )
  public ModelAndView update(int faqno) {
    ModelAndView mav = new ModelAndView();
    
-   FaqVO faqVO = this.faqProc.read_update(faqno); // ¼öÁ¤¿ë ÀÐ±â
+   FaqVO faqVO = this.faqProc.read_update(faqno); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
    mav.addObject("faqVO", faqVO); // request.setAttribute("contentsVO", contentsVO);
    
    mav.setViewName("/faq/update"); // webapp/contents/update.jsp
@@ -183,7 +183,7 @@ public class FaqCont {
  
  // http://localhost:9090/resort/faq/update.do
  /**
-  * ¼öÁ¤ Ã³¸®
+  * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
   * @param faqVO
   * @return
   */
@@ -197,17 +197,17 @@ public class FaqCont {
    hashMap.put("faqno", faqVO.getFaqno());
    hashMap.put("adminpass", faqVO.getAdminpass());
    
-   int passwd_cnt = 0; // ÆÐ½º¿öµå ÀÏÄ¡ ·¹ÄÚµå °¹¼ö
-   int cnt = 0;             // ¼öÁ¤µÈ ·¹ÄÚµå °¹¼ö 
+   int passwd_cnt = 0; // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+   int cnt = 0;             // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ 
    
    passwd_cnt = this.faqProc.passwd_check(hashMap);
  
-   if (passwd_cnt == 1) { // ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÒ °æ¿ì ±Û ¼öÁ¤
+   if (passwd_cnt == 1) { // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
      cnt = this.faqProc.update(faqVO);
    }
 
    mav.addObject("cnt", cnt);
-   mav.addObject("passwd_cnt", passwd_cnt); // request¿¡ ÀúÀå
+   mav.addObject("passwd_cnt", passwd_cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    
      
    mav.setViewName("/faq/update_msg"); // webapp/contents/update_msg.jsp
@@ -215,8 +215,8 @@ public class FaqCont {
    return mav;
  }
  /**
-  * ·Î±×ÀÎ ¿©ºÎ¸¸ Ã¼Å©ÇÔÀ¸·Î ´Ù¸¥ »ç¿ëÀÚÀÇ ±ÛÀ» »èÁ¦ ÇÒ ¼ö ÀÖ´Â È­¸éÀÌ Ãâ·ÂµÊ.
-  * »èÁ¦ Æû, attachfile Ajax ±â¹Ý »èÁ¦ Áö¿ø
+  * ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ Ã¼Å©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Âµï¿½.
+  * ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, attachfile Ajax ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   * @return
   */
   @RequestMapping(value="/faq/delete.do", method=RequestMethod.GET )
@@ -226,7 +226,7 @@ public class FaqCont {
     int adminno = (int)session.getAttribute("adminno");
     
     if (adminno == this.faqProc.read(faqno).getAdminno()) {
-      FaqVO faqVO = this.faqProc.read_update(faqno); // ¼öÁ¤¿ë ÀÐ±â
+      FaqVO faqVO = this.faqProc.read_update(faqno); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð±ï¿½
       mav.addObject("faqVO", faqVO); // request.setAttribute("contentsVO", contentsVO);
       
       mav.setViewName("/faq/delete"); // webapp/contents/delete.jsp
@@ -239,7 +239,7 @@ public class FaqCont {
  
  // http://localhost:9090/resort/contents/delete.do
  /**
-  * »èÁ¦ Ã³¸® +  ÆÄÀÏ »èÁ¦
+  * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ +  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
   * @param contentsVO
   * @return
   */
@@ -259,25 +259,25 @@ public class FaqCont {
    hashMap.put("faqno", faqno);
    hashMap.put("adminpass", adminpass);
    
-   int passwd_cnt = 0; // ÆÐ½º¿öµå ÀÏÄ¡ ·¹ÄÚµå °¹¼ö
-   int cnt = 0;             // ¼öÁ¤µÈ ·¹ÄÚµå °¹¼ö 
+   int passwd_cnt = 0; // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
+   int cnt = 0;             // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ 
    
    passwd_cnt = this.faqProc.passwd_check(hashMap);
    boolean sw = false;
    
-   if (passwd_cnt == 1) { // ÆÐ½º¿öµå°¡ ÀÏÄ¡ÇÒ °æ¿ì ±Û ¼öÁ¤
+   if (passwd_cnt == 1) { // ï¿½Ð½ï¿½ï¿½ï¿½ï¿½å°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
      cnt = this.faqProc.delete(faqno);
      
-     String upDir = Tool.getRealPath(request, "/faq/storage/main_images"); // Àý´ë °æ·Î
+     String upDir = Tool.getRealPath(request, "/faq/storage/main_images"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 
    }
 
-   mav.addObject("cnt", cnt); // request¿¡ ÀúÀå
-   mav.addObject("passwd_cnt", passwd_cnt); // request¿¡ ÀúÀå
-   mav.addObject("nowPage", nowPage); // request¿¡ ÀúÀå
+   mav.addObject("cnt", cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   mav.addObject("passwd_cnt", passwd_cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+   mav.addObject("nowPage", nowPage); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
    // System.out.println("--> ContentsCont.java nowPage: " + nowPage);
    
-   mav.addObject("url", "delete_msg"); // delete_msg.jsp, redirect parameter Àû¿ë
+   mav.addObject("url", "delete_msg"); // delete_msg.jsp, redirect parameter ï¿½ï¿½ï¿½ï¿½
    
    // mav.setViewName("/contents/delete_msg"); // webapp/contents/delete_msg.jsp
    mav.setViewName("redirect:/faq/msg.do"); 
