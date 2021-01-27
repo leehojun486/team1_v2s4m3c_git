@@ -99,7 +99,7 @@ public class GenreCont {
     * 목록_Ajax    ::    http://localhost:9090/team1/genre/list_ajax.do
     * @return
     */
-  @RequestMapping(value = "/genre/list_ajax.do", method=RequestMethod.GET)
+  @RequestMapping(value = "/genre/list.do", method=RequestMethod.GET)
    public ModelAndView list() {
      ModelAndView mav = new ModelAndView();
      mav.setViewName("genre/list_ajax");
