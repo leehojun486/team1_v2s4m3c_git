@@ -246,9 +246,7 @@
  
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
-  <DIV class="title_line">
-    등록된 모든 장르
-  </DIV>
+
   
 
   <DIV class='menu_line'></DIV>
@@ -273,6 +271,11 @@
           <option value='Rap'>Rap</option>
           <option value='Chill'>Chill</option>
           <option value='Pop'>Pop</option>
+          <option value='Hip-Hop'>Hip-Hop</option>      
+          <option value='R&B'>R&B</option>      
+          <option value='Funk'>Funk</option>      
+          <option value='Reggae'>Reggae</option>      
+          <option value='K-Pop'>K-Pop</option>      
           <option value='Rock'>Rock</option>      
       </select>           
       <button type="button" id='btn_send' class="btn btn-secondary">Add</button>
@@ -296,7 +299,7 @@
   <%-- /ajax --%>
   
   <div style='width: 100%;'>
-    <table class="table table-striped" style='width: 100%;'>
+    <table class="table " style='width: 80%;margin:0px 100px 0px 100px;''>
       <colgroup>
         <col style="width: 10%;"></col>
         <col style="width: 30%;"></col>
@@ -308,12 +311,12 @@
         
      <c:choose>
          <c:when test="${sessionScope.adminid != null}">
-          <th style='text-align: center;'>장르 번호</th>
-         <th style='text-align: center;'>장르명</th>
+          <th style='text-align: center;'>Genre No</th>
+         <th style='text-align: center;'>Genre</th>
          <th style='text-align: center;'>기타</th>
          </c:when>
            <c:otherwise>
-         <th style='text-align: left;'>장르명</th>
+         <th style='text-align: left;font-size:25px;font-style:italic;'>Genre</th>
              </c:otherwise>
       </c:choose>
       
@@ -342,8 +345,88 @@
                 </td>
                 </c:when>
                   <c:otherwise> 
-                      <td style="text-align: left;height:200px">
-                      <a href="../album/list.do?genreno=${genreno}" style="vertical-align: top;font-size:32px; ">${genreVO.genrename}</a> </td> 
+                     <td style="text-align: left;heigth:100px;">               
+                      <a href="../album/list.do?genreno=${genreno}" style="vertical-align: top;font-size:25px;font-style:italic;opacity:0.6;color:orange; ">${genreVO.genrename}</a> 
+                     
+                     
+                      <c:choose>
+                        <c:when test="${genreVO.genrename=='Classic'}">
+                          <p>
+                            <img src="./images/Classic.jpg" style='width:100px;height:100px;margin:10px;'>
+                           </p>
+                            </c:when>
+                           </c:choose>
+                           
+                      <c:choose>
+                        <c:when test="${genreVO.genrename=='Pop'}">
+                          <p>
+                            <img src="./images/Pop.jpg" style='width:100px;height:100px;margin:10px;'>
+                           </p>
+                            </c:when>
+                           </c:choose>           
+                                           
+                        <c:choose>
+                          <c:when test="${genreVO.genrename=='Ballad'}">
+                            <p>
+                              <img src="./images/Ballad.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='Chill'}">
+                            <p>
+                              <img src="./images/spring04.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='Hip-Hop'}">
+                            <p>
+                              <img src="./images/Hip-Hop.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='R&B'}">
+                            <p>
+                              <img src="./images/R&B.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='K-Pop'}">
+                            <p>
+                              <img src="./images/K-Pop.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='Reggae'}">
+                            <p>
+                              <img src="./images/Reggae.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                        <c:choose>
+                        
+                          <c:when test="${genreVO.genrename=='Rock'}">
+                            <p>
+                              <img src="./images/Rock.jpg" style='width:100px;height:100px;margin:10px;'>
+                             </p>
+                              </c:when>
+                             </c:choose>
+                            
+                           
+                           
+                           
+                           
+                       </td>   
                    </c:otherwise>
            </c:choose>
     
