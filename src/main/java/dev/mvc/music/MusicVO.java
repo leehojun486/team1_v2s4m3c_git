@@ -88,7 +88,8 @@ import org.springframework.web.multipart.MultipartFile;
     private int cnt =0;
     private String youtube;
     private String word ="";
-    private int memebrno;
+
+    private int memberno;
     /*-*/
     
     public int getMusicno() {
@@ -235,11 +236,11 @@ import org.springframework.web.multipart.MultipartFile;
     public void setWord(String word) {
       this.word = word;
     }
-    public int getMemebrno() {
-      return memebrno;
+    public int getMemberno() {
+      return memberno;
     }
-    public void setMemebrno(int memebrno) {
-      this.memebrno = memebrno;
+    public void setMemberno(int memberno) {
+      this.memberno = memberno;
     }
     
 
