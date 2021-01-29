@@ -35,6 +35,7 @@
             <li><a href="${pageContext.request.contextPath}/playlist/read_by_memberno.do?memberno=${sessionScope.memberno}">Stream</a></li>
          </c:when>
      </c:choose>
+       <li><a href="${pageContext.request.contextPath}/genre/list.do">Genre</a></li>
       <li><a href="${pageContext.request.contextPath}/notice/list_all.do">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/faq/list_all.do ">FAQ</a></li>
 
