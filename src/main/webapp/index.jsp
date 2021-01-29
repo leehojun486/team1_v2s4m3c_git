@@ -24,7 +24,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
   
-<div class="fotorama" data-width="500" align="center"data-autoplay="2000" >
+<div class="fotorama" data-width="500" align="center"data-autoplay="3000" >
   
     <IMG src='./menu/images/music.jpg' style='width: 100%;'>
     <IMG src='./menu/images/music2.jpg' style='width: 100%;'>
