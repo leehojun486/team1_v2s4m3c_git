@@ -56,7 +56,7 @@ public interface MusicDAOInter {
   
   /**
    * 검색 목록
-   * @param MusicVO
+   * @param MusicVOverK
    * @return
    */
   public List<MusicVO> list_search(MusicVO musicVO);

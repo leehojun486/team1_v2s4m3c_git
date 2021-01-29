@@ -19,28 +19,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                       #{musiclong }, #{singerno }, #{albumno }, #{passwd })
   </insert> -->
   
-  <insert parameterType="MusicVO" id="create"> 
+  <!-- <insert parameterType="MusicVO" id="create"> 
     <selectKey keyProperty="musicno" resultType="int" order="BEFORE">
       SELECT music_seq.nextval FROM dual 
     </selectKey>
-    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, musiclong, singerno, albumno, passwd, memberno)
-    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{file1}, #{thumb1},#{musiclong }, #{singerno }, #{albumno }, #{passwd }, #{memberno }) 
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno)
+    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{mp3}, #{file1}, #{thumb1}, #{musiclong }, #{passwd }, #{youtube }, #{replycnt }, #{cnt }, #{word }, #{memberno }, #{singerno }, #{albumno }) 
+  </insert> -->
+  
+  <insert parameterType="MusicVO" id="create">
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno)
+    VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genreno}, #{genre}, sysdate, #{lyrics}, #{likelist}, #{likesu}, #{mp3}, #{file1}, #{thumb1}, #{musiclong}, #{passwd}, #{youtube}, #{replycnt}, #{cnt}, #{word}, #{memberno}, #{singerno}, #{albumno})
   </insert>
   
+  
   <select id="list" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno, cnt
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_seqno_asc" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno, cnt
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_by_singerno" resultType="MusicVO"> 
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, file1, thumb1, size1, musiclong, singerno, albumno
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
     FROM music 
     WHERE singerno = #{singerno}
     ORDER BY musicno ASC  

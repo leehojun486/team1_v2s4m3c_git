@@ -31,7 +31,18 @@
 <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
   <input type='hidden' name='likelist' value='N'> 
   <input type='hidden' name='singerno' value='1'>
-  <input type='hidden' name='albumno' value='10'> 
+  <input type='hidden' name='albumno' value='1'> 
+  
+  <!-- 미 설정 값들 -->
+  <input type='hidden' name='youtube' value='youtube'>
+  <input type='hidden' name='memberno' value='1'>
+  <input type='hidden' name='genreno' value='1'>
+  <input type='hidden' name='genre' value='발라드'>
+  <input type='hidden' name='likesu' value='0'>
+  <input type='hidden' name='replycnt' value='0'>
+  <input type='hidden' name='cnt' value='0'>
+  
+   
   <!-- <input type='hidden' name='genreno' value='1'> --> <%-- 전달 해줘야 할 FK 3개 값들 고민좀해봐야할듯 --%>
   
   <div class="form-group">
