@@ -4,12 +4,13 @@ public class Music_Playlist_Music_joinVO {
   //-------------------------------------------------------------------
   //Music table
   // -------------------------------------------------------------------
-  /** ºÎ¸ð Å×ÀÌºí À½¾Ç ¹øÈ£ */
+  /** ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ */
   private int m_musicno;
-  /** ºÎ¸ð Å×ÀÌºí À½¾Ç*/
+  /** ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½*/
   private String m_music;
+  private String youtube;
   
- //-------------------------------------------------------------------
+  //-------------------------------------------------------------------
  //Music_playlist table
  // -------------------------------------------------------------------
   private int music_playlistno;
@@ -51,6 +52,12 @@ public class Music_Playlist_Music_joinVO {
  }
  public void setMusicno(int musicno) {
    this.musicno = musicno;
+ }
+ public String getYoutube() {
+   return youtube;
+ }
+ public void setYoutube(String youtube) {
+   this.youtube = youtube;
  }
   
  }

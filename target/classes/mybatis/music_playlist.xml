@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_join" resultType="Music_Playlist_Music_joinVO" parameterType="int">
-    SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+    SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno
     FROM music_playlist mp, music m
     WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
     ORDER BY playing_seq ASC
@@ -68,7 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <!-- 음악별 검색 목록 -->
    <select id="list_by_join_search" resultType="Music_Playlist_Music_joinVO" parameterType="HashMap">
-     SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.music as m_music, m.musicno as m_musicno
+     SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno
      FROM music_playlist mp, music m
      <choose>
        <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우 이따가 m.music으로 실험 -->
@@ -76,7 +76,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        </when>
        <otherwise> <!-- 검색하는 경우 -->
           WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
-                                                         AND (m.music LIKE '%' || #{m_music} || '%' )
+                                                         AND (m.title LIKE '%' || #{m_music} || '%' )
        </otherwise>
      </choose>
      ORDER BY playing_seq ASC  
@@ -92,7 +92,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        </when>
        <otherwise> <!-- 검색하는 경우의 레코드 갯수 -->
          WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
-                                                         AND (m.music LIKE '%' || #{m_music} || '%')
+                                                         AND (m.title LIKE '%' || #{m_music} || '%')
        </otherwise>
      </choose>
    </select>
@@ -104,19 +104,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_join_search_paging" resultType="Music_Playlist_Music_joinVO" parameterType="HashMap">
-  SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, r
+  SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, r, youtube
   FROM(
-    SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r
+    SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r, youtube
     FROM(
-        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno
+        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno, m.youtube as youtube
         FROM music_playlist mp, music m
         <choose>
-       <when test="m_music == null or m_music == ''"> <!-- 검색하지 않는 경우 이따가 m.music으로 실험 -->
+       <when test="m_music == null or m_music == ''">
          WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
        </when>
        <otherwise> <!-- 검색하는 경우 -->
           WHERE mp.musicno = m.musicno AND mp.playlistno =#{playlistno}
-                                                         AND (m.music LIKE '%' || #{m_music} || '%' )
+                                                         AND (m.title LIKE '%' || #{m_music} || '%' )
        </otherwise>
      </choose>
      )

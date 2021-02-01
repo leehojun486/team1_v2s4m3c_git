@@ -18,6 +18,42 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
 <script type="text/javascript">
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api"; 
+var firstScriptTag = document.getElementsByTagName('script')[0]; 
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag); 
+var youtubePlayer; 
+function onYouTubeIframeAPIReady() {
+  youtubePlayer = new YT.Player('player', { 
+    width: '640',
+    height: '360',
+    videoId: 'x993sfGToV0',
+    playerVars:{ 
+      rel:0 //관련영상 표시하지 않기.
+       }, 
+       events: { 
+         'onReady': onPlayerReady, //로딩할때 이벤트 실행
+         'onStateChange': onPlayerStateChange //플레이어 상태 변화시 이벤트실행 
+         } 
+       });
+   }
+  function onPlayerReady(event) { 
+    event.target.playVideo();//자동재생 
+    } 
+    var done = false; 
+  function onPlayerStateChange(event) {
+           if (event.data === YT.PlayerState.PLAYING && !done) { 
+               // setTimeout(stopVideo, 6000); 
+               done = true; 
+               }
+              } 
+          function stopVideo() {
+             youtubePlayer.stopVideo(); 
+             } 
+          function playVideo() {
+             youtubePlayer.playVideo();//재생 
+             }
+
 $(function() {
   $('#btn_send').on('click', send);
 }); 
@@ -273,6 +309,11 @@ function update_proc() {
   </c:forEach> 
   </tbody>
 </TABLE>
+<c:forEach var="Music_Playlist_Music_joinVO" items="${list}">
+    <c:set var="music_playlistno" value="${music_PlaylistVO.music_playlistno }" />
+<iframe width="500" height="300" src="${Music_Playlist_Music_joinVO.youtube }" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</c:forEach>
+
  <DIV class='bottom_menu'>${paging }</DIV>
  
 <jsp:include page="/menu/bottom.jsp" />
