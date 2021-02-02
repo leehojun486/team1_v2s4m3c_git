@@ -90,6 +90,26 @@
 <c:set var="muiscno" value="${musicVO.musicno}" />
 
 <jsp:include page="/menu/top.jsp" flush='false' />
+
+
+
+
+
+  <DIV class='title_line'>음악 삭제</DIV>
+
+  <ASIDE class="aside_left">
+    <A href=''>음악</A> > 
+    <A href=''>${MusicVO.title }</A> > 삭제
+  </ASIDE>
+  <ASIDE class="aside_right">
+    <A href=''>목록으로 돌아가기</A>
+    <!-- <span class='menu_divide' >│</span> --> 
+  </ASIDE> 
+
+
+
+
+
   <!-- Modal Youtube 삭제 요청 시작 -->
   <div class="modal fade" id="modal_panel_youtube" role="dialog"> <%-- modal_panel_youtube --%>
     <div class="modal-dialog">
@@ -149,22 +169,22 @@
     <c:choose>
       <c:when test="${musicVO.file1.trim().length() > 0 }">
         <span class='menu_divide' > | </span> 
-        <A href='./img_update.do?musicno=${param.musicno }'>메인 이미지 변경/삭제</A>     
+        <A href='./img_update.do?musicno=${musicno }'>메인 이미지 변경/삭제</A>     
       </c:when>
       <c:otherwise>
         <span class='menu_divide' > | </span> 
-        <A href='./img_create.do?musicno=${param.musicno }'>메인 이미지 등록</A>     
+        <A href='./img_create.do?musicno=${musicno }'>메인 이미지 등록</A>     
       </c:otherwise>
     </c:choose>    
     <span class='menu_divide' > | </span>
-    <A href='../attachfile/create.do?musicno=${param.musicno }'>첨부 파일 등록</A>
+    <A href='../attachfile/create.do?musicno=${musicno }'>첨부 파일 등록</A>
     <span class='menu_divide' > | </span>
-    <A href='../attachfile/list_by_contents.do?musicno=${param.musicno }'>첨부 파일 삭제</A>
+    <A href='../attachfile/list_by_contents.do?musicno=${musicno }'>첨부 파일 삭제</A>
 
     <span class='menu_divide' > | </span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' > | </span> 
-    <A href='./list.do?musicno=${param.musicno }&word=${param.word}'>목록</A>
+    <A href='./list.do?musicno=${musicno }&word=${param.word}'>목록</A>
     <span class='menu_divide' > | </span> 
     <A href='./update.do?musicno=${param.musicno }'>수정</A>
     
@@ -175,23 +195,23 @@
       </c:when>
       <c:otherwise>
         <span class='menu_divide' > | </span> 
-        <A href='./youtube_create.do?musicno=${param.musicno }'>Youtube 등록</A>     
+        <A href='./youtube_create.do?musicno=${musicno }'>Youtube 등록</A>     
       </c:otherwise>
     </c:choose>    
 
     <c:choose>
       <c:when test="${musicVO.mp3.trim().length() > 0 }">
         <span class='menu_divide' > | </span> 
-        <A href='./mp3_delete.do?musicno=${param.musicno }'>MP3 삭제</A>     
+        <A href='./mp3_delete.do?musicno=${musicno }'>MP3 삭제</A>     
       </c:when>
       <c:otherwise>
         <span class='menu_divide' > | </span> 
-        <A href='./mp3_create.do?musicno=${param.musicno }'>MP3 등록</A>     
+        <A href='./mp3_create.do?musicno=${musicno }'>MP3 등록</A>     
       </c:otherwise>
     </c:choose>
         
     <span class='menu_divide' > | </span> 
-    <A href='./delete.do?musicno=${param.musicno }'>삭제</A>
+    <A href='./delete.do?musicno=${musicno }'>삭제</A>
     
   </ASIDE> 
   

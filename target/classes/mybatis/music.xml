@@ -32,7 +32,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genreno}, #{genre}, sysdate, #{lyrics}, #{likelist}, #{likesu}, #{mp3}, #{file1}, #{thumb1}, #{musiclong}, #{passwd}, #{youtube}, #{replycnt}, #{cnt}, #{word}, #{memberno}, #{singerno}, #{albumno})
   </insert>
   
-  
   <select id="list" resultType="MusicVO">
     SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
     FROM music
@@ -95,11 +94,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_genreno_search_paging" resultType="MusicVO"  parameterType="HashMap"> 
-    SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno, r
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno, r
     FROM (
-             SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno, rownum as r
+             SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno, rownum as r
              FROM (
-                      SELECT musicno, memberno, genreno, title, singer, album, genre, rdate, likelist, likesu, mp3, file1, thumb1, size1, youtube, singerno, albumno
+                      SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
                       FROM music
                       <choose>
                         <when test="word == null or word == ''">  <!-- 검색하지 않는 경우 -->
@@ -136,6 +135,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </choose>
   </select>
   
+  <update id="update" parameterType="MusicVO">
+    UPDATE music 
+    SET title=#{title}, singer=#{singer}, album=#{album}, genre=#{genre}
+    WHERE musicno=#{musicno}
+  </update>
+  
+  <select id="passwd_check" parameterType="HashMap" resultType="int">
+    SELECT COUNT(*) as passwd_cnt
+    FROM music
+    WHERE musicno=#{musicno} AND passwd=#{passwd}
+  </select>
+  
+  <delete id="delete" parameterType="int">
+    DELETE FROM music
+    WHERE musicno=#{musicno}
+  </delete>
   
   
 </mapper>

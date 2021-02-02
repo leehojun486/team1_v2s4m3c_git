@@ -219,4 +219,28 @@ public class MusicProc implements MusicProcInter {
     return str.toString(); 
   }
 
+  @Override
+  public MusicVO read_update(int musicno) {
+    MusicVO musicVO = this.musicDAO.read(musicno);
+    return musicVO;
+  }
+
+  @Override
+  public int update(MusicVO musicVO) {
+    int cnt = this.musicDAO.update(musicVO);
+    return cnt;
+  }
+
+  @Override
+  public int passwd_check(HashMap<String, Object> hashmap) {
+    int passwd_cnt = this.musicDAO.passwd_check(hashmap);
+    return passwd_cnt;
+  }
+
+  @Override
+  public int delete(int musicno) {
+    int cnt = this.musicDAO.delete(musicno);
+    return cnt;
+  }
+
 }

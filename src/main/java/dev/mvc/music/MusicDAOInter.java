@@ -56,7 +56,7 @@ public interface MusicDAOInter {
   
   /**
    * 검색 목록
-   * @param MusicVOverK
+   * @param MusicVO
    * @return
    */
   public List<MusicVO> list_search(MusicVO musicVO);
@@ -92,4 +92,26 @@ public interface MusicDAOInter {
    * @return
    */
  public List<MusicVO> list_by_genreno_search_paging(HashMap<String, Object> map);
+ 
+  /**
+   * 수정
+   * @param musicVO
+   * @return
+   */
+ public int update(MusicVO musicVO);
+ 
+  /**
+   * 패스워드 검사
+   * @param hashmap
+   * @return
+   */
+ public int passwd_check(HashMap<String, Object> hashmap);
+ 
+  /**
+   * 삭제
+   * @param musicno
+   * @return
+   */
+ public int delete(int musicno);
+ 
 }

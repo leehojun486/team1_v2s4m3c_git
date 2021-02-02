@@ -39,10 +39,11 @@
   <div style='width: 100%;'>
     <table class="table table-striped" style='width: 100%;'>
       <colgroup>
-        <col style="width: 10%;"></col>
-        <col style="width: 30%;"></col>
+        <col style="width: 7%;"></col>
+        <col style="width: 13%;"></col>
         <col style="width: 20%;"></col>
-        <col style="width: 15%;"></col>
+        <col style="width: 20%;"></col>
+        <col style="width: 10%;"></col>
         <col style="width: 10%;"></col>
         <col style="width: 20%;"></col>
       </colgroup>
@@ -50,7 +51,8 @@
       <%-- table 컬럼 --%>
       <thead>
         <tr>
-          <th style='text-align: center;'>앨범 번호</th>
+          <th style='text-align: center;'>번호</th>
+          <th style='text-align: center;'>표지</th>
           <th style='text-align: center;'>앨범명</th>
           <th style='text-align: center;'>가수명</th>
           <th style='text-align: center;'>장르</th>
@@ -67,12 +69,15 @@
           
           <tr> 
             <td style='text-align: center;'>${albumVO.albumno}</td>
+            <td style='text-align: center;'>
+              <a href="./read.do?albumno=${albumno}">"앨범썸네일공간 및 앨범 열람"</a>
+            </td>
             <td style='text-align: center;'>${albumVO.title}</td>
             <td style='text-align: center;'>${albumVO.artist}</td>
             <td style='text-align: center;'>${albumVO.genre}</td>
             <td style='text-align: center;'>${albumVO.listno}</td>
             <td style='text-align: center;'>
-              <a href="./read.do?albumno=${albumno}">${albumVO.music}</a> 
+              <a href="../music/read.do?musicno=${musicVO.musicno}">${albumVO.music}</a> 
             </td> 
             
             <%-- <td style='text-align: center;'>${singerVO.rdate.substring(0, 10)}</td> --%>

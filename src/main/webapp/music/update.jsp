@@ -10,14 +10,11 @@
 
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
 
-<link href="../css/style.css" rel="Stylesheet" type="text/css">
-<script type="text/JavaScript"
-          src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
- 
+
 <script type="text/javascript">
   $(function(){
  
@@ -29,7 +26,7 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
-<DIV class='title_line'>새로운 음악 등록</DIV>
+<DIV class='title_line'>등록된 음악 수정</DIV>
  
 <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
   <input type='hidden' name='likelist' value='N'> 
@@ -72,11 +69,6 @@
      </div>
   </div>
   
-  
-  <div class="form-group">
-        
-          
-        <div class="col-md-9">
         <fieldset>
           <legend class="form">장르 선택</legend>
           <label class="check_box">
@@ -99,8 +91,7 @@
             <input type="checkbox" name='genre4' value='5'> 힙합
           </label><br> 
         </fieldset>
-      </div>
-  </div>
+  
 
   
  <!--  <div class="form-group">
