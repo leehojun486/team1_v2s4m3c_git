@@ -65,7 +65,7 @@
         </c:choose>
                     
         <button type='button' 
-                    onclick="location.href='./list.do'"
+                    onclick="location.href='../member/list.do'"
                     class="btn btn-info">목록</button>
       </LI>
      </UL>
