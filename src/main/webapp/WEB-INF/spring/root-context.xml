@@ -39,6 +39,7 @@
                              dev.mvc.singer_review,
                              dev.mvc.membermusic,
                              dev.mvc.music,
+                             dev.mvc.follow,
                              dev.mvc.home
                             "      
                    />
