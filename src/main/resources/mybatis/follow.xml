@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+<mapper namespace="dev.mvc.follow.FollowDAOInter">
+
+  <insert id="create" parameterType="FollowVO">
+    INSERT INTO follow(followno, follower , memberno)
+    VALUES(follow_seq.nextval , #{follower} , #{memberno})
+  </insert>
+  
+   <select id="follow_check" parameterType="HashMap" resultType="int">
+    SELECT COUNT(memberno) as cnt
+    FROM member
+    WHERE memberno=#{memberno} AND memberpass=#{memberpass}
+  </select>
+  
+<delete id="delete" parameterType="int">
+    DELETE FROM follow
+    WHERE followno = #{followno}
+</delete>
+  
+<!-- <select id="read"  resultType="FollowVO" parameterType="int">
+ SELECT memberno, followno
+ FROM follow
+ WHERE follower = #{follower}
+</select> -->
+
+   <select id="read" 
+              resultType="FollowVO" parameterType="HashMap">
+  SELECT followno , follower , memberno ,mnic , mid
+     FROM (
+                SELECT followno , follower , memberno ,mnic , mid
+                FROM (
+                          SELECT f.followno , f.follower , f.memberno ,m.membernicname as mnic
+                                     , m.memberid as mid
+                          FROM follow f, member m  
+                          WHERE   m.memberno =f.memberno AND follower=#{follower} ))
+                          </select>
+</mapper>
