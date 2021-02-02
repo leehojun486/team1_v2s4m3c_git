@@ -103,7 +103,14 @@
       <A href="./passwd_update.do?memberno=${memberno}"><IMG src='./images/passwd.png' title='패스워드 변경'></A>
       <A href="./read.do?memberno=${memberno}"><IMG src='./images/update.png' title='수정'></A>
       <A href="./delete.do?memberno=${memberno}"><IMG src='./images/delete.png' title='삭제'></A>
+           <c:choose>
+        <c:when test="${sessionScope.memberno == null }"> <!-- 긴 주소 처리 -->
+      <A href="./login_need.jsp"><IMG src='./images/followlist.png' title='구독리스트'></A>
+        </c:when>
+          <c:otherwise>
       <A href="/team1_git/follow/read.do?follower=${memberno }&memberno=${sessionScope.memberno }"><IMG src='./images/followlist.png' title='구독리스트'></A>
+      </c:otherwise>
+      </c:choose>
     </TD>
     
   </TR>
