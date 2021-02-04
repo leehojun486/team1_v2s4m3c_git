@@ -27,11 +27,11 @@
 <body>
 <jsp:include page="/menu/top.jsp" flush='false' />
  
-  <DIV class='title_line'>음악 삭제</DIV>
+  <DIV class='title_line'>음악 수정</DIV>
 
   <ASIDE class="aside_left">
     <A href=''>음악</A> > 
-    <A href=''>${MusicVO.title }</A> > 삭제
+    <A href=''>${MusicVO.title }</A> > 수정
   </ASIDE>
   <ASIDE class="aside_right">
     <A href=''>목록으로 돌아가기</A>
@@ -44,16 +44,16 @@
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${param.passwd_cnt == 1 }"> <!-- 패스워드 일치 -->
+        <c:when test="${passwd_cnt == 1 }"> <!-- 패스워드 일치 -->
           <c:choose>
-            <c:when test="${param.cnt == 1}"> <!-- 글 삭제 성공 -->
+            <c:when test="${cnt == 1}"> <!-- 글 삭제 성공 -->
               <LI class='li_none'>
-                <span class='span_success'>『${param.title }』 음악을 삭제했습니다.</span>
+                <span class='span_success'>『${param.title }』 음악을 수정했습니다.</span>
               </LI>
             </c:when>
             <c:otherwise>    <!-- 글 삭제 실패 -->
               <LI class='li_none'>
-                <span class='span_fail'>『${param.title }』 음악 삭제에 실패했습니다.</span>
+                <span class='span_fail'>『${param.title }』 음악 수정에 실패했습니다.</span>
               </LI>
               <LI class='li_none'>
                 <span class='span_fail'>다시 시도해주세요.</span>
@@ -63,13 +63,13 @@
         </c:when>
         <c:otherwise> <!-- 패스워드 불일치 -->
           <LI class='li_none'>
-            <span class='span_fail'>패스워드가 일치하지 않습니다. 다시 시도해주세요.</span>
+            <span class='span_fail'>${passwd_cnt },${cnt }패스워드가 일치하지 않습니다. 다시 시도해주세요.</span>
           </LI>
         </c:otherwise>
       </c:choose>
       
       <c:choose>
-        <c:when test="${param.cnt == 1 && param.passwd_cnt == 1}">
+        <c:when test="${cnt == 1 && passwd_cnt == 1}">
           <LI class='li_none'>
             <button type='button' 
                         onclick="location.href='./list.do?musicno=${param.musicno}&nowPage=${param.nowPage }'"

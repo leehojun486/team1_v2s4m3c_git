@@ -28,7 +28,7 @@
  
 <DIV class='title_line'>등록된 음악 수정</DIV>
  
-<FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
+<FORM name='frm' method='POST' action='./update.do' class="form-horizontal">
   <input type='hidden' name='likelist' value='N'> 
   <input type='hidden' name='singerno' value='1'>
   <input type='hidden' name='albumno' value='1'> 
@@ -40,7 +40,7 @@
   <input type='hidden' name='genre' value='발라드'>
   <input type='hidden' name='likesu' value='0'>
   <input type='hidden' name='replycnt' value='0'>
-  <input type='hidden' name='cnt' value='0'>
+  <input type='hidden' name='passwd' value='1234'>
   
    
   <!-- <input type='hidden' name='genreno' value='1'> --> <%-- 전달 해줘야 할 FK 3개 값들 고민좀해봐야할듯 --%>
@@ -134,13 +134,13 @@
   <div class="form-group">   
     <label class="control-label col-md-3">비밀번호</label>
         <div class="col-md-9">
-          <input type='password' class="form-control" name='passwd'  value='1234' placeholder="패스워드" style='width: 20%;'>
+          <input type='password' class="form-control" name='passwd' value='1234' placeholder="패스워드" style='width: 20%;'>
         </div>
       </div>
   
 
   <div class="content_bottom_menu" style="padding-right: 20%;">
-    <button type="submit" class="btn btn-primary">등록</button>
+    <button type="submit" class="btn btn-primary">수정</button>
     <button type="button" onclick="location.href='./list.do'" class="btn btn-primary">목록</button>
   </div>
 

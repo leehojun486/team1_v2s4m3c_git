@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -467,8 +466,8 @@ public class MusicCont {
   }
 
   /**
-   * 수정 폼 :: http://localhost:9090/team1/music/update.do
-   * 
+   * 수정 폼
+   *  :: http://localhost:9090/team1/music/update.do
    * @return
    */
   @RequestMapping(value = "/music/update.do", method = RequestMethod.GET)
@@ -483,45 +482,77 @@ public class MusicCont {
     return mav;
   }
 
+  /**
+   * 수정 처리         ::         http://localhost:9090/team1_git/music/update.do
+   * @param musicVO
+   * @return
+   */
+  @RequestMapping(value = "/music/update.do", method = RequestMethod.POST)
+  public ModelAndView update(MusicVO musicVO,
+                             String passwd) {
+    ModelAndView mav = new ModelAndView();
+    int musicno = musicVO.getMusicno();
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("musicno", musicno);
+    hashMap.put("passwd", passwd);
+    
+    mav.addObject("musicno", musicno);
 
+    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
+    int cnt = 0;        // 수정된 레코드 갯수 
+    
+    passwd_cnt = this.musicProc.passwd_check(hashMap);
+    
+    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제
+      cnt = this.musicProc.update(musicVO);
+      mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
+    } else {
+      mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
+    }
+    mav.addObject("cnt", cnt); // request에 저장
+    mav.addObject("passwd_cnt", passwd_cnt);
+    
+    return mav;
+  }
+  
   /**
    * 수정 처리
    *  :: http://localhost:9090/team1/music/update.do
    * @param musicVO
    * @return
    */
-  @RequestMapping(value = "/music/update.do", method = RequestMethod.POST)
-  public ModelAndView update(MusicVO musicVO) {
-    ModelAndView mav = new ModelAndView();
-
-    GenreVO genreVO = this.genreProc.read(musicVO.getGenreno());
-    mav.addObject("genre_name", genreVO.getGenrename());
-    mav.addObject("genreno", genreVO.getGenreno());
-
-    SingerVO singerVO = this.singerProc.read(musicVO.getSingerno());
-    mav.addObject("singer_name", singerVO.getName());
-    mav.addObject("singerno", singerVO.getSingerno());
-
-    HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    hashMap.put("musicno", musicVO.getMusicno());
-    hashMap.put("passwd", musicVO.getPasswd());
-
-    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
-    int cnt = 0; // 수정된 레코드 갯수
-
-    passwd_cnt = this.musicProc.passwd_check(hashMap);
-
-    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 수정
-      cnt = this.musicProc.update(musicVO);
-    }
-
-    mav.addObject("cnt", cnt); // request에 저장
-    mav.addObject("passwd_cnt", passwd_cnt); // request에 저장
-
-    mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
-
-    return mav;
-  }
+  /*
+   * @RequestMapping(value = "/music/update.do", method = RequestMethod.POST)
+   * public ModelAndView update(MusicVO musicVO) { ModelAndView mav = new
+   * ModelAndView();
+   * 
+   * GenreVO genreVO = this.genreProc.read(musicVO.getGenreno());
+   * mav.addObject("genre_name", genreVO.getGenrename()); mav.addObject("genreno",
+   * genreVO.getGenreno());
+   * 
+   * SingerVO singerVO = this.singerProc.read(musicVO.getSingerno());
+   * mav.addObject("singer_name", singerVO.getName()); mav.addObject("singerno",
+   * singerVO.getSingerno());
+   * 
+   * HashMap<String, Object> hashMap = new HashMap<String, Object>();
+   * hashMap.put("musicno", musicVO.getMusicno()); hashMap.put("passwd",
+   * musicVO.getPasswd());
+   * 
+   * int passwd_cnt = 0; // 패스워드 일치 레코드 갯수 int cnt = 0; // 수정된 레코드 갯수
+   * 
+   * passwd_cnt = this.musicProc.passwd_check(hashMap);
+   * 
+   * if (passwd_cnt == 0) { // 패스워드가 일치할 경우 글 수정 cnt =
+   * this.musicProc.update(musicVO); }
+   * 
+   * mav.addObject("cnt", cnt); // request에 저장 mav.addObject("passwd_cnt",
+   * passwd_cnt); // request에 저장
+   * 
+   * mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
+   * 
+   * return mav; }
+   */
 
   
   /**
@@ -540,6 +571,101 @@ public class MusicCont {
   
     return mav;
   }
+  
+  /**
+   * 삭제 처리         ::         http://localhost:9090/tema1_git/music/delete.do
+   * @param musicVO
+   * @return
+   */
+  @RequestMapping(value = "/music/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(MusicVO musicVO,
+                             String passwd) {
+    ModelAndView mav = new ModelAndView();
+    int musicno = musicVO.getMusicno();
+    
+    String music = this.musicProc.read(musicno).getTitle();
+    
+    HashMap<String, Object> hashMap = new HashMap<String, Object>();
+    hashMap.put("musicno", musicno);
+    hashMap.put("passwd", passwd);
+    
+    mav.addObject("musicno", musicVO.getMusicno());
+
+    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
+    int cnt = 0;        // 삭제된 레코드 갯수 
+    
+    passwd_cnt = this.musicProc.passwd_check(hashMap);
+    
+    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제
+      cnt = this.musicProc.delete(musicno);
+      mav.setViewName("/music/delete_msg"); // webapp/music/delete_msg.jsp
+    } else {
+      mav.setViewName("/music/delete_msg"); // webapp/music/delete_msg.jsp
+    }
+    mav.addObject("cnt", cnt); // request에 저장
+    mav.addObject("passwd_cnt", passwd_cnt);
+    mav.addObject("music", music);
+    
+    return mav;
+  }
+  
+  /**
+   * 삭제 처리 +  파일 삭제
+   *  :: http://localhost:9090/team1_git/music/delete.do
+   * @param musicVO
+   * @return
+   */
+  /*
+   * @RequestMapping(value="/music/delete.do", method=RequestMethod.POST ) public
+   * ModelAndView delete(HttpServletRequest request, int musicno, String passwd,
+   * 
+   * @RequestParam(value="word", defaultValue="") String word,
+   * 
+   * @RequestParam(value="nowPage", defaultValue="1") int nowPage) { ModelAndView
+   * mav = new ModelAndView();
+   * 
+   * MusicVO musicVO = this.musicProc.read(musicno); String title =
+   * musicVO.getTitle(); mav.addObject("title", title);
+   * 
+   * HashMap<String, Object> hashMap = new HashMap<String, Object>();
+   * hashMap.put("musicno", musicno); hashMap.put("passwd", passwd);
+   * 
+   * int passwd_cnt = 0; // 패스워드 일치 레코드 갯수 int cnt = 0; // 수정된 레코드 갯수
+   * 
+   * passwd_cnt = this.musicProc.passwd_check(hashMap); boolean sw = false;
+   * 
+   * if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제 cnt =
+   * this.musicProc.delete(musicno); if (cnt == 1) { //
+   * musicProc.decreaseCnt(musicno); //음악 카테고리의 수 감소
+   * 
+   * //
+   * -----------------------------------------------------------------------------
+   * -------- // 마지막 페이지의 레코드 삭제시의 페이지 번호 -1 처리 HashMap<String, Object> map = new
+   * HashMap<String, Object>(); map.put("musicno", musicno); map.put("word",
+   * word); // 하나의 페이지가 3개의 레코드로 구성되는 경우 현재 9개의 레코드가 남아 있으면 if
+   * (musicProc.search_count(map) % Musics.RECORD_PER_PAGE == 0) { nowPage =
+   * nowPage - 1; if (nowPage < 1) { nowPage = 1; // 시작 페이지 } } //
+   * -----------------------------------------------------------------------------
+   * -------- }
+   * 
+   * String upDir = Tool.getRealPath(request, "/music/storage/main_images"); // 절대
+   * 경로 sw = Tool.deleteFile(upDir, musicVO.getFile1()); // Folder에서 1건의 파일 삭제 sw
+   * = Tool.deleteFile(upDir, musicVO.getThumb1()); // Folder에서 1건의 파일 삭제
+   * 
+   * }
+   * 
+   * mav.addObject("cnt", cnt); // request에 저장 mav.addObject("passwd_cnt",
+   * passwd_cnt); // request에 저장 mav.addObject("nowPage", nowPage); // request에 저장
+   * // System.out.println("--> ContentsCont.java nowPage: " + nowPage);
+   * 
+   * mav.addObject("musicno", musicVO.getMusicno()); // redirect parameter 적용
+   * mav.addObject("url", "delete_msg"); // delete_msg.jsp, redirect parameter 적용
+   * 
+   * // mav.setViewName("/contents/delete_msg"); // webapp/contents/delete_msg.jsp
+   * mav.setViewName("redirect:/music/msg.do");
+   * 
+   * return mav; }
+   */
   
   
   /**

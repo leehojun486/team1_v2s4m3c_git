@@ -30,7 +30,7 @@
   <DIV class='title_line'>음악 삭제</DIV>
 
   <ASIDE class="aside_left">
-    <A href=''>음악</A> > 
+    <A href=''>음악</A> > [${passwd_cnt}]
     <A href=''>${MusicVO.title }</A> > 삭제
   </ASIDE>
   <ASIDE class="aside_right">
@@ -44,9 +44,9 @@
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${param.passwd_cnt == 1 }"> <!-- 패스워드 일치 -->
+        <c:when test="${passwd_cnt == 1 }"> <!-- 패스워드 일치 -->
           <c:choose>
-            <c:when test="${param.cnt == 1}"> <!-- 글 삭제 성공 -->
+            <c:when test="${cnt == 1}"> <!-- 글 삭제 성공 -->
               <LI class='li_none'>
                 <span class='span_success'>『${param.title }』 음악을 삭제했습니다.</span>
               </LI>
@@ -69,7 +69,7 @@
       </c:choose>
       
       <c:choose>
-        <c:when test="${param.cnt == 1 && param.passwd_cnt == 1}">
+        <c:when test="${cnt == 1 && passwd_cnt == 1}">
           <LI class='li_none'>
             <button type='button' 
                         onclick="location.href='./list.do?musicno=${param.musicno}&nowPage=${param.nowPage }'"

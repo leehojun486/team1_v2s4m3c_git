@@ -104,7 +104,7 @@
           <tr> 
           <td style='text-align: center;'>${musicVO.musicno}</td>
             <td>
-              <a href="./read.do?musicno=${musicno }">${musicVO.title}</a> 
+              <a href="./read.do?musicno=${musicno }&nowPage=${param.nowPage}">${musicVO.title}</a> 
             </td> 
           <td style='text-align: center;'>${musicVO.singer}</td>
           <td style='text-align: center;'>${musicVO.album}</td>
