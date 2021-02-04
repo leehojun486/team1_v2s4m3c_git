@@ -24,7 +24,7 @@ $(function() {
   $('#btn_send').on('click', send);
 });
 
-var youtubeId = ""; 
+var youtubeId = "";
 function play(youtube){
   youtubeId = youtube;
   onYouTubeIframeAPIReady();
@@ -44,8 +44,8 @@ function loadVideo(videoID) {
  
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-    height: '150',
-    width: '200',
+    height: '180',
+    width: '320',
     videoId: youtubeId,
     events: {
       'onReady': onPlayerReady,
@@ -65,13 +65,20 @@ function onPlayerReady(event) {
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
     done = true;
   }
+  if (event.data == YT.PlayerState.ENDED){
+    alert('dddddddddddddddddddd')
+    player.loadVideoById("iCkYw3cRwLo", 0, "large");    
+  }
 }
-function stopVideo() {
+
+function changeVideoAndStart() {
+  player.loadVideoById("iCkYw3cRwLo", 0, "large");
+ }
+ function stopVideo() {
   player.stopVideo();
-}
+} 
 
 
 function send() {
@@ -289,8 +296,9 @@ function update_proc() {
     </FORM>
       <DIV id='panel1' style="width: 40%; text-align: center; margin: 10px auto; display: none;"></DIV>
     </DIV>
-    
-    <div id='player' >
+    <div class='img_center'>
+      <div id='player'>
+      </div>
     </div>
  
   
