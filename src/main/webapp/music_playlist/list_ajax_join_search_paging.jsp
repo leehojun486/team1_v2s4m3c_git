@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -12,7 +12,6 @@
 <link href="../css/style.css" rel="Stylesheet" type="text/css">
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -22,9 +21,11 @@
 
 $(function() {
   $('#btn_send').on('click', send);
+  play($('#youtube').val());
 });
 
 var youtubeId = "";
+
 function play(youtube){
   youtubeId = youtube;
   onYouTubeIframeAPIReady();
@@ -79,6 +80,9 @@ function changeVideoAndStart() {
  function stopVideo() {
   player.stopVideo();
 } 
+ function pauseYoutube() {
+   player.pauseVideo();
+}
 
 
 function send() {
@@ -259,6 +263,8 @@ function update_proc() {
   <p style="margin-left: 95%;"><a href="../music_playlist/create.do?playlistno=${playlistVO.playlistno}" >등록</a></p>
   </DIV>
   <p>수록된 음악 수:${cnt_music} </p>
+  <p>${fn:length(list)}</p>
+  <p></p>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
   <form action="./list.do" method="get">
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
@@ -330,7 +336,8 @@ function update_proc() {
       
       <TD class="td_bs">
         <input type='hidden' name='youtube' id='youtube' value='${Music_Playlist_Music_joinVO.youtube }'>
-        <A href="javascript:loadVideo('${Music_Playlist_Music_joinVO.youtube }')" title="재생"><span class="glyphicon glyphicon-arrow-right"></span></A>
+        <A href="javascript:loadVideo('${Music_Playlist_Music_joinVO.youtube }')" title="재생"><span class="glyphicon glyphicon-play"></span></A>
+        <A href="javascript:pauseYoutube()" title="일시정지"><span class="glyphicon glyphicon-pause"></span></A>
         <A href="javascript:update_form(${Music_Playlist_Music_joinVO.music_playlistno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
         <A href="./read_delete.do?music_playlistno=${Music_Playlist_Music_joinVO.music_playlistno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
       </TD>   

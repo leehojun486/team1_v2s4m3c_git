@@ -1,5 +1,6 @@
 package dev.mvc.music_playlist;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Music_PlaylistCont {
     System.out.println("--> Music_PlaylistCont created.");
   }
   /**
-   * µî·ÏÆû http://localhost:9090/team1/music_playlist/create.do
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/create.do
    * 
    * @return
    */
@@ -42,13 +43,13 @@ public class Music_PlaylistCont {
   }
   
 //  /**
-//   * µî·Ï Ã³¸® http://localhost:9090/resort/categrp/create.do
+//   * ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ http://localhost:9090/resort/categrp/create.do
 //   * 
 //   * @return
 //   */
 //  @RequestMapping(value = "/music_playlist/create.do", method = RequestMethod.POST)
 //  public ModelAndView create(Music_PlaylistVO music_PlaylistVO) {
-//    // request.setAttribute("music_PlaylistVO", music_PlaylistVO) ÀÚµ¿ ½ÇÇà
+//    // request.setAttribute("music_PlaylistVO", music_PlaylistVO) ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 //    int playlistno = music_PlaylistVO.getPlaylistno();
 //    PlaylistVO playlistVO = this.playlistProc.read(playlistno);
 //    int memberno = playlistVO.getmemberno();
@@ -57,14 +58,14 @@ public class Music_PlaylistCont {
 //    mav.setViewName("/music_playlist/create_msg"); // /webapp/categrp/create_msg.jsp
 //    mav.addObject("playlistno", playlistno);
 //    mav.addObject("memberno", memberno);
-//    int cnt = this.music_playlistProc.create(music_PlaylistVO); // µî·Ï Ã³¸®
+//    int cnt = this.music_playlistProc.create(music_PlaylistVO); // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
 //    
 //    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 //    return mav; // forward
 //  }
   
   /**
-   * Ajax ±â¹Ý Ã³¸® http://localhost:9090/team1/music_playlist/create_ajax.do
+   * Ajax ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ http://localhost:9090/team1/music_playlist/create_ajax.do
    * 
    * @return
    */
@@ -78,14 +79,14 @@ public class Music_PlaylistCont {
       e.printStackTrace();
     }
     
-    int cnt = this.music_playlistProc.create(music_PlaylistVO); // µî·Ï Ã³¸®
+    int cnt = this.music_playlistProc.create(music_PlaylistVO); // ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     JSONObject json = new JSONObject();
     json.put("cnt", cnt);
     System.out.println("cnt" + cnt);
     return json.toString(); // forward
   }
   /**
-   * ¸ñ·Ï http://localhost:9090/team1/music_playlist/list_all.do
+   * ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/list_all.do
    * 
    * @return
    */
@@ -101,11 +102,11 @@ public class Music_PlaylistCont {
     
   }
   /**
-   * ¸ñ·Ï http://localhost:9090/team1/music_playlist/list.do
+   * ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/list.do
    * 
    * @return
    */
-  //********************ÀÌµû ¿©±â ¹Ù²Ü°ÅÀ×À×
+  //********************ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ü°ï¿½ï¿½ï¿½ï¿½ï¿½
 //  @RequestMapping(value = "/music_playlist/list.do", method = RequestMethod.GET)
 //  public ModelAndView list(int playlistno) {
 //    ModelAndView mav = new ModelAndView();
@@ -127,11 +128,11 @@ public class Music_PlaylistCont {
 //  }
   
 //  /**
-//   * ¸ñ·Ï http://localhost:9090/team1/music_playlist/list.do
+//   * ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/list.do
 //   * 
 //   * @return
 //   */
-//  //********************ÀÌµû ¿©±â ¹Ù²Ü°ÅÀ×À×22222
+//  //********************ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ü°ï¿½ï¿½ï¿½ï¿½ï¿½22222
 //  @RequestMapping(value = "/music_playlist/list.do", method = RequestMethod.GET)
 //  public ModelAndView list(int playlistno, String m_music) {
 //    ModelAndView mav = new ModelAndView();
@@ -153,11 +154,11 @@ public class Music_PlaylistCont {
 //    return mav; // forward
 //  }
   /**
-   * ¸ñ·Ï http://localhost:9090/team1/music_playlist/list.do
+   * ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/list.do
    * 
    * @return
    */
-  //********************ÀÌµû ¿©±â ¹Ù²Ü°ÅÀ×À×22222
+  //********************ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²Ü°ï¿½ï¿½ï¿½ï¿½ï¿½22222
   @RequestMapping(value = "/music_playlist/list.do", method = RequestMethod.GET)
   public ModelAndView list(int playlistno, String m_music,
                                   @RequestParam(value="nowPage", defaultValue="1")int nowPage) {
@@ -184,6 +185,15 @@ public class Music_PlaylistCont {
     mav.addObject("nowPage", nowPage);
     List<Music_Playlist_Music_joinVO> list = this.music_playlistProc.list_by_join_search_paging(map);
     mav.addObject("list", list);
+    String youtubeId = "";
+    int i = 0;
+    List<String> playlist = new ArrayList<>(list.size());
+    for (i=0; i<list.size(); i++) {
+      youtubeId = list.get(i).getYoutube();
+      playlist.add(youtubeId);
+    }
+    System.out.println("playlist" + playlist);
+    mav.addObject("playlsit", playlist);
     
 
     return mav; // forward
@@ -191,7 +201,7 @@ public class Music_PlaylistCont {
   
   
   /**
-   * Á¶È¸ + ¼öÁ¤Æû http://localhost:9090/team1/music_playlist/read_update.do
+   * ï¿½ï¿½È¸ + ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/team1/music_playlist/read_update.do
    * 
    * @return
    */
@@ -222,7 +232,7 @@ public class Music_PlaylistCont {
     Music_PlaylistVO musicPlaylistVO = this.music_playlistProc.read(music_playlistno);
 
    JSONObject json = new JSONObject();
-   System.out.println("¿©±ä¿À´Ï?");
+   System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?");
    //music_playlistno, playlistno, playing_seq, musicno
    json.put("music_playlistno", music_playlistno);
    json.put("playlistno", musicPlaylistVO.getPlaylistno());
@@ -232,7 +242,7 @@ public class Music_PlaylistCont {
    return json.toString();
   }
   /**
-   * ¼öÁ¤ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * 
    * @param music_PlaylistVO
    * @return
@@ -243,14 +253,14 @@ public class Music_PlaylistCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.music_playlistProc.update(music_PlaylistVO);
-    mav.addObject("cnt", cnt); // request¿¡ ÀúÀå
+    mav.addObject("cnt", cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     mav.setViewName("/music_playlist/update_msg"); // webapp/music_playlist/update_msg.jsp
 
     return mav;
   }
   /**
-   * Ajax ±â¹Ý ¼öÁ¤ Ã³¸® http://localhost:9090/resort/categrp/update_ajax.do
+   * Ajax ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ http://localhost:9090/resort/categrp/update_ajax.do
    * 
    * @return
    */
@@ -274,7 +284,7 @@ public class Music_PlaylistCont {
     return json.toString();
   }
   /**
-   * »èÁ¦Æû http://localhost:9090/resort/music_playlist/read_delete.do
+   * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ http://localhost:9090/resort/music_playlist/read_delete.do
    * @return
    */
   @RequestMapping(value = "/music_playlist/read_delete.do", method = RequestMethod.GET)
@@ -291,7 +301,7 @@ public class Music_PlaylistCont {
     return mav; // forward
   }
   /**
-   * »èÁ¦ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * @param music_playlistno
    * @return
    */
@@ -301,7 +311,7 @@ public class Music_PlaylistCont {
     Music_PlaylistVO music_PlaylistVO = this.music_playlistProc.read(music_playlistno);
     mav.addObject("playlistno", music_PlaylistVO.getPlaylistno());
     int cnt = this.music_playlistProc.delete(music_playlistno);
-    mav.addObject("cnt", cnt); // request¿¡ ÀúÀå
+    mav.addObject("cnt", cnt); // requestï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     
     
 
