@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+
+<mapper namespace="dev.mvc.chart_crawling.Chart_crawlingDAOInter">
+
+  <select id="list" resultType="Chart_crawlingVO">
+  SELECT chartno, music, artist
+  FROM chart_crawling
+  ORDER BY chartno ASC
+</select>
+</mapper>
