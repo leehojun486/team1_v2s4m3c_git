@@ -1,5 +1,6 @@
 package dev.mvc.singer;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,9 +95,21 @@ public class SingerProc implements SingerProcInter {
   }
   
   @Override
+  public List<Singer_Singer_Review_join> read_join_page(HashMap<String ,Integer> map) {
+    List<Singer_Singer_Review_join> list = this.singerDAO.read_join_page(map);
+    return list;
+  }
+  
+  @Override
   public List<Singer_Review_Member_join> read_member_join(int singerno) {
     List<Singer_Review_Member_join> memberlist = this.singerDAO.read_member_join(singerno);
     return memberlist;
+  }
+  
+  @Override
+  public List<Singer_Review_Member_join> read_member_join_page(HashMap<String ,Integer> map) {
+    List<Singer_Review_Member_join> memberlistpage = this.singerDAO.read_member_join_page(map);
+    return memberlistpage;
   }
   
 

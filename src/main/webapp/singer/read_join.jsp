@@ -16,8 +16,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">
+var nowPage = 1;
+
   $(function(){
-    review_list_view();
+    getList(nowPage);
+    nowPage++;
   });
 
   function btn_review_like(reviewno) {
@@ -37,7 +40,10 @@
           } else {
             console.log("cnt = 0");
           }
-          review_list_view();
+          $('#review_table').html('');
+          for(i = 1; i <= nowPage; i++) {
+            getList(i);
+          }
           // $("#review_table").load(" #review_table");
           // $("#review_contents").html()
         },
@@ -51,9 +57,20 @@
       });
   };
 
-  function review_list_view() {
+  $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+    if($(window).scrollTop() >= $(document).height() - $(window).height()){
+       console.log(nowPage);
+       getList(nowPage);
+       nowPage++;
+    }
+  });
 
-    var params = 'singerno=' + ${singerVO.singerno };
+
+
+  function getList(nowPage) {
+    var singerno = ${singerVO.singerno };
+    var nowPage = nowPage;
+    console.log('getList(' + nowPage + ')');
 
     $.ajax({
       url: "../singer/list_join.do", // action 대상 주소
@@ -61,13 +78,13 @@
       cache: false,          // 브러우저의 캐시영역 사용안함.
       async: true,           // true: 비동기
       dataType: "json",   // 응답 형식: json, xml, html...
-      data: params,        // 서버로 전달하는 데이터
+      data: {'singerno' : singerno, 'nowPage' : nowPage},        // 서버로 전달하는 데이터
       success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
         // $("#reply_list").attr("data-replyPage", replyPage+1);  // 개발자정의 속성 쓰기 페이징 아직 안함
         // alert(rdata);
         var msg = '';
         
-        $('#review_table').html(''); // 패널 초기화, val(''): 안됨
+        // $('#review_table').html(''); // 패널 초기화, val(''): 안됨
         
         for (i=0; i < rdata.list.length; i++) {
           var row = rdata.list[i];
@@ -270,6 +287,7 @@
         </DIV>
       </c:forEach> --%>
     </div>
+    
   
   
 <jsp:include page="/menu/bottom.jsp" flush='false' />

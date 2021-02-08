@@ -17,11 +17,17 @@ public class Singer_Review_Member_join {
    private int m_memberno;
    private String memberid;
    private String memberpreview;
-  
+   private int pagen;
    
    // --------------------------------------------------------------------
    
-   public int getSingerno() {
+   public int getPagen() {
+    return pagen;
+  }
+  public void setPagen(int pagen) {
+    this.pagen = pagen;
+  }
+  public int getSingerno() {
      return singerno;
    }
    public void setSingerno(int singerno) {

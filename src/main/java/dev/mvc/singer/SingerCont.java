@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -147,16 +148,49 @@ public class SingerCont {
     * @param contentsno
     * @return
     */
+  /*
+   * @ResponseBody
+   * 
+   * @RequestMapping(value = "/singer/list_join.do", method = RequestMethod.GET,
+   * produces = "text/plain;charset=UTF-8") public String list_join(int singerno)
+   * { // String msg="JSON 출력"; // return msg;
+   * 
+   * List<Singer_Singer_Review_join> list = this.singerProc.read_join(singerno);
+   * List<Singer_Review_Member_join> memberlist =
+   * this.singerProc.read_member_join(singerno);
+   * 
+   * JSONObject obj = new JSONObject(); obj.put("list", list);
+   * obj.put("memberlist", memberlist);
+   * 
+   * return obj.toString(); }
+   */
+   
+  /**********************************************************************************/
+  /*******************************페이지 추가 버전*********************************/
+  /**********************************************************************************/
+   /** http://localhost:9090/ojt/reply/read_join.do?singerno=1
+    * @param contentsno
+    * @return
+    */
    @ResponseBody
    @RequestMapping(value = "/singer/list_join.do",
                                method = RequestMethod.GET,
                                produces = "text/plain;charset=UTF-8")
-   public String list_join(int singerno) {
-     // String msg="JSON 출력";
+   public String list_join(int singerno, int nowPage) {
+     System.out.println("singerno = " + singerno + " / nowPage = " + nowPage);
+     // String msg="페이지 추가 버전";
      // return msg;
+     int pagePerNumber = 8;
+     int page_start_value = nowPage*pagePerNumber-pagePerNumber+1;
+     int page_end_value = nowPage*pagePerNumber;
      
-     List<Singer_Singer_Review_join> list = this.singerProc.read_join(singerno);
-     List<Singer_Review_Member_join> memberlist = this.singerProc.read_member_join(singerno);
+     HashMap<String ,Integer> map = new HashMap<String ,Integer>();
+     map.put("singerno", singerno);
+     map.put("page_start_value", page_start_value);
+     map.put("page_end_value", page_end_value);
+     
+     List<Singer_Singer_Review_join> list = this.singerProc.read_join_page(map);
+     List<Singer_Review_Member_join> memberlist = this.singerProc.read_member_join_page(map);
      
      JSONObject obj = new JSONObject();
      obj.put("list", list);

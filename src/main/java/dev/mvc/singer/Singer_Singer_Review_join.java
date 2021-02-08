@@ -29,9 +29,17 @@ public class Singer_Singer_Review_join{
    /** ���� ��� �� */
    private int reviewcmtcnt;
    
+   private int pagen;
+   
    // --------------------------------------------------------------------
  
-   public int getSingerno() {
+   public int getPagen() {
+    return pagen;
+  }
+  public void setPagen(int pagen) {
+    this.pagen = pagen;
+  }
+  public int getSingerno() {
      return singerno;
    }
    public void setSingerno(int singerno) {

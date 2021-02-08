@@ -63,6 +63,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     ORDER BY s.singerno ASC, r.reviewrec DESC
   </select>
   
+  <!-- singer 와 singer_review 테이블간의 조인(list) + 페이지 -->
+  <select id="read_join_page" resultType="Singer_Singer_Review_join" parameterType="HashMap">
+  SELECT * FROM
+  (
+    SELECT s.singerno,
+                r.singerno as r_singerno, r.reviewno, r.memberno, r.reviewcon, r.reviewrec, r.reviewdate, r.reviewcmtcnt,
+                ROW_NUMBER() OVER (ORDER BY r.reviewrec DESC) pagen
+    FROM singer s, singer_review r
+    WHERE (s.singerno = r.singerno) AND r.singerno=#{singerno}
+    ORDER BY s.singerno ASC, r.reviewrec DESC
+  )
+  WHERE <![CDATA[ pagen >= #{page_start_value} AND pagen <= #{page_end_value} ]]>
+  </select>
+  
   <!-- singer_review 와 member 테이블간의 조인(memberlist) -->
   <select id="read_member_join" resultType="Singer_Review_Member_join" parameterType="int">
     SELECT r.memberno, r.singerno, r.reviewrec,
@@ -70,6 +84,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM singer_review r, member m
     WHERE (r.memberno = m.memberno) AND r.singerno=#{singerno}
     ORDER BY r.reviewrec DESC
+  </select>
+  
+<!-- singer_review 와 member 테이블간의 조인(memberlist) + 페이지 -->
+  <select id="read_member_join_page" resultType="Singer_Review_Member_join" parameterType="HashMap">
+  SELECT * FROM
+  (
+    SELECT r.memberno, r.singerno, r.reviewrec, 
+                m.memberno as m_memberno, m.memberid, m.memberpreview, ROW_NUMBER() OVER (ORDER BY r.reviewrec DESC) pagen
+    FROM singer_review r, member m
+    WHERE (r.memberno = m.memberno) AND r.singerno=#{singerno}
+    ORDER BY r.reviewrec DESC
+  )
+  WHERE <![CDATA[ pagen >= #{page_start_value} AND pagen <= #{page_end_value} ]]>
   </select>
   
   <!-- 답글수 하향, id: update_reviewrec_down, 입력: reviewno, 리턴: int

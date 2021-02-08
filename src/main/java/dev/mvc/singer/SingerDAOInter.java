@@ -1,5 +1,6 @@
 package dev.mvc.singer;
 
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -82,10 +83,28 @@ public interface SingerDAOInter {
   /**
    * <xmp>
    *  통합 VO 기반 join
+   *  <select id="list_join" resultType="Singer_Singer_Review_join"> 
+   * </xmp>
+   * @return
+   */
+  public List<Singer_Singer_Review_join> read_join_page(HashMap<String ,Integer> map); 
+  
+  /**
+   * <xmp>
+   *  통합 VO 기반 join
    *  <select id="list_member_join" resultType="Singer_Review_Member_join"> 
    * </xmp>
    * @return
    */
   public List<Singer_Review_Member_join> read_member_join(int singerno); 
+  
+  /**
+   * <xmp>
+   *  통합 VO 기반 join
+   *  <select id="list_member_join_page" resultType="Singer_Review_Member_join_page"> 
+   * </xmp>
+   * @return
+   */
+  public List<Singer_Review_Member_join> read_member_join_page(HashMap<String ,Integer> map); 
   
 }
