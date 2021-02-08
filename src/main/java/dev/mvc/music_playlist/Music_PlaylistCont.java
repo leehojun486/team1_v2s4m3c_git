@@ -189,11 +189,11 @@ public class Music_PlaylistCont {
     int i = 0;
     List<String> playlist = new ArrayList<>(list.size());
     for (i=0; i<list.size(); i++) {
-      youtubeId = list.get(i).getYoutube();
+      youtubeId =list.get(i).getYoutube();
       playlist.add(youtubeId);
     }
     System.out.println("playlist" + playlist);
-    mav.addObject("playlsit", playlist);
+    mav.addObject("playlist", playlist);
     
 
     return mav; // forward

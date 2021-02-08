@@ -22,9 +22,20 @@
 $(function() {
   $('#btn_send').on('click', send);
   play($('#youtube').val());
-});
-
+  });
 var youtubeId = "";
+
+function changelist(playlist){
+  var playlist = playlist.substring(1, playlist.length-1);
+  var array = playlist.split(',');
+  for ( var i in array ) {
+    if( i >=1 ){
+      array[i] = array[i].substring(1, array[i].length);
+      }
+    array[i] = array[i];
+  }
+  return array;
+}
 
 function play(youtube){
   youtubeId = youtube;
@@ -68,10 +79,6 @@ function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
     done = true;
   }
-  if (event.data == YT.PlayerState.ENDED){
-    alert('dddddddddddddddddddd')
-    player.loadVideoById("iCkYw3cRwLo", 0, "large");    
-  }
 }
 
 function changeVideoAndStart() {
@@ -83,7 +90,13 @@ function changeVideoAndStart() {
  function pauseYoutube() {
    player.pauseVideo();
 }
-
+ function list(){
+   var array = changelist($('#playlist', frm).val());
+   player.cuePlaylist({
+   playlist:array,
+   startSeconds:0,
+   });
+ }
 
 function send() {
   // alert('send() execute.');
@@ -251,7 +264,7 @@ function update_proc() {
   $('#panel1').html(gif);
   $('#panel1').show(); // 출력 */    
 }
-  
+
 </script>
  
 </head> 
@@ -263,8 +276,7 @@ function update_proc() {
   <p style="margin-left: 95%;"><a href="../music_playlist/create.do?playlistno=${playlistVO.playlistno}" >등록</a></p>
   </DIV>
   <p>수록된 음악 수:${cnt_music} </p>
-  <p>${fn:length(list)}</p>
-  <p></p>
+  <p>${playlist}</p>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
   <form action="./list.do" method="get">
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
@@ -286,6 +298,7 @@ function update_proc() {
     <FORM name='frm' id='frm' method='POST' action=''>
       <!-- <input type='hidden' name='lang' id='lang' value='en'> --> <!-- ko, en -->
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
+    <input type='hidden' name='playlist' id='playlist' value='${playlist }'>
     <input type='hidden' name='music_playlistno' id='music_playlistno' value='${param.music_playlistno }'>
  
       
@@ -305,6 +318,7 @@ function update_proc() {
     <div class='img_center'>
       <div id='player'>
       </div>
+      <button type='button' onclick='list();'>..</button>
     </div>
  
   
@@ -332,6 +346,7 @@ function update_proc() {
     <TR>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.music_playlistno }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.playing_seq }</TD>
+      <TD class="td_bs">${Music_Playlist_Music_joinVO.m_music }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.m_music }</TD>
       
       <TD class="td_bs">
