@@ -23,29 +23,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <selectKey keyProperty="musicno" resultType="int" order="BEFORE">
       SELECT music_seq.nextval FROM dual 
     </selectKey>
-    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno)
-    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{mp3}, #{file1}, #{thumb1}, #{musiclong }, #{passwd }, #{youtube }, #{replycnt }, #{cnt }, #{word }, #{memberno }, #{singerno }, #{albumno }) 
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno)
+    VALUES (music_seq.nextval, #{title }, #{singer }, #{album }, #{genreno }, #{genre }, sysdate, #{lyrics} ,#{likelist} ,#{likesu }, #{mp3}, #{file1}, #{thumb1}, #{musiclong }, #{passwd }, #{youtube }, #{replycnt }, #{cnt }, #{word }, #{singerno }, #{albumno }) 
   </insert> -->
   
   <insert parameterType="MusicVO" id="create">
-    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno)
-    VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genreno}, #{genre}, sysdate, #{lyrics}, #{likelist}, #{likesu}, #{mp3}, #{file1}, #{thumb1}, #{musiclong}, #{passwd}, #{youtube}, #{replycnt}, #{cnt}, #{word}, #{memberno}, #{singerno}, #{albumno})
+    INSERT INTO music(musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno)
+    VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genreno}, #{genre}, sysdate, #{lyrics}, #{likelist}, #{likesu}, #{mp3}, #{file1}, #{thumb1}, #{musiclong}, #{passwd}, #{youtube}, #{replycnt}, #{cnt}, #{word}, #{singerno}, #{albumno})
   </insert>
   
   <select id="list" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_seqno_asc" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_by_singerno" resultType="MusicVO"> 
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno
     FROM music 
     WHERE singerno = #{singerno}
     ORDER BY musicno ASC  
@@ -94,11 +94,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_genreno_search_paging" resultType="MusicVO"  parameterType="HashMap"> 
-    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno, r
+    SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno, r
     FROM (
-             SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno, rownum as r
+             SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno, rownum as r
              FROM (
-                      SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, memberno, singerno, albumno
+                      SELECT musicno, title, singer, album, genreno, genre, rdate, lyrics, likelist, likesu, mp3, file1, thumb1, musiclong, passwd, youtube, replycnt, cnt, word, singerno, albumno
                       FROM music
                       <choose>
                         <when test="word == null or word == ''">  <!-- 검색하지 않는 경우 -->

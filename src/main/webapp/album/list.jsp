@@ -76,9 +76,7 @@
             <td style='text-align: center;'>${albumVO.artist}</td>
             <td style='text-align: center;'>${albumVO.genre}</td>
             <td style='text-align: center;'>${albumVO.listno}</td>
-            <td style='text-align: center;'>
-              <a href="../music/read.do?musicno=${musicVO.musicno}">${albumVO.music}</a> 
-            </td> 
+            <td style='text-align: center;'>${albumVO.music}</td> 
             
             <%-- <td style='text-align: center;'>${singerVO.rdate.substring(0, 10)}</td> --%>
           </tr>

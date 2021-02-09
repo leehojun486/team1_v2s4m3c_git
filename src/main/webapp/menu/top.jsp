@@ -36,8 +36,9 @@
          </c:when>
      </c:choose>
        <li><a href="${pageContext.request.contextPath}/genre/list.do">Genre</a></li>
-       <li><a href="${pageContext.request.contextPath}/music/list.do">Music</a></li>
+       <li><a href="${pageContext.request.contextPath}/album/list.do">Album</a></li>
        <li><a href="${pageContext.request.contextPath}/singer/list.do">Singer</a></li>
+       <li><a href="${pageContext.request.contextPath}/music/list.do">Music</a></li>
       <li><a href="${pageContext.request.contextPath}/notice/list_all.do">Notice</a></li>
       <li><a href="${pageContext.request.contextPath}/faq/list_all.do ">FAQ</a></li>
 

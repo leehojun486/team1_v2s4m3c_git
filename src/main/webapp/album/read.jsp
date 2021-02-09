@@ -27,7 +27,7 @@
   </DIV>
   
   <ASIDE class="aside_left">
-    조회 > ${albumVO.albumno }
+    조회 > ${albumVO.title }
   </ASIDE>
   <ASIDE class="aside_right">
     <A href="./create.do">글 등록</A>

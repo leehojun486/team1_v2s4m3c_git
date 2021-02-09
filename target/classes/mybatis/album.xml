@@ -10,18 +10,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="dev.mvc.album.AlbumDAOInter">
 
   <insert id="create" parameterType="AlbumVO">
-    INSERT INTO album(albumno, title, artist, genreno ,genre, listno, music)
-    VALUES (album_seq.nextval, #{title}, #{artist}, #{genreno}, #{genre}, #{listno}, #{music})
+    INSERT INTO album(albumno, title, artist, genreno ,genre, listno, musictitle)
+    VALUES (album_seq.nextval, #{title}, #{artist}, #{genreno}, #{genre}, #{listno}, #{musictitle})
   </insert>
   
   <select id="list" resultType="AlbumVO">
-    SELECT albumno, title, artist, genreno ,genre, listno, music
+    SELECT albumno, title, artist, genreno ,genre, listno, musictitle
     FROM album 
     ORDER BY albumno ASC
   </select>
   
   <select id="read" resultType="AlbumVO" parameterType="int">
-    SELECT albumno, title, artist, genreno ,genre, listno, music
+    SELECT albumno, title, artist, genreno ,genre, listno, musictitle
     FROM album 
     WHERE albumno = #{albumno}
   </select> 
