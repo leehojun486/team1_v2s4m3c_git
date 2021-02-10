@@ -104,11 +104,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_join_search_paging" resultType="Music_Playlist_Music_joinVO" parameterType="HashMap">
-  SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, r, youtube
+  SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, r, youtube, m_singer
   FROM(
-    SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r, youtube
+    SELECT music_playlistno, playlistno, playing_seq, m_music, m_musicno, rownum as r, youtube, m_singer
     FROM(
-        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno, m.youtube as youtube
+        SELECT mp.music_playlistno, mp.playlistno, mp.playing_seq, m.title as m_music, m.musicno as m_musicno, m.youtube as youtube, m.singer as m_singer
         FROM music_playlist mp, music m
         <choose>
        <when test="m_music == null or m_music == ''">
@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      )
   )
   WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
-  
+  ORDER BY playing_seq ASC
   </select>
   
 </mapper>

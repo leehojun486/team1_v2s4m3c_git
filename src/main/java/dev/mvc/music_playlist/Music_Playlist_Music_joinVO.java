@@ -8,6 +8,13 @@ public class Music_Playlist_Music_joinVO {
   private int m_musicno;
   /** �θ� ���̺� ����*/
   private String m_music;
+  private String m_singer;
+  public String getM_singer() {
+    return m_singer;
+  }
+  public void setM_singer(String m_singer) {
+    this.m_singer = m_singer;
+  }
   private String youtube;
   
   //-------------------------------------------------------------------

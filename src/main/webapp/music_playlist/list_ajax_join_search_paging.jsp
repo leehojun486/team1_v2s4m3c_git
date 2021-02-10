@@ -57,7 +57,7 @@ function loadVideo(videoID) {
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
     height: '180',
-    width: '320',
+    width: '500',
     videoId: youtubeId,
     events: {
       'onReady': onPlayerReady,
@@ -92,7 +92,7 @@ function changeVideoAndStart() {
 }
  function list(){
    var array = changelist($('#playlist', frm).val());
-   player.cuePlaylist({
+   player.loadPlaylist({
    playlist:array,
    startSeconds:0,
    });
@@ -272,11 +272,9 @@ function update_proc() {
 <body>
 <jsp:include page="/menu/top.jsp" />
  
-  <DIV class='title_line'><a href="../playlist/list.do">music_playlist </a> ▶ ${playlistVO.playlistname }
-  <p style="margin-left: 95%;"><a href="../music_playlist/create.do?playlistno=${playlistVO.playlistno}" >등록</a></p>
+  <DIV class='title_line'><a href="../playlist/list.do">Music_playlist</a> ▶ ${playlistVO.playlistname }
   </DIV>
-  <p>수록된 음악 수:${cnt_music} </p>
-  <p>${playlist}</p>
+  <p>수록된 음악 수:${cnt_music}</p>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
   <form action="./list.do" method="get">
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
@@ -302,7 +300,7 @@ function update_proc() {
     <input type='hidden' name='music_playlistno' id='music_playlistno' value='${param.music_playlistno }'>
  
       
-      <label>재생 순서</label>
+      <!-- <label>재생 순서</label>
       <input type='number' name='playing_seq' id='playing_seq' value='1' required="required" 
                 min='1' max='1000' step='1' style='width: 5%;'>
   
@@ -311,31 +309,31 @@ function update_proc() {
                 min='1' max='1000' step='1' style='width: 5%;'>
        
       <button type="button" id='btn_send'>음악 등록</button>
-      <button type="button" onclick="cancel();">취소</button>
+      <button type="button" onclick="cancel();">취소</button> -->
     </FORM>
       <DIV id='panel1' style="width: 40%; text-align: center; margin: 10px auto; display: none;"></DIV>
     </DIV>
     <div class='img_center'>
       <div id='player'>
       </div>
-      <button type='button' onclick='list();'>..</button>
+      <p>
+      <button type='button' onclick='list();'>재생목록 로드</button>
     </div>
  
   
 <TABLE class='table table-striped'>
   <colgroup>
     <col style='width: 20%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 30%;'/>
+    <col style='width: 40%;'/>
     <col style='width: 30%;'/>
   </colgroup>
  
   <thead>  
   <TR>
-    <TH class="th_bs">재생 음악 번호</TH>
     <TH class="th_bs">재생 순서</TH>
     <TH class="th_bs">음악</TH>
-    <TH class="th_bs">기타</TH>
+    <TH class="th_bs">가수</TH>
+    <TH class="th_bs">-</TH>
     
   </TR>
   </thead>
@@ -344,10 +342,9 @@ function update_proc() {
   <c:forEach var="Music_Playlist_Music_joinVO" items="${list}">
     <c:set var="music_playlistno" value="${music_PlaylistVO.music_playlistno }" />
     <TR>
-      <TD class="td_bs">${Music_Playlist_Music_joinVO.music_playlistno }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.playing_seq }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.m_music }</TD>
-      <TD class="td_bs">${Music_Playlist_Music_joinVO.m_music }</TD>
+      <TD class="td_bs">${Music_Playlist_Music_joinVO.m_singer }</TD>
       
       <TD class="td_bs">
         <input type='hidden' name='youtube' id='youtube' value='${Music_Playlist_Music_joinVO.youtube }'>
