@@ -91,10 +91,10 @@ package dev.mvc.music;
       return youtube;
     }
     public void setYoutube(String youtube) {
-      this.youtube = youtube;
+      this.youtube = youtube;    
     }
     public int getAlbumno() {
-      return albumno;
+      return albumno; 
     }
     public void setAlbumno(int albumno) {
       this.albumno = albumno;

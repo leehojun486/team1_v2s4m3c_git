@@ -44,8 +44,8 @@ public interface MusicProcInter {
    */
   public MusicVO read(int musicno);
 
-  /**
-   * 좋아요 리스트 추가하기
+  /** 
+   * 좋아요 리스트 추가하기 
    * 
    * @param musicVO
    * @return

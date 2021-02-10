@@ -578,7 +578,7 @@ public class MusicCont {
    * 삭제 처리         ::         http://localhost:9090/tema1_git/music/delete.do
    * @param musicVO
    * @return
-   */
+   */  
   @RequestMapping(value = "/music/delete.do", method = RequestMethod.POST)
   public ModelAndView delete(MusicVO musicVO,
                              String passwd) {

@@ -130,7 +130,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                                               OR album LIKE '%' || #{word} || '%' ) 
     </otherwise>
     </choose>
-  </select>
+  </select>  
   
   <update id="update" parameterType="MusicVO">
     UPDATE music 

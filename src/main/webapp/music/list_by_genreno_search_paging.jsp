@@ -123,7 +123,7 @@
               <c:when test="${musicVO.likelist == 'Y'}">
                 <A href="../membermusic/delete.do?musicno=${musicno }&memberno=${1}&likelist=${musicVO.likelist}"><IMG src="./images/open.png" style='width: 18px;'></A>
               </c:when>
-              <c:otherwise>
+              <c:otherwise>  
                 <A href="../membermusic/create.do?musicno=${musicno }&memberno=${1}&membername='관리자'&musictitle=${musicVO.title}&singer=${musicVO.singer}&singerno=${musicVO.singerno }&likelist=${musicVO.likelist}"><IMG src="./images/close.png" style='width: 18px;'></A>
               </c:otherwise>
             </c:choose>

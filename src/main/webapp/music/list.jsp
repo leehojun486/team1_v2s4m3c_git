@@ -80,7 +80,7 @@
       <thead>
         <tr>
           <th style='text-align: center;'>음악 번호</th>
-          <th style='text-align: center;'>음악명</th>
+          <th style='text-align: center;'>음악명</th>  
           <th style='text-align: center;'>가수명</th>
           <th style='text-align: center;'>앨범명</th>
           

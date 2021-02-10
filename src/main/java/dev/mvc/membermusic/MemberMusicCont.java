@@ -116,11 +116,11 @@ public class MemberMusicCont {
    * }
    * 
    * int cnt = this.musicProc.delete_likelist(musicVO); mav.addObject("cnt",
-   * cnt);// request.setAttribute("cnt", cnt) cnt =
+   * cnt);// request.setAttribute("cnt", cnt) cnt = 
    * this.membermusicProc.delete(hashMap); mav.addObject("cnt", cnt);
    * 
    * mav.setViewName("redirect:/music/delete_likelist.do"); // request 객체가 전달이 안됨.
-   * 
+   *  
    * return mav; }
    */
   

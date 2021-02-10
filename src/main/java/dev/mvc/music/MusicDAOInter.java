@@ -42,7 +42,7 @@ public interface MusicDAOInter {
   
   /**
    * 좋아요 리스트 추가하기
-   * @param musicVO
+   * @param musicVO 
    * @return
    */
   public int add_likelist(MusicVO musicVO);

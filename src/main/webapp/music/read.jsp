@@ -245,7 +245,7 @@
             <li class='li_none' style='clear: both;'>
               <DIV style='width:900px; margin: 0px auto; text-align: center;'>
                 ${musicVO.youtube}
-              </DIV>
+              </DIV> 
             </li>
           </c:if>     
           
