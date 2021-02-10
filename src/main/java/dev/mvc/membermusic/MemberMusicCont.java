@@ -77,56 +77,52 @@ public class MemberMusicCont {
    * @param memberVO
    * @return
    */
-  @RequestMapping(value = "/membermusic/create.do", method = RequestMethod.GET)
-  public ModelAndView create(MemberMusicVO membermusicVO, MusicVO musicVO) {
-    ModelAndView mav = new ModelAndView();
-
-    if (musicVO.getLikelist().equalsIgnoreCase("N")) {
-      musicVO.setLikelist("Y");
-      membermusicVO.setLikelist("Y");
-    } else {
-      
-    }
-    
-    int cnt = this.musicProc.add_likelist(musicVO);
-    mav.addObject("cnt", cnt);// request.setAttribute("cnt", cnt)
-    cnt = this.membermusicProc.create(membermusicVO);
-    mav.addObject("cnt", cnt);
-
-    mav.setViewName("redirect:/music/add_likelist.do"); // request 객체가 전달이 안됨.
-    
-    return mav;
-  }
+  /*
+   * @RequestMapping(value = "/membermusic/create.do", method = RequestMethod.GET)
+   * public ModelAndView create(MemberMusicVO membermusicVO, MusicVO musicVO) {
+   * ModelAndView mav = new ModelAndView();
+   * 
+   * if (musicVO.getLikelist().equalsIgnoreCase("N")) { musicVO.setLikelist("Y");
+   * membermusicVO.setLikelist("Y"); } else {
+   * 
+   * }
+   * 
+   * int cnt = this.musicProc.add_likelist(musicVO); mav.addObject("cnt", cnt);//
+   * request.setAttribute("cnt", cnt) cnt =
+   * this.membermusicProc.create(membermusicVO); mav.addObject("cnt", cnt);
+   * 
+   * mav.setViewName("redirect:/music/add_likelist.do"); // request 객체가 전달이 안됨.
+   * 
+   * return mav; }
+   */
 
   /**
    * 삭제처리 (좋아요취소시 컬럼 삭제)
    * @param membermusicno
    * @return
    */
-  @RequestMapping(value="/membermusic/delete.do", method=RequestMethod.GET)
-   public ModelAndView delete(MemberMusicVO membermusicVO, MusicVO musicVO) { 
-     ModelAndView mav = new ModelAndView();
-
-     HashMap<String, Object> hashMap = new HashMap<String, Object>();
-     hashMap.put("musicno", musicVO.getMusicno());
-     hashMap.put("memberno", membermusicVO.getMemberno());
-     
-     if (musicVO.getLikelist().equalsIgnoreCase("Y")) {
-       musicVO.setLikelist("N");
-       membermusicVO.setLikelist("N");
-     } else {
-       
-     }
-    
-     int cnt = this.musicProc.delete_likelist(musicVO);
-     mav.addObject("cnt", cnt);// request.setAttribute("cnt", cnt)
-     cnt = this.membermusicProc.delete(hashMap);
-     mav.addObject("cnt", cnt);
-
-     mav.setViewName("redirect:/music/delete_likelist.do"); // request 객체가 전달이 안됨.
-    
-     return mav;
-   }
+  /*
+   * @RequestMapping(value="/membermusic/delete.do", method=RequestMethod.GET)
+   * public ModelAndView delete(MemberMusicVO membermusicVO, MusicVO musicVO) {
+   * ModelAndView mav = new ModelAndView();
+   * 
+   * HashMap<String, Object> hashMap = new HashMap<String, Object>();
+   * hashMap.put("musicno", musicVO.getMusicno()); hashMap.put("memberno",
+   * membermusicVO.getMemberno());
+   * 
+   * if (musicVO.getLikelist().equalsIgnoreCase("Y")) { musicVO.setLikelist("N");
+   * membermusicVO.setLikelist("N"); } else {
+   * 
+   * }
+   * 
+   * int cnt = this.musicProc.delete_likelist(musicVO); mav.addObject("cnt",
+   * cnt);// request.setAttribute("cnt", cnt) cnt =
+   * this.membermusicProc.delete(hashMap); mav.addObject("cnt", cnt);
+   * 
+   * mav.setViewName("redirect:/music/delete_likelist.do"); // request 객체가 전달이 안됨.
+   * 
+   * return mav; }
+   */
   
   
   

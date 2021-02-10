@@ -50,7 +50,7 @@ public interface MusicProcInter {
    * @param musicVO
    * @return
    */
-  public int add_likelist(MusicVO musicVO);
+  /* public int add_likelist(MusicVO musicVO); */
 
   /**
    * 좋아요 리스트 삭제하기
@@ -58,7 +58,7 @@ public interface MusicProcInter {
    * @param musicVO
    * @return
    */
-  public int delete_likelist(MusicVO musicVO);
+  /* public int delete_likelist(MusicVO musicVO); */
 
   /**
    * 검색 목록

@@ -433,19 +433,20 @@ public class MusicCont {
    * @param musicVO
    * @return
    */
-  @RequestMapping(value = "/music/add_likelist.do", method = RequestMethod.GET)
-  public ModelAndView add_likelist(MusicVO musicVO) {
-    ModelAndView mav = new ModelAndView();
-
-    System.out.println("-->" + musicVO.getLikelist());
-
-    int cnt = this.musicProc.add_likelist(musicVO);
-    mav.addObject("cnt", cnt); // request에 저장
-
-    mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
-
-    return mav;
-  }
+  /*
+   * @RequestMapping(value = "/music/add_likelist.do", method = RequestMethod.GET)
+   * public ModelAndView add_likelist(MusicVO musicVO) { ModelAndView mav = new
+   * ModelAndView();
+   * 
+   * System.out.println("-->" + musicVO.getLikelist());
+   * 
+   * int cnt = this.musicProc.add_likelist(musicVO); mav.addObject("cnt", cnt); //
+   * request에 저장
+   * 
+   * mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
+   * 
+   * return mav; }
+   */
 
   /**
    * 출력모드 변경
@@ -453,17 +454,18 @@ public class MusicCont {
    * @param musicVO
    * @return
    */
-  @RequestMapping(value = "/music/delete_likelist.do", method = RequestMethod.GET)
-  public ModelAndView delete_likelist(MusicVO musicVO) {
-    ModelAndView mav = new ModelAndView();
-
-    int cnt = this.musicProc.delete_likelist(musicVO);
-    mav.addObject("cnt", cnt); // request에 저장
-
-    mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
-
-    return mav;
-  }
+  /*
+   * @RequestMapping(value = "/music/delete_likelist.do", method =
+   * RequestMethod.GET) public ModelAndView delete_likelist(MusicVO musicVO) {
+   * ModelAndView mav = new ModelAndView();
+   * 
+   * int cnt = this.musicProc.delete_likelist(musicVO); mav.addObject("cnt", cnt);
+   * // request에 저장
+   * 
+   * mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
+   * 
+   * return mav; }
+   */
 
   /**
    * 수정 폼

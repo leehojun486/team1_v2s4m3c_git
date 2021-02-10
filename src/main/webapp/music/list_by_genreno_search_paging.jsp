@@ -90,10 +90,11 @@
           <th style='text-align: center;'>앨범명</th>
           
           <th style='text-align: center;'>장르</th>
-          <th style='text-align: center;'>등록일</th>
-          <th style='text-align: center;'>추가</th>
+          <!-- <th style='text-align: center;'>등록일</th> -->
+          <!-- <th style='text-align: center;'>추가</th> -->
           <th style='text-align: center;'>좋아요</th>
-          <th style='text-align: center;'>재생시간</th>
+          <th style='text-align: center;'>재생 수</th>
+          <!-- <th style='text-align: center;'>재생시간</th> -->
           
         </tr>
       
@@ -115,9 +116,9 @@
           <td style='text-align: center;'>${musicVO.album}</td>
           
           <td style='text-align: center;'>${musicVO.genre}</td>
-          <td style='text-align: center;'>${musicVO.rdate.substring(0, 10)}</td>
+          <%-- <td style='text-align: center;'>${musicVO.rdate.substring(0, 10)}</td> --%>
           
-          <td class="td_bs">
+          <%-- <td class="td_bs">
             <c:choose>
               <c:when test="${musicVO.likelist == 'Y'}">
                 <A href="../membermusic/delete.do?musicno=${musicno }&memberno=${1}&likelist=${musicVO.likelist}"><IMG src="./images/open.png" style='width: 18px;'></A>
@@ -126,10 +127,11 @@
                 <A href="../membermusic/create.do?musicno=${musicno }&memberno=${1}&membername='관리자'&musictitle=${musicVO.title}&singer=${musicVO.singer}&singerno=${musicVO.singerno }&likelist=${musicVO.likelist}"><IMG src="./images/close.png" style='width: 18px;'></A>
               </c:otherwise>
             </c:choose>
-          </td>
+          </td> --%>
           
           <td style='text-align: center;'>${musicVO.likesu}</td>
-          <td style='text-align: center;'>${musicVO.musiclong}</td>
+          <%-- <td style='text-align: center;'>${musicVO.musiclong}</td> --%>
+          <td style='text-align: center;'>${musicVO.playsu}</td>
           </tr>
         </c:forEach>
         

@@ -51,23 +51,23 @@ public class MusicProc implements MusicProcInter {
     return musicVO;
   }
 
-  @Override
-  public int add_likelist(MusicVO musicVO) {
-    musicVO.setLikelist("Y");
-    
-    int cnt = this.musicDAO.add_likelist(musicVO);
-    
-    return cnt;
-  }
+  /*
+   * @Override public int add_likelist(MusicVO musicVO) {
+   * musicVO.setLikelist("Y");
+   * 
+   * int cnt = this.musicDAO.add_likelist(musicVO);
+   * 
+   * return cnt; }
+   */
 
-  @Override
-  public int delete_likelist(MusicVO musicVO) {
-    musicVO.setLikelist("N");
-    
-    int cnt = this.musicDAO.add_likelist(musicVO);
-    
-    return cnt;
-  }
+  /*
+   * @Override public int delete_likelist(MusicVO musicVO) {
+   * musicVO.setLikelist("N");
+   * 
+   * int cnt = this.musicDAO.add_likelist(musicVO);
+   * 
+   * return cnt; }
+   */
 
   @Override
   public List<MusicVO> list_search(MusicVO musicVO) {

@@ -146,7 +146,7 @@
   </ASIDE>
   <ASIDE class="aside_right">
     <A href="./create.do">새로운 음악 등록</A>
-    <c:choose>
+    <%-- <c:choose>
       <c:when test="${musicVO.file1.trim().length() > 0 }">
         <span class='menu_divide' > | </span> 
         <A href='./img_update.do?musicno=${param.musicno }'>메인 이미지 변경/삭제</A>     
@@ -155,7 +155,7 @@
         <span class='menu_divide' > | </span> 
         <A href='./img_create.do?musicno=${param.musicno }'>메인 이미지 등록</A>     
       </c:otherwise>
-    </c:choose>    
+    </c:choose>    --%> 
     <span class='menu_divide' > | </span>
     <A href='../attachfile/create.do?musicno=${param.musicno }'>첨부 파일 등록</A>
     <span class='menu_divide' > | </span>
@@ -179,7 +179,7 @@
       </c:otherwise>
     </c:choose>    
 
-    <c:choose>
+    <%-- <c:choose>
       <c:when test="${musicVO.mp3.trim().length() > 0 }">
         <span class='menu_divide' > | </span> 
         <A href='./mp3_delete.do?musicno=${param.musicno }'>MP3 삭제</A>     
@@ -188,7 +188,7 @@
         <span class='menu_divide' > | </span> 
         <A href='./mp3_create.do?musicno=${param.musicno }'>MP3 등록</A>     
       </c:otherwise>
-    </c:choose>
+    </c:choose> --%>
         
     <span class='menu_divide' > | </span> 
     <A href='./delete.do?musicno=${param.musicno }'>삭제</A>
@@ -201,10 +201,10 @@
       <input type="hidden" name="musicno" value="${musicno}">
       <fieldset class="fieldset">
         <ul>
-          <li class="li_none" style='border-bottom: solid 1px #AAAAAA;'>
+          <%-- <li class="li_none" style='border-bottom: solid 1px #AAAAAA;'>
             <span>[:: ${musicVO.title} ::]</span> ♪
             <span>[등록일 :: ${musicVO.rdate.substring(0, 16)}]</span>
-          </li>
+          </li> --%>
           
           <%-- ********** 첨부 파일 이미지 목록 출력 시작 ********** 
           <li class="li_none">
@@ -232,14 +232,14 @@
             <DIV>가수 :: ${musicVO.singer }</DIV>
             <DIV>앨범 :: ${musicVO.album }</DIV>
             <DIV>장르 :: ${musicVO.genre }</DIV>
-            <DIV>가사 :: ${musicVO.lyrics }</DIV>
+            <%-- <DIV>가사 :: ${musicVO.lyrics }</DIV> --%>
             <DIV>좋아요 :: ${musicVO.likesu }</DIV>
             <DIV>앨범 :: ${musicVO.album }</DIV>
-            <DIV>재생시간 :: ${musicVO.musiclong }</DIV>
+            <%-- <DIV>재생시간 :: ${musicVO.musiclong }</DIV> --%>
           </li>
-          <li class="li_none">
+          <%-- <li class="li_none">
             [등록일 :: ${musicVO.rdate.substring(0, 16)}]
-          </li>
+          </li> --%>
 
           <c:if test="${musicVO.youtube.trim().length() > 0 }">
             <li class='li_none' style='clear: both;'>
@@ -249,11 +249,11 @@
             </li>
           </c:if>     
           
-              <c:if test="${musicVO.mp3.trim().length() > 0 }">
+              <%-- <c:if test="${musicVO.mp3.trim().length() > 0 }">
                 <AUDIO controls autoplay="autoplay">
                   <source src="./storage/mp3/${musicVO.mp3 }" type="audio/mp3">
                 </AUDIO>
-              </c:if>  
+              </c:if>  --%> 
           
             </DIV>
           </li>                      
