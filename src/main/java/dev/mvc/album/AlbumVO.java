@@ -28,7 +28,7 @@ public class AlbumVO {
   int genreno;
   String genre = "";
   int listno;
-  String music = "";
+  String musictitle = "";
   /*-*/
   
   
@@ -68,11 +68,11 @@ public class AlbumVO {
   public void setListno(int listno) {
     this.listno = listno;
   }
-  public String getMusic() {
-    return music;
+  public String getMusictitle() {
+    return musictitle;
   }
-  public void setMusic(String music) {
-    this.music = music;
+  public void setMusictitle(String musictitle) {
+    this.musictitle = musictitle;
   }
 
   

@@ -75,7 +75,7 @@
       노래 제목
       <div class="form-group">   
         <div class="col-md-12">
-          <input type='text' class="form-control" name='music' value='노래 제목' placeholder="노래 제목" required="required" style='width: 50%;'>
+          <input type='text' class="form-control" name='musictitle' value='노래 제목' placeholder="노래 제목" required="required" style='width: 50%;'>
         </div>
       </div> 
       
