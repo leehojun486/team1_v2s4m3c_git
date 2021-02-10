@@ -98,6 +98,7 @@ public class PlaylistCont {
     System.out.println(fsize);
     System.out.println(fname);
     System.out.println(thumbnail);
+    System.out.println(playlistVO.getPlaylistno());
 
     return mav; // forward
   }
@@ -113,6 +114,16 @@ public class PlaylistCont {
     
     mav.setViewName("/playlist/list"); // /webapp/playlist/list.jsp
     List<PlaylistVO> list = this.playlistProc.list_playlistno_asc();
+    mav.addObject("list", list);
+    return mav; // forward
+  }
+  
+  @RequestMapping(value = "/playlist/member_playlist.do", method = RequestMethod.GET)
+  public ModelAndView member_playlist(int memberno) {
+    ModelAndView mav = new ModelAndView();
+    
+    mav.setViewName("/playlist/member_playlist"); // /webapp/playlist/list.jsp
+    List<PlaylistVO> list = this.playlistProc.read_by_memberno(memberno);
     mav.addObject("list", list);
     return mav; // forward
   }

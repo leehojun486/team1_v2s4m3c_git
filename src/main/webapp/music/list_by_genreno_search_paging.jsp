@@ -94,6 +94,7 @@
           <!-- <th style='text-align: center;'>추가</th> -->
           <th style='text-align: center;'>좋아요</th>
           <th style='text-align: center;'>재생 수</th>
+          <th style='text-align: center;'>담기</th>
           <!-- <th style='text-align: center;'>재생시간</th> -->
           
         </tr>
@@ -138,6 +139,9 @@
           <td style='text-align: center;'>${musicVO.likesu}</td>
           <%-- <td style='text-align: center;'>${musicVO.musiclong}</td> --%>
           <td style='text-align: center;'>${musicVO.playsu}</td>
+          <td style='text-align: center;'>
+            <a href='../playlist/member_playlist.do?memberno=${sessionScope.memberno}&musicno=${musicVO.musicno}'>추가</a>
+          </td>
           </tr>
         </c:forEach>
         
