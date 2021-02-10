@@ -1,10 +1,10 @@
-DROP TABLE faq;
+﻿DROP TABLE faq;
 DROP SEQUENCE faq_seq; 
 
 /**********************************/
 /* Table Name: 자주묻는질문 */
 /**********************************/
-CREATE TABLE FAQ(
+CREATE TABLE FAQ(  
 		FAQNO                         		NUMBER(10)		 NOT NULL		 PRIMARY KEY,
 		FAQTITLE                      		VARCHAR2(50)		 NOT NULL,
 		FAQCONTENT                    		VARCHAR2(50)		 NULL ,
@@ -17,7 +17,7 @@ CREATE TABLE FAQ(
 COMMENT ON TABLE FAQ is '자주묻는질문';
 COMMENT ON COLUMN FAQ.FAQNO is '질문번호';
 COMMENT ON COLUMN FAQ.FAQTITLE is '질문제목';
-COMMENT ON COLUMN FAQ.FAQCONTENT is '질문내용';
+COMMENT ON COLUMN FAQ.FAQCONTENT is '질문내용';  
 COMMENT ON COLUMN FAQ.ADMINPASS is '관리자비밀번호';
 COMMENT ON COLUMN FAQ.FAQWORD is '질문단어';
 COMMENT ON COLUMN FAQ.FAQRDATE is '질문작성일';

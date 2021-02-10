@@ -1,4 +1,4 @@
-DROP TABLE qna;
+﻿DROP TABLE qna;
 DROP SEQUENCE qna_seq;
 
 /**********************************/
@@ -24,7 +24,7 @@ COMMENT ON COLUMN QNA.qnatitle is 'QNA제목';
 COMMENT ON COLUMN QNA.qnacontent is 'QNA내용';
 COMMENT ON COLUMN QNA.qnacondition is 'QNA답변상태';
 COMMENT ON COLUMN QNA.qnapasswd is 'QNA비밀번호';
-COMMENT ON COLUMN QNA.qnardate is 'QNA작성일';
+COMMENT ON COLUMN QNA.qnardate is 'QNA작성일';   
 
 CREATE SEQUENCE qna_seq
   START WITH 1              -- 시작 번호
