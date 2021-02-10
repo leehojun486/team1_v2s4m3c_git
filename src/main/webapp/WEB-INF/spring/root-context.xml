@@ -41,7 +41,8 @@
                              dev.mvc.music,
                              dev.mvc.follow,
                              dev.mvc.chart_crawling,
-                             dev.mvc.home
+                             dev.mvc.home,
+                             dev.mvc.qna
                             "      
                    />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />
