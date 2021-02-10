@@ -40,6 +40,7 @@
   <context:component-scan base-package="dev.mvc.singer_review" /> <!-- 가수댓글 -->
   <context:component-scan base-package="dev.mvc.singer" /> <!-- 가수 -->
   <context:component-scan base-package="dev.mvc.home" /> <!-- 가수 -->
+  <context:component-scan base-package="dev.mvc.qna" /> <!-- QNA -->
   
   
 
