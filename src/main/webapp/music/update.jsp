@@ -40,7 +40,7 @@
   <div class="form-group">
      <label class="control-label col-md-3">곡 제목</label>
      <div class="col-md-9">
-       <input type='text' name='title' value='눈의꽃' required="required" 
+       <input type='text' name='title' value='${musicVO.title}' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div> 
@@ -48,7 +48,7 @@
   <div class="form-group">
      <label class="control-label col-md-3">가수</label>
      <div class="col-md-9">
-       <input type='text' name='singer' value='박효신' required="required" 
+       <input type='text' name='singer' value='${musicVO.singer}' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div>
@@ -56,7 +56,7 @@
   <div class="form-group">
      <label class="control-label col-md-3">앨범명</label>
      <div class="col-md-9">
-       <input type='text' name='album' value='미안하다 사랑한다OST' required="required" 
+       <input type='text' name='album' value='${musicVO.album}' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div>

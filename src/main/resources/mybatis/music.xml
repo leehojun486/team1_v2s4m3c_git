@@ -134,7 +134,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   
   <update id="update" parameterType="MusicVO">
     UPDATE music 
-    SET title=#{title}, singer=#{singer}, album=#{album}, genre=#{genre}
+    SET title=#{title}, singer=#{singer}, album=#{album}, genre=#{genre}, youtube=#{youtube}
     WHERE musicno=#{musicno}
   </update>
   

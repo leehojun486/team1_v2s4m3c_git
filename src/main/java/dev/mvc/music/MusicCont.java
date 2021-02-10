@@ -476,7 +476,7 @@ public class MusicCont {
   public ModelAndView update(int musicno) {
     ModelAndView mav = new ModelAndView();
 
-    MusicVO musicVO = this.musicProc.read_update(musicno);
+    MusicVO musicVO = this.musicProc.read(musicno);
     mav.addObject("musicVO", musicVO);
 
     mav.setViewName("music/update");
@@ -496,12 +496,10 @@ public class MusicCont {
     
     mav.addObject("musicno", musicno);
 
-    int cnt = 0;        // 수정된 레코드 갯수 
-    
-    cnt = this.musicProc.update(musicVO);
-    mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
+    int cnt =  this.musicProc.update(musicVO); // 수정된 레코드 갯수 
     
     mav.addObject("cnt", cnt); // request에 저장
+    mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
     
     return mav;
   }
@@ -554,7 +552,7 @@ public class MusicCont {
   public ModelAndView delete(int musicno) {
     ModelAndView mav = new ModelAndView();
   
-    MusicVO musicVO = this.musicProc.read_update(musicno); 
+    MusicVO musicVO = this.musicProc.read(musicno); 
     mav.addObject("musicVO", musicVO);
     
     mav.setViewName("/music/delete"); // webapp/music/delete.jsp

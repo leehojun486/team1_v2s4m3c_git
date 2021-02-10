@@ -116,17 +116,9 @@ public interface MusicProcInter {
    * @return
    */
   public String pagingBox(String listFile, int genreno, int search_count, int nowPage, String word);
-
+  
   /**
-   * 수정용 조회
-   * @param musicno
-   * @return
-   */
-  public MusicVO read_update(int musicno);
-
-  /**
-   * 수정
-   * 
+   * 수정 처리
    * @param musicVO
    * @return
    */

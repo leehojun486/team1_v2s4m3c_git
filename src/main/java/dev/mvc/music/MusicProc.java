@@ -220,12 +220,6 @@ public class MusicProc implements MusicProcInter {
   }
 
   @Override
-  public MusicVO read_update(int musicno) {
-    MusicVO musicVO = this.musicDAO.read(musicno);
-    return musicVO;
-  }
-
-  @Override
   public int update(MusicVO musicVO) {
     int cnt = this.musicDAO.update(musicVO);
     return cnt;

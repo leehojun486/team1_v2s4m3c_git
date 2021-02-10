@@ -43,7 +43,19 @@
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
     <UL>
-      <c:choose>
+      <LI class='li_none'>
+        <span class='span_success'>『${param.title }』 음악을 수정했습니다.</span>
+      </LI>
+    
+      <LI class='li_none'>
+        <button type='button' 
+                     onclick="location.href='./list.do?musicno=${param.musicno}&nowPage=${param.nowPage }'"
+                     class="btn btn-info">목록</button>                        
+      </LI>
+    
+    
+    
+      <%-- <c:choose>
         <c:when test="${passwd_cnt == 1 }"> <!-- 패스워드 일치 -->
           <c:choose>
             <c:when test="${cnt == 1}"> <!-- 글 삭제 성공 -->
@@ -63,7 +75,7 @@
         </c:when>
         <c:otherwise> <!-- 패스워드 불일치 -->
           <LI class='li_none'>
-            <span class='span_fail'>${passwd_cnt },${cnt }패스워드가 일치하지 않습니다. 다시 시도해주세요.</span>
+            <span class='span_fail'>패스워드가 일치하지 않습니다. 다시 시도해주세요.</span>
           </LI>
         </c:otherwise>
       </c:choose>
@@ -86,7 +98,12 @@
                         class="btn btn-info">목록</button>                        
           </LI>
         </c:otherwise> 
-      </c:choose>
+      </c:choose> --%>
+      
+      
+      
+      
+      
       
      </UL>
   </fieldset>

@@ -94,9 +94,9 @@ public interface MusicDAOInter {
  public List<MusicVO> list_by_genreno_search_paging(HashMap<String, Object> map);
  
   /**
-   * 수정
+   * 수정처리
    * @param musicVO
-   * @return
+   * @return 
    */
  public int update(MusicVO musicVO);
  
