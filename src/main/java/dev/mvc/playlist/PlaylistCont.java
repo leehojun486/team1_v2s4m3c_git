@@ -3,16 +3,21 @@ package dev.mvc.playlist;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.member.MemberProcInter;
 import dev.mvc.music_playlist.Music_PlaylistProcInter;
 import dev.mvc.music_playlist.Music_PlaylistVO;
+import dev.mvc.tool.Tool;
+import dev.mvc.tool.Upload;
 
 
 @Controller
@@ -32,7 +37,7 @@ public class PlaylistCont {
   }
 
   /**
-   * ����� http://localhost:9090/team1/playlist/create.do
+   * 占쏙옙占쏙옙占� http://localhost:9090/team1/playlist/create.do
    * 
    * @return
    */
@@ -44,25 +49,61 @@ public class PlaylistCont {
   }
 
   /**
-   * ��� ó�� http://localhost:9090/resort/playlist/create.do
+   * 占쏙옙占� 처占쏙옙 http://localhost:9090/resort/playlist/create.do
    * 
    * @return
    */
   @RequestMapping(value = "/playlist/create.do", method = RequestMethod.POST)
-  public ModelAndView create(PlaylistVO playlistVO) {
-    // request.setAttribute("playlistVO", playlistVO) �ڵ� ����
+  public ModelAndView create(HttpServletRequest request, PlaylistVO playlistVO) {
+    // request.setAttribute("playlistVO", playlistVO) 占쌘듸옙 占쏙옙占쏙옙
 
     ModelAndView mav = new ModelAndView();
+    System.out.println(playlistVO.getFnamesMF());
+    
+ // -------------------------------------------------------------------
+    // �뙆�씪 �쟾�넚 肄붾뱶 �떆�옉
+    // -------------------------------------------------------------------
+    String fname = "";     // main image
+    String thumbnail = ""; // preview image
+        
+    String upDir = Tool.getRealPath(request, "/playlist/storage/main_images"); // �젅�� 寃쎈줈
+    
+    // �쟾�넚 �뙆�씪�씠 �뾾�뼱�꽌�룄 fnamesMF 媛앹껜媛� �깮�꽦�맖.
+    // <input type='file' class="form-control" name='file1MF' id='file1MF' 
+    //           value='' placeholder="�뙆�씪 �꽑�깮" multiple="multiple">
+    MultipartFile mf = playlistVO.getFnamesMF();
+    
+    long fsize = mf.getSize();  // �뙆�씪 �겕湲�
+    if (fsize > 0) { // �뙆�씪 �겕湲� 泥댄겕
+      // mp3 = mf.getOriginalFilename(); // �썝蹂� �뙆�씪紐�, spring.jpg
+      // �뙆�씪 ���옣 �썑 �뾽濡쒕뱶�맂 �뙆�씪紐낆씠 由ы꽩�맖, spring.jsp, spring_1.jpg...
+      fname = Upload.saveFileSpring(mf, upDir); 
+      
+      if (Tool.isImage(fname)) { // �씠誘몄��씤吏� 寃��궗
+        // thumb �씠誘몄� �깮�꽦�썑 �뙆�씪紐� 由ы꽩�맖, width: 200, height: 150
+        thumbnail = Tool.preview(upDir, fname, 200, 150); 
+      }
+      
+    }    
+    playlistVO.setFname(fname);
+    playlistVO.setThumbnail(thumbnail);
+    playlistVO.setFsize(fsize);
+    // -------------------------------------------------------------------
+    // �뙆�씪 �쟾�넚 肄붾뱶 醫낅즺
+    // -------------------------------------------------------------------
     mav.setViewName("/playlist/create_msg"); // /webapp/categrp/create_msg.jsp
 
-    int cnt = this.playlistProc.create(playlistVO); // ��� ó��
+    int cnt = this.playlistProc.create(playlistVO); // 占쏙옙占� 처占쏙옙
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+    System.out.println(fsize);
+    System.out.println(fname);
+    System.out.println(thumbnail);
 
     return mav; // forward
   }
 
   /**
-   * ��� http://localhost:9090/team1/playlist/list.do
+   * 占쏙옙占� http://localhost:9090/team1/playlist/list.do
    * 
    * @return
    */
@@ -77,7 +118,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ��ȸ + ������ http://localhost:9090/team1/playlist/read_update.do
+   * 占쏙옙회 + 占쏙옙占쏙옙占쏙옙 http://localhost:9090/team1/playlist/read_update.do
    * 
    * @return
    */
@@ -96,7 +137,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ȸ���� ��ȸ ������
+   * 회占쏙옙占쏙옙 占쏙옙회 占쏙옙占쏙옙占쏙옙
    * 
    * @return
    */
@@ -115,7 +156,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ȸ���� �÷��̸���Ʈ
+   * 회占쏙옙占쏙옙 占시뤄옙占싱몌옙占쏙옙트
    * 
    * @return
    */
@@ -132,7 +173,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ���� ó��
+   * 占쏙옙占쏙옙 처占쏙옙
    * 
    * @param playlistVO
    * @return
@@ -143,7 +184,7 @@ public class PlaylistCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.playlistProc.update(playlistVO);
-    mav.addObject("cnt", cnt); // request�� ����
+    mav.addObject("cnt", cnt); // request占쏙옙 占쏙옙占쏙옙
 
     mav.setViewName("/playlist/update_msg"); // webapp/playlist/update_msg.jsp
 
@@ -151,7 +192,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ȸ�� ���� ó��
+   * 회占쏙옙 占쏙옙占쏙옙 처占쏙옙
    * 
    * @param playlistVO
    * @return
@@ -162,7 +203,7 @@ public class PlaylistCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.playlistProc.user_update(playlistVO);
-    mav.addObject("cnt", cnt); // request�� ����
+    mav.addObject("cnt", cnt); // request占쏙옙 占쏙옙占쏙옙
     mav.setViewName("/playlist/user_update_msg"); // webapp/playlist/update_msg.jsp
     System.out.println("----------------");
 
@@ -170,7 +211,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ������ http://localhost:9090/resort/playlist/read_delete.do
+   * 占쏙옙占쏙옙占쏙옙 http://localhost:9090/resort/playlist/read_delete.do
    * @return
    */
   @RequestMapping(value = "/playlist/read_delete.do", method = RequestMethod.GET)
@@ -188,7 +229,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ȸ�� ������ http://localhost:9090/resort/playlist/read_delete.do
+   * 회占쏙옙 占쏙옙占쏙옙占쏙옙 http://localhost:9090/resort/playlist/read_delete.do
    * @return
    */
   @RequestMapping(value = "/playlist/user_read_delete.do", method = RequestMethod.GET)
@@ -205,7 +246,7 @@ public class PlaylistCont {
     return mav; // forward
   }
   /**
-   * ���� ó��
+   * 占쏙옙占쏙옙 처占쏙옙
    * @param playlistno
    * @return
    */
@@ -218,8 +259,8 @@ public class PlaylistCont {
     hashMap.put("memberno", memberno);
     mav.addObject("memberno", memberno);
     int cnt = this.playlistProc.user_delete(hashMap);
-    System.out.println("ȸ������ �Ǵ���");
-    mav.addObject("cnt", cnt); // request�� ����
+    System.out.println("회占쏙옙占쏙옙占쏙옙 占실댐옙占쏙옙");
+    mav.addObject("cnt", cnt); // request占쏙옙 占쏙옙占쏙옙
 
     mav.setViewName("/playlist/user_delete_msg"); // /webapp/playlist/delete_msg.jsp
 
@@ -227,7 +268,7 @@ public class PlaylistCont {
   }
   
   /**
-   * ���� ó��
+   * 占쏙옙占쏙옙 처占쏙옙
    * @param playlistno
    * @return
    */
@@ -236,14 +277,14 @@ public class PlaylistCont {
     ModelAndView mav = new ModelAndView();
 
     int cnt = this.playlistProc.delete(playlistno);
-    mav.addObject("cnt", cnt); // request�� ����
+    mav.addObject("cnt", cnt); // request占쏙옙 占쏙옙占쏙옙
 
     mav.setViewName("/playlist/delete_msg"); // /webapp/playlist/delete_msg.jsp
 
     return mav;
   }
   /**
-   * ���ƿ� ����
+   * 占쏙옙占싣울옙 占쏙옙占쏙옙
    * @param playlistno
    * @return
    */
@@ -254,7 +295,7 @@ public class PlaylistCont {
     int memberno = playlistVO.getmemberno();
     int cnt = this.playlistProc.likes_up(playlistno);
     System.out.println("cnt: "+ cnt );
-    mav.addObject("cnt", cnt); // request�� ����
+    mav.addObject("cnt", cnt); // request占쏙옙 占쏙옙占쏙옙
     mav.addObject("playlistVO", playlistVO);
     mav.setViewName("redirect:/playlist/read_by_memberno.do?memberno="+memberno+""); // webapp/playlist/update_msg.jsp
     
@@ -263,7 +304,7 @@ public class PlaylistCont {
     
     /*
      * int cnt = this.cateProc.update_seqno_down(cateno); mav.addObject("cnt", cnt);
-     * // request�� ����
+     * // request占쏙옙 占쏙옙占쏙옙
      * 
      * CateVO cateVO = this.cateProc.read(cateno); mav.addObject("cateVO", cateVO);
      * 

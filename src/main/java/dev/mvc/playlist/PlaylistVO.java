@@ -1,21 +1,38 @@
 package dev.mvc.playlist;
+
+import org.springframework.web.multipart.MultipartFile;
+
 // playlistno                        NUMBER(10)     NOT NULL    PRIMARY KEY,
 // playlistname                      VARCHAR2(20)     NOT NULL,
 // cntmusic                          NUMBER(10)     NOT NULL,
 // memberno                             NUMBER(10)     NOT NULL,
 // likes                              NUMBER(20)     DEFAULT 0     NOT NULL,
 public class PlaylistVO {
-    /** ÇÃ·¹ÀÌ ¸®½ºÆ® ¹øÈ£ */
+    /** ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È£ */
     private int playlistno = 0;
-    /** ÇÃ·¹ÀÌ ¸®½ºÆ® ÀÌ¸§ */
+    /** ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¸ï¿½ */
     private String playlistname = "";
-    /** ¼ö·ÏµÈ À½¾Ç ¼ö */
+    /** ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ */
     private int cntmusic = 0;
-    /** È¸¿ø ¹øÈ£ */
+    /** È¸ï¿½ï¿½ ï¿½ï¿½È£ */
     private int memberno = 0;
-    /** ÁÁ¾Æ¿ä ¼ö */
+    /** ï¿½ï¿½ï¿½Æ¿ï¿½ ï¿½ï¿½ */
     private int likes = 0;
     
+    private String fname = "";
+    
+    private String thumbnail = "";
+    
+    private long fsize;
+    
+    private MultipartFile fnamesMF;
+    
+    public MultipartFile getFnamesMF() {
+      return fnamesMF;
+    }
+    public void setFnamesMF(MultipartFile fnamesMF) {
+      this.fnamesMF = fnamesMF;
+    }
     public int getPlaylistno() {
       return playlistno;
     }
@@ -36,6 +53,24 @@ public class PlaylistVO {
     }
     public int getmemberno() {
       return memberno;
+    }
+    public String getFname() {
+      return fname;
+    }
+    public void setFname(String fname) {
+      this.fname = fname;
+    }
+    public String getThumbnail() {
+      return thumbnail;
+    }
+    public void setThumbnail(String thumbnail) {
+      this.thumbnail = thumbnail;
+    }
+    public long getFsize() {
+      return fsize;
+    }
+    public void setFsize(long fsize) {
+      this.fsize = fsize;
     }
     public void setmemberno(int memberno) {
       this.memberno = memberno;

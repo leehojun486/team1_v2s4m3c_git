@@ -21,9 +21,12 @@
 
 $(function() {
   $('#btn_send').on('click', send);
-  play($('#youtube').val());
+  setTimeout(function(){
+    list();
+    }, 1500)
   });
 var youtubeId = "";
+
 
 function changelist(playlist){
   var playlist = playlist.substring(1, playlist.length-1);
@@ -300,7 +303,7 @@ function update_proc() {
     <input type='hidden' name='music_playlistno' id='music_playlistno' value='${param.music_playlistno }'>
  
       
-      <!-- <label>재생 순서</label>
+      <label>재생 순서</label>
       <input type='number' name='playing_seq' id='playing_seq' value='1' required="required" 
                 min='1' max='1000' step='1' style='width: 5%;'>
   
@@ -309,7 +312,7 @@ function update_proc() {
                 min='1' max='1000' step='1' style='width: 5%;'>
        
       <button type="button" id='btn_send'>음악 등록</button>
-      <button type="button" onclick="cancel();">취소</button> -->
+      <button type="button" onclick="cancel();">취소</button>
     </FORM>
       <DIV id='panel1' style="width: 40%; text-align: center; margin: 10px auto; display: none;"></DIV>
     </DIV>
@@ -317,7 +320,6 @@ function update_proc() {
       <div id='player'>
       </div>
       <p>
-      <button type='button' onclick='list();'>재생목록 로드</button>
     </div>
  
   

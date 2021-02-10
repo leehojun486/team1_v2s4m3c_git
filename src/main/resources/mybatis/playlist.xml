@@ -19,8 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    --> 
   
   <insert id="create" parameterType="PlaylistVO">
-    INSERT INTO playlist(playlistno, playlistname,  memberno )
-    VALUES(playlist_seq.nextval, #{playlistname}, #{memberno} )
+    INSERT INTO playlist(playlistno, playlistname,  memberno, fname, thumbnail, fsize)
+    VALUES(playlist_seq.nextval, #{playlistname}, #{memberno}, #{fname}, #{thumbnail}, #{fsize})
   </insert>
   
   <select id="list_playlistno_asc" resultType="PlaylistVO">
@@ -36,7 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="read_by_memberno" parameterType="int" resultType="PlaylistVO">
-    SELECT playlistno, playlistname, cntmusic, memberno, likes
+    SELECT playlistno, playlistname, cntmusic, memberno, likes, thumbnail
     FROM playlist
     WHERE memberno=#{memberno}
   </select>

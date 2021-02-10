@@ -29,20 +29,17 @@
   <DIV class='title_line'>Playlist</DIV>
   <A href='./create.do?&memberno=${memberno }'>등록</a> 
   
-<TABLE class='table table-striped'>
+<TABLE class="fieldset_singer">
   <colgroup>
-    <col style='width: 10%;'/>
     <col style='width: 40%;'/>
-    <col style='width: 20%;'/>
-    <col style='width: 10%;'/>    
+    <col style='width: 40%;'/>
     <col style='width: 20%;'/>
   </colgroup>
  
   <thead>  
   <TR>
-    <TH class="th_bs">플레이 리스트 번호</TH>
+    <TH class="th_bs">썸네일</TH>
     <TH class="th_bs">플레이 리스트 이름</TH>
-    <TH class="th_bs">좋아요 수</TH>
     <TH class="th_bs">기타</TH>
   </TR>
   </thead>
@@ -51,10 +48,14 @@
   <c:forEach var="playlistVO" items="${list}">
     <c:set var="playlistno" value="${playlistVO.playlistno }" />
     <TR>
-      <TD class="td_bs">${playlistVO.playlistno }</TD>
+      <td>
+        <c:if test="${playlistVO.thumbnail.endsWith('jpg') || playlistVO.thumbnail.endsWith('png') || playlistVO.thumbnail.endsWith('gif')}">
+            <DIV class="img_center">
+               <IMG src="./storage/main_images/${playlistVO.thumbnail }" style="width: 50%;"> 
+            </DIV>
+        </c:if>
+      </td>
       <TD class="td_bs"><a href="../music_playlist/list.do?playlistno=${playlistno}">${playlistVO.playlistname }</a></TD>
-      <TD class="td_bs"><a href="../playlist/likes_up.do?playlistno=${playlistno }">${playlistVO.likes }</a></TD>
-      
       <TD class="td_bs">
         <A href="./user_read_update.do?playlistno=${playlistno }&memberno=${memberno }" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
         <A href="./user_read_delete.do?playlistno=${playlistno }&memberno=${memberno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>

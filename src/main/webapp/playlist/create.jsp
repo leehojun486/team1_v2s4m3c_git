@@ -31,13 +31,18 @@
  
 <DIV class='title_line'>플레이리스트 등록 ${param.memberno }</DIV>
  
-<FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
+<FORM name='frm' method='POST' action='./create.do' class="form-horizontal" enctype="multipart/form-data">
   <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>
   <div class="form-group">
      <label class="control-label col-md-3">플레이리스트 이름</label>
      <div class="col-md-9">
        <input type='text' name='playlistname' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
+     </div>
+     <label class="control-label col-md-3">썸네일</label>
+     <div class="col-md-9">
+       <input type='file' class="form-control" name='fnamesMF'  
+                     value='' placeholder="파일 선택" multiple="multiple">
      </div>
   </div>
   
