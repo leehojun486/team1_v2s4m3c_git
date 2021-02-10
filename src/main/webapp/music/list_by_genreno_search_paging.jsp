@@ -84,7 +84,7 @@
       <%-- table 컬럼 --%>
       <thead>
         <tr>
-          <th style='text-align: center;'>음악 번호</th>
+          <th style='text-align: center;'>번호</th>
           <th style='text-align: center;'>음악명</th>
           <th style='text-align: center;'>가수명</th>
           <th style='text-align: center;'>앨범명</th>
@@ -109,11 +109,17 @@
           
           <tr> 
           <td style='text-align: center;'>${musicVO.musicno}</td>
-            <td>
+            <td style='text-align: center;'>
               <a href="./read.do?musicno=${musicno }">${musicVO.title}</a> 
             </td> 
-          <td style='text-align: center;'>${musicVO.singer}</td>
-          <td style='text-align: center;'>${musicVO.album}</td>
+            
+            <td style='text-align: center;'>
+              <a href="../singer/read.do?singerno=${musicVO.singerno }">${musicVO.singer}</a> 
+            </td>
+            
+            <td style='text-align: center;'>
+              <a href="../album/read.do?albumno=${musicVO.albumno }">${musicVO.album}</a> 
+            </td>
           
           <td style='text-align: center;'>${musicVO.genre}</td>
           <%-- <td style='text-align: center;'>${musicVO.rdate.substring(0, 10)}</td> --%>

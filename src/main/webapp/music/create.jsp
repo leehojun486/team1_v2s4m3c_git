@@ -32,18 +32,18 @@
 <DIV class='title_line'>새로운 음악 등록</DIV>
  
 <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
-  <input type='hidden' name='likelist' value='N'> 
+  <!-- <input type='hidden' name='likelist' value='N'>  -->
   <input type='hidden' name='singerno' value='1'>
   <input type='hidden' name='albumno' value='1'> 
   
   <!-- 미 설정 값들 -->
-  <input type='hidden' name='youtube' value='youtube'>
-  <input type='hidden' name='memberno' value='1'>
+  <!-- <input type='hidden' name='youtube' value='youtube'> -->
+  <!-- <input type='hidden' name='memberno' value='1'> -->
   <input type='hidden' name='genreno' value='1'>
   <input type='hidden' name='genre' value='발라드'>
-  <input type='hidden' name='likesu' value='0'>
-  <input type='hidden' name='replycnt' value='0'>
-  <input type='hidden' name='cnt' value='0'>
+  <!-- <input type='hidden' name='likesu' value='0'> -->
+  <!-- <input type='hidden' name='replycnt' value='0'> -->
+  <!-- <input type='hidden' name='cnt' value='0'> -->
   
    
   <!-- <input type='hidden' name='genreno' value='1'> --> <%-- 전달 해줘야 할 FK 3개 값들 고민좀해봐야할듯 --%>
@@ -103,6 +103,18 @@
   </div>
 
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
  <!--  <div class="form-group">
      <label class="control-label col-md-3">장르</label>
      <div class="col-md-9">
@@ -124,13 +136,13 @@
      </div>
   </div> -->
   
-  <div class="form-group">
+  <!-- <div class="form-group">
      <label class="control-label col-md-3">가사</label>
      <div class="col-md-9">
        <input type="text" name='lyrics' value='어느새 길어진 그림자를 따라서 땅거미 진 어둠 속을 그대와 걷고 있네요' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 80%;'>
      </div>
-  </div>
+  </div> -->
   
    <%-- <div class="form-group">   
       <div class="col-md-12">
@@ -140,12 +152,12 @@
         </div>
       </div>  --%>
   
-  <div class="form-group">   
+  <!-- <div class="form-group">   
     <label class="control-label col-md-3">비밀번호</label>
         <div class="col-md-9">
           <input type='password' class="form-control" name='passwd'  value='1234' placeholder="패스워드" style='width: 20%;'>
         </div>
-      </div>
+      </div> -->
   
 
   <div class="content_bottom_menu" style="padding-right: 20%;">

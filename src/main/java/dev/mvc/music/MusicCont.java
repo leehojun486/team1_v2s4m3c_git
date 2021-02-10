@@ -490,30 +490,18 @@ public class MusicCont {
    * @return
    */
   @RequestMapping(value = "/music/update.do", method = RequestMethod.POST)
-  public ModelAndView update(MusicVO musicVO,
-                             String passwd) {
+  public ModelAndView update(MusicVO musicVO) {
     ModelAndView mav = new ModelAndView();
     int musicno = musicVO.getMusicno();
     
-    HashMap<String, Object> hashMap = new HashMap<String, Object>();
-    hashMap.put("musicno", musicno);
-    hashMap.put("passwd", passwd);
-    
     mav.addObject("musicno", musicno);
 
-    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
     int cnt = 0;        // 수정된 레코드 갯수 
     
-    passwd_cnt = this.musicProc.passwd_check(hashMap);
+    cnt = this.musicProc.update(musicVO);
+    mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
     
-    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제
-      cnt = this.musicProc.update(musicVO);
-      mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
-    } else {
-      mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
-    }
     mav.addObject("cnt", cnt); // request에 저장
-    mav.addObject("passwd_cnt", passwd_cnt);
     
     return mav;
   }

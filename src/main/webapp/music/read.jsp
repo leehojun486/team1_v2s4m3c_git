@@ -156,11 +156,11 @@
         <A href='./img_create.do?musicno=${param.musicno }'>메인 이미지 등록</A>     
       </c:otherwise>
     </c:choose>    --%> 
-    <span class='menu_divide' > | </span>
-    <A href='../attachfile/create.do?musicno=${param.musicno }'>첨부 파일 등록</A>
+    <%-- <span class='menu_divide' > | </span>
+     <A href='../attachfile/create.do?musicno=${param.musicno }'>첨부 파일 등록</A>
     <span class='menu_divide' > | </span>
     <A href='../attachfile/list_by_contents.do?musicno=${param.musicno }'>첨부 파일 삭제</A>
-
+    --%>
     <span class='menu_divide' > | </span>
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' > | </span> 
@@ -191,7 +191,7 @@
     </c:choose> --%>
         
     <span class='menu_divide' > | </span> 
-    <A href='./delete.do?musicno=${param.musicno }'>삭제</A>
+    <A href='./delete.do?musicno=${param.musicno }'>음악 삭제</A>
     
   </ASIDE> 
   

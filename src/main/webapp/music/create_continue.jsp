@@ -41,15 +41,15 @@
         <br>
         <c:choose>
           <c:when test="${param.cnt == 1 }">
-            <button type='button' 
+            <%-- <button type='button' 
                          onclick="location.href='./youtube_create.do?musicno=${param.musicno}'"
-                         class="btn btn-info">Youtube 등록</button>                
-            <button type='button' 
+                         class="btn btn-info">Youtube 등록</button> --%>                
+            <%-- <button type='button' 
                          onclick="location.href='./mp3_create.do?musicno=${param.musicno}'"
-                         class="btn btn-info">MP3 등록</button>         
-            <button type='button' 
+                         class="btn btn-info">MP3 등록</button> --%>         
+            <%-- <button type='button' 
                          onclick="location.href='./mp4_create.do?musicno=${param.musicno}'"
-                         class="btn btn-info">MP4 등록</button> 
+                         class="btn btn-info">MP4 등록</button>  --%>
             <br>        
             <button type='button' 
                          onclick="location.href='./create.do?musicno=${param.musicno}'"
