@@ -74,23 +74,23 @@ public class Music_PlaylistProc implements Music_PlaylistProcInter{
   @Override
   public ArrayList<Music_Playlist_Music_joinVO> list_by_join_search_paging(HashMap<String, Object> map) {
     /* 
-    ÆäÀÌÁö¿¡¼­ Ãâ·ÂÇÒ ½ÃÀÛ ·¹ÄÚµå ¹øÈ£ °è»ê ±âÁØ°ª, nowPage´Â 1ºÎÅÍ ½ÃÀÛ
-    1 ÆäÀÌÁö ½ÃÀÛ rownum: nowPage = 1, (1 - 1) * 10 --> 0 
-    2 ÆäÀÌÁö ½ÃÀÛ rownum: nowPage = 2, (2 - 1) * 10 --> 10
-    3 ÆäÀÌÁö ½ÃÀÛ rownum: nowPage = 3, (3 - 1) * 10 --> 20
+    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½È£ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø°ï¿½, nowPageï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rownum: nowPage = 1, (1 - 1) * 10 --> 0 
+    2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rownum: nowPage = 2, (2 - 1) * 10 --> 10
+    3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ rownum: nowPage = 3, (3 - 1) * 10 --> 20
     */
     int beginOfPage = ((Integer)map.get("nowPage") - 1) * Music_Playlist.RECORD_PER_PAGE;
- // ½ÃÀÛ rownum °áÁ¤
-    // 1 ÆäÀÌÁö = 0 + 1, 2 ÆäÀÌÁö = 10 + 1, 3 ÆäÀÌÁö = 20 + 1 
+ // ï¿½ï¿½ï¿½ï¿½ rownum ï¿½ï¿½ï¿½ï¿½
+    // 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 0 + 1, 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 10 + 1, 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 20 + 1 
     int startNum = beginOfPage + 1;
     
-    //  Á¾·á rownum
-    // 1 ÆäÀÌÁö = 0 + 10, 2 ÆäÀÌÁö = 0 + 20, 3 ÆäÀÌÁö = 0 + 30
+    //  ï¿½ï¿½ï¿½ï¿½ rownum
+    // 1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 0 + 10, 2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 0 + 20, 3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ = 0 + 30
     int endNum = beginOfPage + Music_Playlist.RECORD_PER_PAGE;   
     /*
-    1 ÆäÀÌÁö: WHERE r >= 1 AND r <= 10
-    2 ÆäÀÌÁö: WHERE r >= 11 AND r <= 20
-    3 ÆäÀÌÁö: WHERE r >= 21 AND r <= 30
+    1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 1 AND r <= 10
+    2 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 11 AND r <= 20
+    3 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: WHERE r >= 21 AND r <= 30
     */
     map.put("startNum", startNum);
     map.put("endNum", endNum);
@@ -101,15 +101,15 @@ public class Music_PlaylistProc implements Music_PlaylistProcInter{
   
   @Override
   public String pagingBox(String listFile, int playlistno, String m_music, int search_count, int nowPage) {
-    int totalPage = (int)(Math.ceil((double)search_count/Music_Playlist.RECORD_PER_PAGE)); // ÀüÃ¼ ÆäÀÌÁö  
+    int totalPage = (int)(Math.ceil((double)search_count/Music_Playlist.RECORD_PER_PAGE)); // ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
     
-    int totalGrp = (int)(Math.ceil((double)totalPage/Music_Playlist.PAGE_PER_BLOCK));// ÀüÃ¼ ±×·ì 
+    int totalGrp = (int)(Math.ceil((double)totalPage/Music_Playlist.PAGE_PER_BLOCK));// ï¿½ï¿½Ã¼ ï¿½×·ï¿½ 
     
-    int nowGrp = (int)(Math.ceil((double)nowPage/Music_Playlist.PAGE_PER_BLOCK));    // ÇöÀç ±×·ì 
+    int nowGrp = (int)(Math.ceil((double)nowPage/Music_Playlist.PAGE_PER_BLOCK));    // ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ 
     
-    int startPage = ((nowGrp - 1) * Music_Playlist.PAGE_PER_BLOCK) + 1; // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï ½ÃÀÛ  
+    int startPage = ((nowGrp - 1) * Music_Playlist.PAGE_PER_BLOCK) + 1; // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  
     
-    int endPage = (nowGrp * Music_Playlist.PAGE_PER_BLOCK);             // Æ¯Á¤ ±×·ìÀÇ ÆäÀÌÁö ¸ñ·Ï Á¾·á   
+    int endPage = (nowGrp * Music_Playlist.PAGE_PER_BLOCK);             // Æ¯ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½   
      
     StringBuffer str = new StringBuffer(); 
      
@@ -124,8 +124,8 @@ public class Music_PlaylistProc implements Music_PlaylistProcInter{
     str.append("    border: 1px;"); 
     str.append("    border-style: solid;"); 
     str.append("    border-color: #cccccc;"); 
-    str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
-    str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
+    str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+    str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
     str.append("  }"); 
     str.append("  .span_box_2{"); 
     str.append("    text-align: center;");    
@@ -135,49 +135,54 @@ public class Music_PlaylistProc implements Music_PlaylistProcInter{
     str.append("    border: 1px;"); 
     str.append("    border-style: solid;"); 
     str.append("    border-color: #cccccc;"); 
-    str.append("    padding:1px 6px 1px 6px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
-    str.append("    margin:1px 2px 1px 2px; /*À§, ¿À¸¥ÂÊ, ¾Æ·¡, ¿ÞÂÊ*/"); 
+    str.append("    padding:1px 6px 1px 6px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
+    str.append("    margin:1px 2px 1px 2px; /*ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Æ·ï¿½, ï¿½ï¿½ï¿½ï¿½*/"); 
     str.append("  }"); 
     str.append("</style>"); 
     str.append("<DIV id='paging'>"); 
-//    str.append("ÇöÀç ÆäÀÌÁö: " + nowPage + " / " + totalPage + "  "); 
+//    str.append("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + nowPage + " / " + totalPage + "  "); 
  
-    // ÀÌÀü 10°³ ÆäÀÌÁö·Î ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     // nowGrp: 1 (1 ~ 10 page)
     // nowGrp: 2 (11 ~ 20 page)
     // nowGrp: 3 (21 ~ 30 page) 
-    // ÇöÀç 2±×·ìÀÏ °æ¿ì: (2 - 1) * 10 = 1±×·ìÀÇ ¸¶Áö¸· ÆäÀÌÁö 10
-    // ÇöÀç 3±×·ìÀÏ °æ¿ì: (3 - 1) * 10 = 2±×·ìÀÇ ¸¶Áö¸· ÆäÀÌÁö 20
+    // ï¿½ï¿½ï¿½ï¿½ 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (2 - 1) * 10 = 1ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10
+    // ï¿½ï¿½ï¿½ï¿½ 3ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (3 - 1) * 10 = 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 20
     int _nowPage = (nowGrp-1) * Music_Playlist.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?nowPage="+_nowPage+"&playlistno="+playlistno+"'>ÀÌÀü</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?nowPage="+_nowPage+"&playlistno="+playlistno+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
     } 
  
-    // Áß¾ÓÀÇ ÆäÀÌÁö ¸ñ·Ï
+    // ï¿½ß¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     for(int i=startPage; i<=endPage; i++){ 
-      if (i > totalPage){ // ¸¶Áö¸· ÆäÀÌÁö¸¦ ³Ñ¾î°¬´Ù¸é ÆäÀÌ Ãâ·Â Á¾·á
+      if (i > totalPage){ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾î°¬ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         break; 
       } 
   
-      if (nowPage == i){ // ÆäÀÌÁö°¡ ÇöÀçÆäÀÌÁö¿Í °°´Ù¸é CSS °­Á¶(Â÷º°À» µÒ)
-        str.append("<span class='span_box_2'>"+i+"</span>"); // ÇöÀç ÆäÀÌÁö, °­Á¶ 
+      if (nowPage == i){ // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ CSS ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
+        str.append("<span class='span_box_2'>"+i+"</span>"); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ 
       }else{
-        // ÇöÀç ÆäÀÌÁö°¡ ¾Æ´Ñ ÆäÀÌÁö´Â ÀÌµ¿ÀÌ °¡´ÉÇÏµµ·Ï ¸µÅ©¸¦ ¼³Á¤
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         str.append("<span class='span_box_1'><A href='"+listFile+"?nowPage="+i+"&playlistno="+playlistno+"'>"+i+"</A></span>");   
       } 
     } 
  
-    // 10°³ ´ÙÀ½ ÆäÀÌÁö·Î ÀÌµ¿
+    // 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     // nowGrp: 1 (1 ~ 10 page),  nowGrp: 2 (11 ~ 20 page),  nowGrp: 3 (21 ~ 30 page) 
-    // ÇöÀç 1±×·ìÀÏ °æ¿ì: (1 * 10) + 1 = 2±×·ìÀÇ ½ÃÀÛÆäÀÌÁö 11
-    // ÇöÀç 2±×·ìÀÏ °æ¿ì: (2 * 10) + 1 = 3±×·ìÀÇ ½ÃÀÛÆäÀÌÁö 21
+    // ï¿½ï¿½ï¿½ï¿½ 1ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (1 * 10) + 1 = 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 11
+    // ï¿½ï¿½ï¿½ï¿½ 2ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½: (2 * 10) + 1 = 3ï¿½×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 21
     _nowPage = (nowGrp * Music_Playlist.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?nowPage="+_nowPage+"&playlistno="+playlistno+"'>´ÙÀ½</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?nowPage="+_nowPage+"&playlistno="+playlistno+"'>ï¿½ï¿½ï¿½ï¿½</A></span>"); 
     } 
     str.append("</DIV>"); 
      
     return str.toString(); 
+  }
+  @Override
+  public int insert(Music_PlaylistVO music_PlaylistVO) {
+    int cnt = this.music_playlistDAO.insert(music_PlaylistVO);
+    return cnt;
   }
   
   

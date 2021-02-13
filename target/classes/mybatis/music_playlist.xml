@@ -125,4 +125,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   ORDER BY playing_seq ASC
   </select>
   
+  <insert id="insert" parameterType="Music_PlaylistVO">
+    INSERT INTO music_playlist(music_playlistno, playing_seq, playlistno, musicno)
+    VALUES(music_playlist_seq.nextval, #{playing_seq}, #{playlistno}, #{musicno})
+  </insert>
+  
 </mapper>

@@ -38,7 +38,7 @@ public class Music_PlaylistCont {
   @RequestMapping(value = "/music_playlist/create.do", method = RequestMethod.GET)
   public ModelAndView create() {
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/music_playlist/create"); // /webapp/playlist/create.jsp
+    mav.setViewName("/music_playlist/create"); // /webapp/music_playlist/create.jsp
     return mav; // forward
   }
   
@@ -318,5 +318,22 @@ public class Music_PlaylistCont {
     mav.setViewName("/music_playlist/delete_msg"); // /webapp/music_playlist/delete_msg.jsp
 
     return mav;
+  }
+  
+  @ResponseBody
+  @RequestMapping(value = "/music_playlist/insert.do", method = RequestMethod.POST,
+      produces = "text/plain;charset=UTF-8")
+  public String insert(Music_PlaylistVO music_PlaylistVO) {
+    try {
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    
+    int cnt = this.music_playlistProc.insert(music_PlaylistVO); // ��� ó��
+    JSONObject json = new JSONObject();
+    json.put("cnt", cnt);
+    System.out.println("cnt" + cnt);
+    return json.toString(); // forward
   }
 }

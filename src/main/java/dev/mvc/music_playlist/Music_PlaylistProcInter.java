@@ -8,25 +8,25 @@ public interface Music_PlaylistProcInter {
   
   /**
    * <Xmp>
-   * ÇÃ·¹ÀÌ ¸®½ºÆ® µî·Ï
+   * ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
    * <insert id="create" parameterType="Music_PlaylistVO"> 
    * </Xmp>
    * @param music_PlaylistVO
-   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
+   * @return Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    */
   public int create(Music_PlaylistVO music_PlaylistVO);
   
   /**
-   * ¸ñ·Ï
+   * ï¿½ï¿½ï¿½
    * <xmp>
    * <select id="list_music_playlistno_asc" resultType="Music_PlaylistVO">
    * </xmp> 
-   * @return ·¹ÄÚµå ¸ñ·Ï
+   * @return ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½
    */
   public List<Music_PlaylistVO> list_music_playlistno_asc();
  
   /**
-   * Á¶È¸
+   * ï¿½ï¿½È¸
    * <xmp>
    *   <select id="read" resultType="Music_PlaylistVO" parameterType="int">
    * </xmp>  
@@ -36,22 +36,22 @@ public interface Music_PlaylistProcInter {
   public Music_PlaylistVO read(int music_playlistno);
   
   /**
-   * ¼öÁ¤ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * <xmp>
    *   <update id="update" parameterType="Music_PlaylistVO"> 
    * </xmp>
    * @param music_PlaylistVO
-   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
+   * @return Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    */
   public int update(Music_PlaylistVO music_PlaylistVO);
  
   /**
-   * »èÁ¦ Ã³¸®
+   * ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
    * <xmp>
    *   <delete id="delete" parameterType="int">
    * </xmp> 
    * @param music_playlistno
-   * @return Ã³¸®µÈ ·¹ÄÚµå °¹¼ö
+   * @return Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    */
   public int delete(int music_playlistno);
   
@@ -70,14 +70,14 @@ public interface Music_PlaylistProcInter {
   public List<Music_Playlist_Music_joinVO> list_by_join(int playlistno);
   
   /**
-   * À½¾Çº° °Ë»ö ¸ñ·Ï
+   * ï¿½ï¿½ï¿½Çºï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½
    * @param hashMap
    * @return
    */
   public List<Music_Playlist_Music_joinVO> list_by_join_search(HashMap<String, Object> hashMap);
 
   /**
-   * °Ë»ö + ÆäÀÌÂ¡ ¸ñ·Ï
+   * ï¿½Ë»ï¿½ + ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½
    * @param map
    * @return
    */
@@ -86,7 +86,7 @@ public interface Music_PlaylistProcInter {
   public String pagingBox(String listFile, int playlistno, String m_music, int search_count, int nowPage);
   
   /**
-   * À½¾Çº° °Ë»ö ·¹ÄÚµå °¹¼ö
+   * ï¿½ï¿½ï¿½Çºï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
    * @param hashMap
    * @return
    */
@@ -94,5 +94,5 @@ public interface Music_PlaylistProcInter {
   
   public int count_music(int playlistno);
   
-  
+  public int insert(Music_PlaylistVO music_PlaylistVO);
 }
