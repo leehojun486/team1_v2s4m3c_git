@@ -42,7 +42,9 @@
                              dev.mvc.follow,
                              dev.mvc.chart_crawling,
                              dev.mvc.home,
-                             dev.mvc.qna
+                             dev.mvc.qna,
+                              ev.mvc.survey,
+                              dev.mvc.question
                             "      
                    />
     <property name="mapperLocations" value="classpath:mybatis/*.xml" />

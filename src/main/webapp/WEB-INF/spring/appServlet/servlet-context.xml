@@ -42,7 +42,8 @@
   <context:component-scan base-package="dev.mvc.home" /> <!-- 가수 -->
   <context:component-scan base-package="dev.mvc.qna" /> <!-- QNA -->
   
-  
+    <context:component-scan base-package="dev.mvc.survey" /> <!-- 설문조사 -->
+  <context:component-scan base-package="dev.mvc.question" /> <!-- 설문조사 -->
 
   <!-- FORM의 FILE 태그를 읽어 MultipartFile 객체로 변환 -->
   <beans:bean id="multipartResolver"
