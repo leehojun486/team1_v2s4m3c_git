@@ -274,10 +274,15 @@ function update_proc() {
  
 <body>
 <jsp:include page="/menu/top.jsp" />
- 
-  <DIV class='title_line'><a href="../playlist/list.do">Music_playlist</a> ▶ ${playlistVO.playlistname }
+  <DIV class='title_line'>
+  <div style="position: absolute; left: 20px; top: 250px;">
+    <a href="../playlist/read_by_memberno.do?memberno=${sessionScope.memberno}">Music_playlist</a> ▶ ${playlistVO.playlistname }
+  </div>
+    <div style="position: absolute; right: 20px; top: 250px;">
+    <a href="../music/list.do">음악 등록☞</a>
+  </div>
+    <p>수록된 음악 수:§${cnt_music}§</p>
   </DIV>
-  <p>수록된 음악 수:${cnt_music}</p>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
   <form action="./list.do" method="get">
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
@@ -290,7 +295,7 @@ function update_proc() {
           <input type='text' name='m_music' id='m_music' value='' style='width: 20%;'>
         </c:otherwise>
       </c:choose>
-      <button type='submit'>검색</button>
+      <button type='submit'>제목 검색</button>
       <c:if test="${param.m_music.length() > 0 }">
         <button type='button' 
                      onclick="location.href='./list.do?playlistno=${playlistVO.playlistno}&m_music='">검색 취소</button>  
@@ -301,18 +306,7 @@ function update_proc() {
     <input type='hidden' name='playlistno' id='playlistno' value='${param.playlistno }'>
     <input type='hidden' name='playlist' id='playlist' value='${playlist }'>
     <input type='hidden' name='music_playlistno' id='music_playlistno' value='${param.music_playlistno }'>
- 
-      
-      <label>재생 순서</label>
-      <input type='number' name='playing_seq' id='playing_seq' value='1' required="required" 
-                min='1' max='1000' step='1' style='width: 5%;'>
-  
-      <label>음악 번호</label>
-      <input type='number' name='musicno' id='musicno' value='1' required="required" 
-                min='1' max='1000' step='1' style='width: 5%;'>
-       
-      <button type="button" id='btn_send'>음악 등록</button>
-      <button type="button" onclick="cancel();">취소</button>
+    <input type='hidden' name='memberno' id='memberno' value='${param.memberno }'>
     </FORM>
       <DIV id='panel1' style="width: 40%; text-align: center; margin: 10px auto; display: none;"></DIV>
     </DIV>
@@ -325,17 +319,18 @@ function update_proc() {
   
 <TABLE class='table table-striped'>
   <colgroup>
-    <col style='width: 20%;'/>
-    <col style='width: 40%;'/>
+    <col style='width: 10%;'/>
+    <col style='width: 35%;'/>
     <col style='width: 30%;'/>
+    <col style='width: 20%;'/>
   </colgroup>
  
   <thead>  
   <TR>
-    <TH class="th_bs">재생 순서</TH>
+    <TH class="th_bs">재생순서</TH>
     <TH class="th_bs">음악</TH>
     <TH class="th_bs">가수</TH>
-    <TH class="th_bs">-</TH>
+    <TH class="th_bs">stream</TH>
     
   </TR>
   </thead>
@@ -344,7 +339,7 @@ function update_proc() {
   <c:forEach var="Music_Playlist_Music_joinVO" items="${list}">
     <c:set var="music_playlistno" value="${music_PlaylistVO.music_playlistno }" />
     <TR>
-      <TD class="td_bs">${Music_Playlist_Music_joinVO.playing_seq }</TD>
+      <TD class="td_bs">${Music_Playlist_Music_joinVO.r }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.m_music }</TD>
       <TD class="td_bs">${Music_Playlist_Music_joinVO.m_singer }</TD>
       
@@ -352,7 +347,6 @@ function update_proc() {
         <input type='hidden' name='youtube' id='youtube' value='${Music_Playlist_Music_joinVO.youtube }'>
         <A href="javascript:loadVideo('${Music_Playlist_Music_joinVO.youtube }')" title="재생"><span class="glyphicon glyphicon-play"></span></A>
         <A href="javascript:pauseYoutube()" title="일시정지"><span class="glyphicon glyphicon-pause"></span></A>
-        <A href="javascript:update_form(${Music_Playlist_Music_joinVO.music_playlistno })" title="수정"><span class="glyphicon glyphicon-pencil"></span></A>
         <A href="./read_delete.do?music_playlistno=${Music_Playlist_Music_joinVO.music_playlistno }" title="삭제"><span class="glyphicon glyphicon-trash"></span></A>
       </TD>   
     </TR>   

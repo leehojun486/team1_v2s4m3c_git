@@ -122,7 +122,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      )
   )
   WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
-  ORDER BY playing_seq ASC
+  ORDER BY r ASC
   </select>
   
   <insert id="insert" parameterType="Music_PlaylistVO">

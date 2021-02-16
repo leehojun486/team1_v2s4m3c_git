@@ -1,9 +1,9 @@
 package dev.mvc.music_playlist;
 
 public class Music_Playlist {
-  /** ÆäÀÌÁö´ç Ãâ·ÂÇÒ ·¹ÄÚµå °¹¼ö */
-  public static int RECORD_PER_PAGE = 3;
+  /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  public static int RECORD_PER_PAGE = 30;
   
-  /** ºí·°´ç ÆäÀÌÁö ¼ö, ÇÏ³ªÀÇ ºí·°Àº 1°³ ÀÌ»óÀÇ ÆäÀÌÁö·Î ±¸¼ºµÊ */
-  public static int PAGE_PER_BLOCK = 3;
+  /** ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ ï¿½Ì»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+  public static int PAGE_PER_BLOCK = 30;
 }

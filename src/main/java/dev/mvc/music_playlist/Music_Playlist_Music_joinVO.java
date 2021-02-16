@@ -5,6 +5,13 @@ public class Music_Playlist_Music_joinVO {
   //Music table
   // -------------------------------------------------------------------
   /** �θ� ���̺� ���� ��ȣ */
+  private int r;
+  public int getR() {
+    return r;
+  }
+  public void setR(int r) {
+    this.r = r;
+  }
   private int m_musicno;
   /** �θ� ���̺� ����*/
   private String m_music;
