@@ -10,10 +10,11 @@ package dev.mvc.chart_crawling;
   FOREIGN KEY (memberno) REFERENCES member (memberno)
 );
  */
-public class Chart_crawlingVO {
+public class Chart_singer_joinVO {
   private int chartno;
   private String music="";
   private String artist="";
+  
   
   public int getChartno() {
     return chartno;
