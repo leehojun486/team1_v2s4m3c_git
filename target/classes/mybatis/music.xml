@@ -71,9 +71,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   <select id="list_search" resultType="MusicVO" parameterType="MusicVO">
     SELECT *
     FROM music
-    WHERE (singer LIKE '%' || #{word} || '%'
-        or title LIKE '%' || #{word} || '%' 
-        or album LIKE '%' || #{word} || '%' )
+    WHERE (
+        or title LIKE '%' || #{title} || '%' )
     ORDER BY musicno DESC
   </select>
   
@@ -100,12 +99,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         <when test="word == null or word == ''">  <!-- 검색하지 않는 경우 -->
                         </when>
                         <otherwise>
-                        (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
-                         OR singer LIKE '%' || #{word} || '%'
-                         OR album LIKE '%' || #{word} || '%' )
+                         title LIKE '%' || #{title} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->)
                         </otherwise>
                       </choose>
-                      ORDER BY musicno DESC
+                      ORDER BY musicno ASC
              )
     )
     WHERE <![CDATA[ r >= #{startNum} AND r <= #{endNum} ]]>
@@ -121,9 +118,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         
       </when>
     <otherwise> <!-- 검색 o -->
-       AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
-                                              OR singer LIKE '%' || #{word} || '%'
-                                              OR album LIKE '%' || #{word} || '%' ) 
+       AND (title LIKE '%' || #{title} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->) 
     </otherwise>
     </choose>
   </select>  

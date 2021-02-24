@@ -143,7 +143,7 @@ public class MusicProc implements MusicProcInter {
    * @return �럹�씠吏� �깮�꽦 臾몄옄�뿴
    */ 
   @Override
-  public String pagingBox(String listFile, int genreno, int search_count, int nowPage, String word){ 
+  public String pagingBox(String listFile, int search_count, int nowPage, String title){ 
     int totalPage = (int)(Math.ceil((double)search_count/Musics.RECORD_PER_PAGE)); // �쟾泥� �럹�씠吏�  , ceil :: �삱由�
     int totalGrp = (int)(Math.ceil((double)totalPage/Musics.PAGE_PER_BLOCK));// �쟾泥� 洹몃９ 
     int nowGrp = (int)(Math.ceil((double)nowPage/Musics.PAGE_PER_BLOCK));    // �쁽�옱 洹몃９ 
@@ -189,7 +189,7 @@ public class MusicProc implements MusicProcInter {
     // �쁽�옱 3洹몃９�씪 寃쎌슦: (3 - 1) * 10 = 2洹몃９�쓽 留덉�留� �럹�씠吏� 20
     int _nowPage = (nowGrp-1) * Musics.PAGE_PER_BLOCK;  
     if (nowGrp >= 2){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&genreno="+genreno+"'>�씠�쟾</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?&title="+title+"&nowPage="+_nowPage+"'>�씠�쟾</A></span>"); 
     } 
  
     // 以묒븰�쓽 �럹�씠吏� 紐⑸줉
@@ -202,7 +202,7 @@ public class MusicProc implements MusicProcInter {
         str.append("<span class='span_box_2'>"+i+"</span>"); // �쁽�옱 �럹�씠吏�, 媛뺤“ 
       }else{
         // �쁽�옱 �럹�씠吏�媛� �븘�땶 �럹�씠吏��뒗 �씠�룞�씠 媛��뒫�븯�룄濡� 留곹겕瑜� �꽕�젙
-        str.append("<span class='span_box_1'><A href='"+listFile+"?word="+word+"&nowPage="+i+"&genreno="+genreno+"'>"+i+"</A></span>");   
+        str.append("<span class='span_box_1'><A href='"+listFile+"?title="+title+"&nowPage="+i+"'>"+i+"</A></span>");   
       } 
     } 
  
@@ -212,7 +212,7 @@ public class MusicProc implements MusicProcInter {
     // �쁽�옱 2洹몃９�씪 寃쎌슦: (2 * 10) + 1 = 3洹몃９�쓽 �떆�옉�럹�씠吏� 21
     _nowPage = (nowGrp * Musics.PAGE_PER_BLOCK)+1;  
     if (nowGrp < totalGrp){ 
-      str.append("<span class='span_box_1'><A href='"+listFile+"?&word="+word+"&nowPage="+_nowPage+"&genreno="+genreno+"'>�떎�쓬</A></span>"); 
+      str.append("<span class='span_box_1'><A href='"+listFile+"?&title="+title+"&nowPage="+_nowPage+"'>�떎�쓬</A></span>"); 
     } 
     str.append("</DIV>"); 
      

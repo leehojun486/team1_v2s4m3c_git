@@ -232,21 +232,15 @@ public class MusicCont {
    * @return
    */
   @RequestMapping(value = "/music/list.do", method = RequestMethod.GET)
-  public ModelAndView list_by_genreno_search_paging(@RequestParam(value = "genreno", defaultValue = "1") int genreno, // 湲곕낯媛�
-                                                                                                                      // 吏��젙(媛�
-                                                                                                                      // 紐삳컺�쓣
-                                                                                                                      // �떆
-                                                                                                                      // ��鍮�)
-      @RequestParam(value = "word", defaultValue = "") String word,
-      @RequestParam(value = "nowPage", defaultValue = "1") int nowPage) {
+  public ModelAndView list_by_genreno_search_paging(String title, 
+                               @RequestParam(value="nowPage", defaultValue="1")int nowPage) {
     System.out.println("--> nowPage: " + nowPage);
 
     ModelAndView mav = new ModelAndView();
 
     // �닽�옄�� 臾몄옄�뿴 ���엯�쓣 ���옣�빐�빞�븿�쑝濡� Obejct �궗�슜
     HashMap<String, Object> map = new HashMap<String, Object>();
-    map.put("genreno", genreno); // #{genreno}
-    map.put("word", word); // #{word}
+    map.put("title", title); // #{genreno}
     map.put("nowPage", nowPage); // �럹�씠吏��뿉 異쒕젰�븷 �젅肄붾뱶�쓽 踰붿쐞瑜� �궛異쒗븯湲곗쐞�빐 �궗�슜
 
     // 寃��깋 紐⑸줉
@@ -257,8 +251,6 @@ public class MusicCont {
     int search_count = musicProc.search_count(map); // search_count �븿�닔 �뾾�쓬
     mav.addObject("search_count", search_count);
 
-    GenreVO genreVO = genreProc.read(genreno);
-    mav.addObject("genreVO", genreVO);
 
 //        SingerVO singerVO = singerProc.read(cateVO.getCategrpno());
 //        mav.addObject("singerVO", singerVO);
@@ -279,7 +271,7 @@ public class MusicCont {
      * 
      * @return �럹�씠吏� �깮�꽦 臾몄옄�뿴
      */
-    String paging = musicProc.pagingBox("list.do", genreno, search_count, nowPage, word);
+    String paging = musicProc.pagingBox("list.do", search_count, nowPage, title);
     mav.addObject("paging", paging);
 
     mav.addObject("nowPage", nowPage);

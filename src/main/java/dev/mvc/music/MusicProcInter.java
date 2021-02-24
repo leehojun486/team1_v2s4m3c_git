@@ -115,7 +115,7 @@ public interface MusicProcInter {
    * @param word         寃��깋�뼱
    * @return
    */
-  public String pagingBox(String listFile, int genreno, int search_count, int nowPage, String word);
+  public String pagingBox(String listFile, int search_count, int nowPage, String title);
   
   /**
    * �닔�젙 泥섎━

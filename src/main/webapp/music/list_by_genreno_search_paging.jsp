@@ -47,17 +47,17 @@
       <br>
       <c:choose>
         <c:when test="${param.word != '' }"> <%-- 검색하는 경우 --%>
-          <input type='text' name='word' id='word' value='${param.word }' 
+          <input type='text' name='title' id='title' value='${param.title }' 
                      style='width: 20%;'>
         </c:when>
         <c:otherwise> <%-- 검색하지 않는 경우 --%>
-          <input type='text' name='word' id='word' value='' style='width: 20%;'>
+          <input type='text' name='title' id='title' value='' style='width: 20%;'>
         </c:otherwise>
       </c:choose>
       <button type='submit'>검색</button>
-      <c:if test="${param.word.length() > 0 }">
+      <c:if test="${param.title.length() > 0 }">
         <button type='button' 
-                     onclick="location.href='./list.do?word='">검색 취소</button>  
+                     onclick="location.href='./list.do?title='">검색 취소</button>  
       </c:if>    
     </form>
   </DIV>
