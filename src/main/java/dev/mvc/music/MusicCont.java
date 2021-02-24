@@ -55,17 +55,13 @@ public class MusicCont {
   /*-----------------------------------------------------*/
 
   /**
-   * 생성 :: http://localhost:9090/team1/music/create.do
+   * �깮�꽦 :: http://localhost:9090/team1/music/create.do
    * 
    * @return
    */
   @RequestMapping(value = "/music/create.do", method = RequestMethod.GET)
   public ModelAndView create() {
     ModelAndView mav = new ModelAndView();
-
-    List<GenreVO> list_genre = this.genreProc.list();
-    mav.addObject("list_genre", list_genre);
-
     /*
      * MusicVO musicVO = this.musicProc.read(musicno);
      * 
@@ -79,7 +75,7 @@ public class MusicCont {
   }
 
   /**
-   * 등록 처리 http://localhost:9090/team1/music/create.do
+   * �벑濡� 泥섎━ http://localhost:9090/team1/music/create.do
    * 
    * @return
    */
@@ -88,26 +84,26 @@ public class MusicCont {
 
     ModelAndView mav = new ModelAndView();
 //    // -------------------------------------------------------------------
-//    // 파일 전송 코드 시작
+//    // �뙆�씪 �쟾�넚 肄붾뱶 �떆�옉
 //    // -------------------------------------------------------------------
 //    String file1 = "";     // main image
 //    String thumb1 = ""; // preview image
 //        
-//    String upDir = Tool.getRealPath(request, "/music/storage/main_images"); // 절대 경로
+//    String upDir = Tool.getRealPath(request, "/music/storage/main_images"); // �젅�� 寃쎈줈
 //    
-//    // 전송 파일이 없어서도 fnamesMF 객체가 생성됨.
+//    // �쟾�넚 �뙆�씪�씠 �뾾�뼱�꽌�룄 fnamesMF 媛앹껜媛� �깮�꽦�맖.
 //    // <input type='file' class="form-control" name='file1MF' id='file1MF' 
-//    //           value='' placeholder="파일 선택" multiple="multiple">
+//    //           value='' placeholder="�뙆�씪 �꽑�깮" multiple="multiple">
 //    MultipartFile mf = musicVO.getFile1MF();
 //    
-//    long size1 = mf.getSize();  // 파일 크기
-//    if (size1 > 0) { // 파일 크기 체크
-//      // mp3 = mf.getOriginalFilename(); // 원본 파일명, spring.jpg
-//      // 파일 저장 후 업로드된 파일명이 리턴됨, spring.jsp, spring_1.jpg...
+//    long size1 = mf.getSize();  // �뙆�씪 �겕湲�
+//    if (size1 > 0) { // �뙆�씪 �겕湲� 泥댄겕
+//      // mp3 = mf.getOriginalFilename(); // �썝蹂� �뙆�씪紐�, spring.jpg
+//      // �뙆�씪 ���옣 �썑 �뾽濡쒕뱶�맂 �뙆�씪紐낆씠 由ы꽩�맖, spring.jsp, spring_1.jpg...
 //      file1 = Upload.saveFileSpring(mf, upDir); 
 //      
-//      if (Tool.isImage(file1)) { // 이미지인지 검사
-//        // thumb 이미지 생성후 파일명 리턴됨, width: 200, height: 150
+//      if (Tool.isImage(file1)) { // �씠誘몄��씤吏� 寃��궗
+//        // thumb �씠誘몄� �깮�꽦�썑 �뙆�씪紐� 由ы꽩�맖, width: 200, height: 150
 //        thumb1 = Tool.preview(upDir, file1, 200, 150); 
 //      }
 //    }    
@@ -115,28 +111,28 @@ public class MusicCont {
 //    musicVO.setThumb1(thumb1);
 //    musicVO.setSize1(size1);
 //    // -------------------------------------------------------------------
-//    // 파일 전송 코드 종료
+//    // �뙆�씪 �쟾�넚 肄붾뱶 醫낅즺
 //    // -------------------------------------------------------------------
 
-    int cnt = this.musicProc.create(musicVO); // Call by Reference :: 메모리 공유 목적, HashCode 전달
+    int cnt = this.musicProc.create(musicVO); // Call by Reference :: 硫붾え由� 怨듭쑀 紐⑹쟻, HashCode �쟾�떖
 
     // -------------------------------------------------------------------
-    // PK의 return
+    // PK�쓽 return
     // -------------------------------------------------------------------
     System.out.println("--> musicVO: " + musicVO.getMusicno());
-    mav.addObject("musicVO", musicVO.getMusicno()); // redirect parameter 적용
+    mav.addObject("musicVO", musicVO.getMusicno()); // redirect parameter �쟻�슜
     // -------------------------------------------------------------------
 
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
 
-    mav.addObject("url", "create_continue"); // create_continue.jsp, redirect parameter 적용
+    mav.addObject("url", "create_continue"); // create_continue.jsp, redirect parameter �쟻�슜
     mav.setViewName("redirect:/music/msg.do");
 
     return mav; // forward
   }
 
   /**
-   * 새로고침을 방지하는 메시지 출력
+   * �깉濡쒓퀬移⑥쓣 諛⑹��븯�뒗 硫붿떆吏� 異쒕젰
    * 
    * @return
    */
@@ -144,16 +140,16 @@ public class MusicCont {
   public ModelAndView msg(String url) {
     ModelAndView mav = new ModelAndView();
 
-    // 등록 처리 메시지: create_msg --> /contents/create_msg.jsp
-    // 수정 처리 메시지: update_msg --> /contents/update_msg.jsp
-    // 삭제 처리 메시지: delete_msg --> /contents/delete_msg.jsp
+    // �벑濡� 泥섎━ 硫붿떆吏�: create_msg --> /contents/create_msg.jsp
+    // �닔�젙 泥섎━ 硫붿떆吏�: update_msg --> /contents/update_msg.jsp
+    // �궘�젣 泥섎━ 硫붿떆吏�: delete_msg --> /contents/delete_msg.jsp
     mav.setViewName("/music/" + url); // forward
 
     return mav; // forward
   }
 
 //     /**
-//     * 목록 조회 ::
+//     * 紐⑸줉 議고쉶 ::
 //     * http://localhost:9090/team1/music/list.do  
 //     * @return
 //     */
@@ -174,26 +170,26 @@ public class MusicCont {
 //    }
 
   /**
-   * 가수번호에 따른 조회 :: http://localhost:9090/team1/music/list_by_singerno.do
+   * 媛��닔踰덊샇�뿉 �뵲瑜� 議고쉶 :: http://localhost:9090/team1/music/list_by_singerno.do
    * 
    * @param singerno
    * @return
    */
   @RequestMapping(value = "/music/list_by_singerno.do", method = RequestMethod.GET)
-  public ModelAndView list_by_singerno(int singerno) {
+  public ModelAndView list_by_singerno() {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/music/list"); // :: /webapp/music/list.jsp
 
-    List<MusicVO> list = this.musicProc.list_by_singerno(singerno);
+    List<MusicVO> list = this.musicProc.list_by_singerno();
     mav.addObject("list", list);
 
     return mav;
   }
 
-//            /**                   ::>> 목록 + 검색 + 페이징 지원으로 변경 
-//             * 목록 + 검색 지원   
+//            /**                   ::>> 紐⑸줉 + 寃��깋 + �럹�씠吏� 吏��썝�쑝濡� 蹂�寃� 
+//             * 紐⑸줉 + 寃��깋 吏��썝   
 //             * http://localhost:9090/team1/music/list.do
-//             * http://localhost:9090/team1/music/list.do?word=박효신
+//             * http://localhost:9090/team1/music/list.do?word=諛뺥슚�떊
 //             * @param cateno
 //             * @param word
 //             * @return
@@ -207,16 +203,16 @@ public class MusicCont {
 //              ModelAndView mav = new ModelAndView();
 //              mav.setViewName("/music/list");   
 //              
-//          //    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+//          //    // �닽�옄�� 臾몄옄�뿴 ���엯�쓣 ���옣�빐�빞�븿�쑝濡� Obejct �궗�슜
 //          //    HashMap<String, Object> map = new HashMap<String, Object>();
 //          //    map.put("cateno", cateno); // #{cateno}
 //          //    map.put("word", word);     // #{word}
 //              
-//              // 검색 목록
+//              // 寃��깋 紐⑸줉
 //              List<MusicVO> list = musicProc.list_search(musicVO);
 //              mav.addObject("list", list);
 //              
-//          //      // 검색된 레코드 갯수
+//          //      // 寃��깋�맂 �젅肄붾뱶 媛��닔
 //          //      int search_count = contentsProc.search_count(map);
 //          //      mav.addObject("search_count", search_count);
 //          
@@ -227,8 +223,8 @@ public class MusicCont {
 //            }    
 
   /**
-   * 목록 + 검색 + 페이징 지원 http://localhost:9090/team1/music/list.do
-   * http://localhost:9090/team1/music/list.do?genre=1&word=양다일&nowPage=1
+   * 紐⑸줉 + 寃��깋 + �럹�씠吏� 吏��썝 http://localhost:9090/team1/music/list.do
+   * http://localhost:9090/team1/music/list.do?genre=1&word=�뼇�떎�씪&nowPage=1
    * 
    * @param genreno
    * @param word
@@ -236,29 +232,29 @@ public class MusicCont {
    * @return
    */
   @RequestMapping(value = "/music/list.do", method = RequestMethod.GET)
-  public ModelAndView list_by_genreno_search_paging(@RequestParam(value = "genreno", defaultValue = "1") int genreno, // 기본값
-                                                                                                                      // 지정(값
-                                                                                                                      // 못받을
-                                                                                                                      // 시
-                                                                                                                      // 대비)
+  public ModelAndView list_by_genreno_search_paging(@RequestParam(value = "genreno", defaultValue = "1") int genreno, // 湲곕낯媛�
+                                                                                                                      // 吏��젙(媛�
+                                                                                                                      // 紐삳컺�쓣
+                                                                                                                      // �떆
+                                                                                                                      // ��鍮�)
       @RequestParam(value = "word", defaultValue = "") String word,
       @RequestParam(value = "nowPage", defaultValue = "1") int nowPage) {
     System.out.println("--> nowPage: " + nowPage);
 
     ModelAndView mav = new ModelAndView();
 
-    // 숫자와 문자열 타입을 저장해야함으로 Obejct 사용
+    // �닽�옄�� 臾몄옄�뿴 ���엯�쓣 ���옣�빐�빞�븿�쑝濡� Obejct �궗�슜
     HashMap<String, Object> map = new HashMap<String, Object>();
     map.put("genreno", genreno); // #{genreno}
     map.put("word", word); // #{word}
-    map.put("nowPage", nowPage); // 페이지에 출력할 레코드의 범위를 산출하기위해 사용
+    map.put("nowPage", nowPage); // �럹�씠吏��뿉 異쒕젰�븷 �젅肄붾뱶�쓽 踰붿쐞瑜� �궛異쒗븯湲곗쐞�빐 �궗�슜
 
-    // 검색 목록
+    // 寃��깋 紐⑸줉
     List<MusicVO> list = musicProc.list_by_genreno_search_paging(map);
     mav.addObject("list", list);
 
-    // 검색된 레코드 갯수
-    int search_count = musicProc.search_count(map); // search_count 함수 없음
+    // 寃��깋�맂 �젅肄붾뱶 媛��닔
+    int search_count = musicProc.search_count(map); // search_count �븿�닔 �뾾�쓬
     mav.addObject("search_count", search_count);
 
     GenreVO genreVO = genreProc.read(genreno);
@@ -268,20 +264,20 @@ public class MusicCont {
 //        mav.addObject("singerVO", singerVO);
 
     /*
-     * SPAN태그를 이용한 박스 모델의 지원, 1 페이지부터 시작 현재 페이지: 11 / 22 [이전] 11 12 13 14 15 16 17
-     * 18 19 20 [다음]
+     * SPAN�깭洹몃�� �씠�슜�븳 諛뺤뒪 紐⑤뜽�쓽 吏��썝, 1 �럹�씠吏�遺��꽣 �떆�옉 �쁽�옱 �럹�씠吏�: 11 / 22 [�씠�쟾] 11 12 13 14 15 16 17
+     * 18 19 20 [�떎�쓬]
      * 
-     * @param listFile 목록 파일명
+     * @param listFile 紐⑸줉 �뙆�씪紐�
      * 
-     * @param genreno 카테고리번호
+     * @param genreno 移댄뀒怨좊━踰덊샇
      * 
-     * @param search_count 검색(전체) 레코드수
+     * @param search_count 寃��깋(�쟾泥�) �젅肄붾뱶�닔
      * 
-     * @param nowPage 현재 페이지
+     * @param nowPage �쁽�옱 �럹�씠吏�
      * 
-     * @param word 검색어
+     * @param word 寃��깋�뼱
      * 
-     * @return 페이징 생성 문자열
+     * @return �럹�씠吏� �깮�꽦 臾몄옄�뿴
      */
     String paging = musicProc.pagingBox("list.do", genreno, search_count, nowPage, word);
     mav.addObject("paging", paging);
@@ -296,7 +292,7 @@ public class MusicCont {
 
   // http://localhost:9090/team1/music/list_join.do
   /**
-   * Genre + Music join 전체 목록 <!-- 미구현 중 --!>
+   * Genre + Music join �쟾泥� 紐⑸줉 <!-- 誘멸뎄�쁽 以� --!>
    * 
    * @return
    */
@@ -311,9 +307,9 @@ public class MusicCont {
     return mav;
   }
 
-//  // http://localhost:9090/resort/cate/list.do 기존의 url 사용
+//  // http://localhost:9090/resort/cate/list.do 湲곗〈�쓽 url �궗�슜
 //  /**
-//   * categrp + cate join 전체 목록
+//   * categrp + cate join �쟾泥� 紐⑸줉
 //   * @return
 //   */
 //  @RequestMapping(value="/cate/list.do", method=RequestMethod.GET )
@@ -328,10 +324,10 @@ public class MusicCont {
 //
 //    mav.setViewName("/cate/list_join_by_categrpno"); // webapp/cate/list_join_by_categrpno.jsp
 //    return mav;
-//  } <!-- 참고 소스 --!>
+//  } <!-- 李멸퀬 �냼�뒪 --!>
 
   /**
-   * 결합된 장르 별 음악 목록 http://localhost:9090/team1/music/list_index_left.do
+   * 寃고빀�맂 �옣瑜� 蹂� �쓬�븙 紐⑸줉 http://localhost:9090/team1/music/list_index_left.do
    * 
    * @param request
    * @return
@@ -342,54 +338,54 @@ public class MusicCont {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/music/list_index_left"); // webapp/music/list_index_left.jsp
 
-    List<GenreVO> genre_list = genreProc.list_seqno_asc(); // 장르 목록
+    List<GenreVO> genre_list = genreProc.list_seqno_asc(); // �옣瑜� 紐⑸줉
 
-    // Genre: name, Music: name 결합 목록
+    // Genre: name, Music: name 寃고빀 紐⑸줉
     ArrayList<String> name_title_list = new ArrayList<String>();
 
-    StringBuffer url = new StringBuffer(); // 음악 제목 링크 조합
+    StringBuffer url = new StringBuffer(); // �쓬�븙 �젣紐� 留곹겕 議고빀
 
-    // 장르 갯수 만큼 순환
+    // �옣瑜� 媛��닔 留뚰겮 �닚�솚
     for (int index = 0; index < genre_list.size(); index++) {
-      GenreVO genreVO = genre_list.get(index); // 하나의 장르 추출
+      GenreVO genreVO = genre_list.get(index); // �븯�굹�쓽 �옣瑜� 異붿텧
 
-      // 장르명 추가
+      // �옣瑜대챸 異붽�
       name_title_list.add("<LI class='genre_name'>" + genreVO.getGenrename() + "</LI>");
 
-      // 음악 Join 목록, 특정 장르에 해당하는 음악가져옴.
+      // �쓬�븙 Join 紐⑸줉, �듅�젙 �옣瑜댁뿉 �빐�떦�븯�뒗 �쓬�븙媛��졇�샂.
       List<Genre_Music_Join> music_list = musicProc.list_join_by_genreno(genreVO.getGenreno());
 
-      // 음악 갯수만큼 순환
+      // �쓬�븙 媛��닔留뚰겮 �닚�솚
       for (int j = 0; j < music_list.size(); j++) {
         Genre_Music_Join genre_music_join = music_list.get(j);
 
-        String name = genre_music_join.getTitle(); // 음악제목
+        String name = genre_music_join.getTitle(); // �쓬�븙�젣紐�
         int cnt = genre_music_join.getCnt();
 
 //       url.append("<LI class='music_name'>");
 //       url.append("  <A href='" + request.getContextPath()+ "/music/list.do?musicno="+genre_music_join.getMusicno()+"'>");
 //       url.append(name);
 //       url.append("  </A>");
-//       url.append("  <span style='font-size: 0.9em; color: #555555;'>("+"♪"+")</span>");
+//       url.append("  <span style='font-size: 0.9em; color: #555555;'>("+"�솵"+")</span>");
 //       url.append("</LI>");
 //       
-//       name_title_list.add(url.toString()); // 출력 목록에 하나의 cate명 추가 
+//       name_title_list.add(url.toString()); // 異쒕젰 紐⑸줉�뿉 �븯�굹�쓽 cate紐� 異붽� 
 //       
-//       url.delete(0, url.toString().length()); // 새로운 카테고리 목록을 구성하기위해 StringBuffer 문자열 삭제
+//       url.delete(0, url.toString().length()); // �깉濡쒖슫 移댄뀒怨좊━ 紐⑸줉�쓣 援ъ꽦�븯湲곗쐞�빐 StringBuffer 臾몄옄�뿴 �궘�젣
 
-        // 음표 버튼 누를 시 :: 유튜브 url 변경 <A href=' '> ♪ </A>
+        // �쓬�몴 踰꾪듉 �늻瑜� �떆 :: �쑀�뒠釉� url 蹂�寃� <A href=' '> �솵 </A>
         url.append("<LI class='music_name'>");
         url.append("  <A href='" + request.getContextPath() + "/music/read.do?musicno=" + genre_music_join.getMusicno()
             + "'>");
         url.append(name);
         url.append("  </A>");
-        url.append("  <span style='font-size: 0.9em; color: #555555;'>《");
-        url.append("<A href=' '>Youtube♪</A>》</span>");
+        url.append("  <span style='font-size: 0.9em; color: #555555;'>��");
+        url.append("<A href=' '>Youtube�솵</A>��</span>");
         url.append("</LI>");
 
-        name_title_list.add(url.toString()); // 출력 목록에 하나의 cate명 추가
+        name_title_list.add(url.toString()); // 異쒕젰 紐⑸줉�뿉 �븯�굹�쓽 cate紐� 異붽�
 
-        url.delete(0, url.toString().length()); // 새로운 카테고리 목록을 구성하기위해 StringBuffer 문자열 삭제
+        url.delete(0, url.toString().length()); // �깉濡쒖슫 移댄뀒怨좊━ 紐⑸줉�쓣 援ъ꽦�븯湲곗쐞�빐 StringBuffer 臾몄옄�뿴 �궘�젣
 
       }
     }
@@ -400,7 +396,7 @@ public class MusicCont {
   }
 
   /**
-   * 글 읽기 :: http://localhost:9090/team1/music/read.do
+   * 湲� �씫湲� :: http://localhost:9090/team1/music/read.do
    * 
    * @param musicno
    * @return
@@ -428,7 +424,7 @@ public class MusicCont {
   }
 
   /**
-   * 출력모드 변경
+   * 異쒕젰紐⑤뱶 蹂�寃�
    * 
    * @param musicVO
    * @return
@@ -441,15 +437,15 @@ public class MusicCont {
    * System.out.println("-->" + musicVO.getLikelist());
    * 
    * int cnt = this.musicProc.add_likelist(musicVO); mav.addObject("cnt", cnt); //
-   * request에 저장
+   * request�뿉 ���옣
    * 
-   * mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
+   * mav.setViewName("redirect:/music/list.do"); // request 媛앹껜媛� �쟾�떖�씠 �븞�맖.
    * 
    * return mav; }
    */
 
   /**
-   * 출력모드 변경
+   * 異쒕젰紐⑤뱶 蹂�寃�
    * 
    * @param musicVO
    * @return
@@ -460,15 +456,15 @@ public class MusicCont {
    * ModelAndView mav = new ModelAndView();
    * 
    * int cnt = this.musicProc.delete_likelist(musicVO); mav.addObject("cnt", cnt);
-   * // request에 저장
+   * // request�뿉 ���옣
    * 
-   * mav.setViewName("redirect:/music/list.do"); // request 객체가 전달이 안됨.
+   * mav.setViewName("redirect:/music/list.do"); // request 媛앹껜媛� �쟾�떖�씠 �븞�맖.
    * 
    * return mav; }
    */
 
   /**
-   * 수정 폼
+   * �닔�젙 �뤌
    *  :: http://localhost:9090/team1/music/update.do
    * @return
    */
@@ -485,7 +481,7 @@ public class MusicCont {
   }
 
   /**
-   * 수정 처리         ::         http://localhost:9090/team1_git/music/update.do
+   * �닔�젙 泥섎━         ::         http://localhost:9090/team1_git/music/update.do
    * @param musicVO
    * @return
    */
@@ -496,16 +492,16 @@ public class MusicCont {
     
     mav.addObject("musicno", musicno);
 
-    int cnt =  this.musicProc.update(musicVO); // 수정된 레코드 갯수 
+    int cnt =  this.musicProc.update(musicVO); // �닔�젙�맂 �젅肄붾뱶 媛��닔 
     
-    mav.addObject("cnt", cnt); // request에 저장
+    mav.addObject("cnt", cnt); // request�뿉 ���옣
     mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
     
     return mav;
   }
   
   /**
-   * 수정 처리
+   * �닔�젙 泥섎━
    *  :: http://localhost:9090/team1/music/update.do
    * @param musicVO
    * @return
@@ -527,15 +523,15 @@ public class MusicCont {
    * hashMap.put("musicno", musicVO.getMusicno()); hashMap.put("passwd",
    * musicVO.getPasswd());
    * 
-   * int passwd_cnt = 0; // 패스워드 일치 레코드 갯수 int cnt = 0; // 수정된 레코드 갯수
+   * int passwd_cnt = 0; // �뙣�뒪�썙�뱶 �씪移� �젅肄붾뱶 媛��닔 int cnt = 0; // �닔�젙�맂 �젅肄붾뱶 媛��닔
    * 
    * passwd_cnt = this.musicProc.passwd_check(hashMap);
    * 
-   * if (passwd_cnt == 0) { // 패스워드가 일치할 경우 글 수정 cnt =
+   * if (passwd_cnt == 0) { // �뙣�뒪�썙�뱶媛� �씪移섑븷 寃쎌슦 湲� �닔�젙 cnt =
    * this.musicProc.update(musicVO); }
    * 
-   * mav.addObject("cnt", cnt); // request에 저장 mav.addObject("passwd_cnt",
-   * passwd_cnt); // request에 저장
+   * mav.addObject("cnt", cnt); // request�뿉 ���옣 mav.addObject("passwd_cnt",
+   * passwd_cnt); // request�뿉 ���옣
    * 
    * mav.setViewName("/music/update_msg"); // webapp/music/update_msg.jsp
    * 
@@ -544,7 +540,7 @@ public class MusicCont {
 
   
   /**
-   * 삭제 폼, attachfile Ajax 기반 삭제 지원
+   * �궘�젣 �뤌, attachfile Ajax 湲곕컲 �궘�젣 吏��썝
    *  :: http://localhost:9090/team1_git/music/delete.do?musicno=1
    * @return
    */
@@ -561,7 +557,7 @@ public class MusicCont {
   }
   
   /**
-   * 삭제 처리         ::         http://localhost:9090/tema1_git/music/delete.do
+   * �궘�젣 泥섎━         ::         http://localhost:9090/tema1_git/music/delete.do
    * @param musicVO
    * @return
    */  
@@ -579,18 +575,18 @@ public class MusicCont {
     
     mav.addObject("musicno", musicVO.getMusicno());
 
-    int passwd_cnt = 0; // 패스워드 일치 레코드 갯수
-    int cnt = 0;        // 삭제된 레코드 갯수 
+    int passwd_cnt = 0; // �뙣�뒪�썙�뱶 �씪移� �젅肄붾뱶 媛��닔
+    int cnt = 0;        // �궘�젣�맂 �젅肄붾뱶 媛��닔 
     
     passwd_cnt = this.musicProc.passwd_check(hashMap);
     
-    if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제
+    if (passwd_cnt == 1) { // �뙣�뒪�썙�뱶媛� �씪移섑븷 寃쎌슦 湲� �궘�젣
       cnt = this.musicProc.delete(musicno);
       mav.setViewName("/music/delete_msg"); // webapp/music/delete_msg.jsp
     } else {
       mav.setViewName("/music/delete_msg"); // webapp/music/delete_msg.jsp
     }
-    mav.addObject("cnt", cnt); // request에 저장
+    mav.addObject("cnt", cnt); // request�뿉 ���옣
     mav.addObject("passwd_cnt", passwd_cnt);
     mav.addObject("music", music);
     
@@ -598,7 +594,7 @@ public class MusicCont {
   }
   
   /**
-   * 삭제 처리 +  파일 삭제
+   * �궘�젣 泥섎━ +  �뙆�씪 �궘�젣
    *  :: http://localhost:9090/team1_git/music/delete.do
    * @param musicVO
    * @return
@@ -618,36 +614,36 @@ public class MusicCont {
    * HashMap<String, Object> hashMap = new HashMap<String, Object>();
    * hashMap.put("musicno", musicno); hashMap.put("passwd", passwd);
    * 
-   * int passwd_cnt = 0; // 패스워드 일치 레코드 갯수 int cnt = 0; // 수정된 레코드 갯수
+   * int passwd_cnt = 0; // �뙣�뒪�썙�뱶 �씪移� �젅肄붾뱶 媛��닔 int cnt = 0; // �닔�젙�맂 �젅肄붾뱶 媛��닔
    * 
    * passwd_cnt = this.musicProc.passwd_check(hashMap); boolean sw = false;
    * 
-   * if (passwd_cnt == 1) { // 패스워드가 일치할 경우 글 삭제 cnt =
+   * if (passwd_cnt == 1) { // �뙣�뒪�썙�뱶媛� �씪移섑븷 寃쎌슦 湲� �궘�젣 cnt =
    * this.musicProc.delete(musicno); if (cnt == 1) { //
-   * musicProc.decreaseCnt(musicno); //음악 카테고리의 수 감소
+   * musicProc.decreaseCnt(musicno); //�쓬�븙 移댄뀒怨좊━�쓽 �닔 媛먯냼
    * 
    * //
    * -----------------------------------------------------------------------------
-   * -------- // 마지막 페이지의 레코드 삭제시의 페이지 번호 -1 처리 HashMap<String, Object> map = new
+   * -------- // 留덉�留� �럹�씠吏��쓽 �젅肄붾뱶 �궘�젣�떆�쓽 �럹�씠吏� 踰덊샇 -1 泥섎━ HashMap<String, Object> map = new
    * HashMap<String, Object>(); map.put("musicno", musicno); map.put("word",
-   * word); // 하나의 페이지가 3개의 레코드로 구성되는 경우 현재 9개의 레코드가 남아 있으면 if
+   * word); // �븯�굹�쓽 �럹�씠吏�媛� 3媛쒖쓽 �젅肄붾뱶濡� 援ъ꽦�릺�뒗 寃쎌슦 �쁽�옱 9媛쒖쓽 �젅肄붾뱶媛� �궓�븘 �엳�쑝硫� if
    * (musicProc.search_count(map) % Musics.RECORD_PER_PAGE == 0) { nowPage =
-   * nowPage - 1; if (nowPage < 1) { nowPage = 1; // 시작 페이지 } } //
+   * nowPage - 1; if (nowPage < 1) { nowPage = 1; // �떆�옉 �럹�씠吏� } } //
    * -----------------------------------------------------------------------------
    * -------- }
    * 
-   * String upDir = Tool.getRealPath(request, "/music/storage/main_images"); // 절대
-   * 경로 sw = Tool.deleteFile(upDir, musicVO.getFile1()); // Folder에서 1건의 파일 삭제 sw
-   * = Tool.deleteFile(upDir, musicVO.getThumb1()); // Folder에서 1건의 파일 삭제
+   * String upDir = Tool.getRealPath(request, "/music/storage/main_images"); // �젅��
+   * 寃쎈줈 sw = Tool.deleteFile(upDir, musicVO.getFile1()); // Folder�뿉�꽌 1嫄댁쓽 �뙆�씪 �궘�젣 sw
+   * = Tool.deleteFile(upDir, musicVO.getThumb1()); // Folder�뿉�꽌 1嫄댁쓽 �뙆�씪 �궘�젣
    * 
    * }
    * 
-   * mav.addObject("cnt", cnt); // request에 저장 mav.addObject("passwd_cnt",
-   * passwd_cnt); // request에 저장 mav.addObject("nowPage", nowPage); // request에 저장
+   * mav.addObject("cnt", cnt); // request�뿉 ���옣 mav.addObject("passwd_cnt",
+   * passwd_cnt); // request�뿉 ���옣 mav.addObject("nowPage", nowPage); // request�뿉 ���옣
    * // System.out.println("--> ContentsCont.java nowPage: " + nowPage);
    * 
-   * mav.addObject("musicno", musicVO.getMusicno()); // redirect parameter 적용
-   * mav.addObject("url", "delete_msg"); // delete_msg.jsp, redirect parameter 적용
+   * mav.addObject("musicno", musicVO.getMusicno()); // redirect parameter �쟻�슜
+   * mav.addObject("url", "delete_msg"); // delete_msg.jsp, redirect parameter �쟻�슜
    * 
    * // mav.setViewName("/contents/delete_msg"); // webapp/contents/delete_msg.jsp
    * mav.setViewName("redirect:/music/msg.do");
@@ -657,8 +653,8 @@ public class MusicCont {
   
   
   /**
-   * 로그인 여부만 체크함으로 다른 사용자의 글을 삭제 할 수 있는 화면이 출력됨.
-   * 삭제 폼, attachfile Ajax 기반 삭제 지원
+   * 濡쒓렇�씤 �뿬遺�留� 泥댄겕�븿�쑝濡� �떎瑜� �궗�슜�옄�쓽 湲��쓣 �궘�젣 �븷 �닔 �엳�뒗 �솕硫댁씠 異쒕젰�맖.
+   * �궘�젣 �뤌, attachfile Ajax 湲곕컲 �궘�젣 吏��썝
    * @return
    */  
   /*

@@ -275,9 +275,6 @@ function update_proc() {
 <body>
 <jsp:include page="/menu/top.jsp" />
   <DIV class='title_line'>
-  <div style="position: absolute; left: 20px; top: 250px;">
-    <a href="../playlist/read_by_memberno.do?memberno=${sessionScope.memberno}">Music_playlist</a> ▶ ${playlistVO.playlistname }
-  </div>
     <div style="position: absolute; right: 20px; top: 250px;">
     <a href="../music/list.do">음악 등록☞</a>
   </div>

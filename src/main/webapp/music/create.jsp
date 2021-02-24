@@ -39,8 +39,6 @@
   <!-- 미 설정 값들 -->
   <!-- <input type='hidden' name='youtube' value='youtube'> -->
   <!-- <input type='hidden' name='memberno' value='1'> -->
-  <input type='hidden' name='genreno' value='1'>
-  <input type='hidden' name='genre' value='발라드'>
   <!-- <input type='hidden' name='likesu' value='0'> -->
   <!-- <input type='hidden' name='replycnt' value='0'> -->
   <!-- <input type='hidden' name='cnt' value='0'> -->
@@ -51,7 +49,7 @@
   <div class="form-group">
      <label class="control-label col-md-3">곡 제목</label>
      <div class="col-md-9">
-       <input type='text' name='title' value='눈의꽃' required="required" 
+       <input type='text' name='title' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div> 
@@ -59,7 +57,7 @@
   <div class="form-group">
      <label class="control-label col-md-3">가수</label>
      <div class="col-md-9">
-       <input type='text' name='singer' value='박효신' required="required" 
+       <input type='text' name='singer' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div>
@@ -67,7 +65,15 @@
   <div class="form-group">
      <label class="control-label col-md-3">앨범명</label>
      <div class="col-md-9">
-       <input type='text' name='album' value='미안하다 사랑한다OST' required="required" 
+       <input type='text' name='album' value='' required="required" 
+                 autofocus="autofocus" class="form-control" style='width: 30%;'>
+     </div>
+  </div>
+  
+  <div class="form-group">
+     <label class="control-label col-md-3">장르</label>
+     <div class="col-md-9">
+       <input type='text' name='genre' value='' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div>
@@ -78,36 +84,6 @@
        <input type='text' name='youtube' value='미안하다 사랑한다OST' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
-  </div>
-  
-  
-  <div class="form-group">
-        
-          
-        <div class="col-md-9">
-        <fieldset>
-          <legend class="form">장르 선택</legend>
-          <label class="check_box">
-            <input type="checkbox" name='list_genre' value='1' checked="checked"> 발라드
-          </label><br>
-        
-          <label style="cursor: pointer;">
-            <input type="checkbox" name='genre2' value='2'> 락
-          </label><br>
-              
-          <label style="cursor: pointer;">
-            <input type="checkbox" name='genre3' value='3'> 메탈
-          </label><br> 
-             
-          <label style="cursor: pointer;">
-            <input type="checkbox" name='genre4' value='4'> 댄스
-          </label><br> 
-          
-          <label style="cursor: pointer;">
-            <input type="checkbox" name='genre4' value='5'> 힙합
-          </label><br> 
-        </fieldset>
-      </div>
   </div>
 
   
