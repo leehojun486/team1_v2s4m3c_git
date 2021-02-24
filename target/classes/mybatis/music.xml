@@ -28,26 +28,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </insert> -->
   
   <insert parameterType="MusicVO" id="create">
-    INSERT INTO music(musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno)
-    VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genre}, #{likesu}, #{playsu}, #{youtube}, #{albumno}, #{singerno}, #{genreno})
+    INSERT INTO music(musicno, title, singer, album, genre, likesu, playsu, youtube)
+    VALUES (music_seq.nextval, #{title}, #{singer}, #{album}, #{genre}, #{likesu}, #{playsu}, #{youtube})
   </insert>
   
   <select id="list" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno
+    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_seqno_asc" resultType="MusicVO">
-    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno
+    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube
     FROM music
     ORDER BY musicno ASC
   </select>
   
   <select id="list_by_singerno" resultType="MusicVO"> 
-    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno
+    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube
     FROM music 
-    WHERE singerno = #{singerno}
     ORDER BY musicno ASC  
   </select>
   
@@ -79,12 +78,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <!-- Join Genre 별 music 목록 -->
-  <select id="list_join_by_genreno" resultType="Genre_Music_Join" parameterType="int">
-    SELECT g.genreno as g_genreno, g.genre as g_genre,
-              m.musicno, m.title, m.singer, m.album, m.singerno, m.albumno
-    FROM genre g, music m
-    WHERE (g.genreno = m.genreno) AND g.genreno=#{genreno}
-    ORDER BY g.genreno ASC
+  <select id="list_join_by_genreno" resultType="MusicVO" parameterType="int">
+    SELECT genre, musicno, title, singer, album
+    FROM music
+    ORDER BY musicno ASC
   </select>
   
   <select id="total_count" resultType="int">
@@ -93,20 +90,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   </select>
   
   <select id="list_by_genreno_search_paging" resultType="MusicVO"  parameterType="HashMap"> 
-    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno, r
+    SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, r
     FROM (
-             SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno, rownum as r
+             SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, rownum as r
              FROM (
-                      SELECT musicno, title, singer, album, genre, likesu, playsu, youtube, albumno, singerno, genreno
+                      SELECT musicno, title, singer, album, genre, likesu, playsu, youtube
                       FROM music
                       <choose>
                         <when test="word == null or word == ''">  <!-- 검색하지 않는 경우 -->
-                          WHERE genreno= #{genreno}
                         </when>
                         <otherwise>
-                          WHERE genreno= #{genreno} AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
-                                                                 OR singer LIKE '%' || #{word} || '%'
-                                                                 OR album LIKE '%' || #{word} || '%' )
+                        (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
+                         OR singer LIKE '%' || #{word} || '%'
+                         OR album LIKE '%' || #{word} || '%' )
                         </otherwise>
                       </choose>
                       ORDER BY musicno DESC
@@ -122,10 +118,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     FROM music
     <choose>
       <when test="word == null or word == ''"> <!-- 검색 x -->
-        WHERE genreno = #{genreno}
+        
       </when>
     <otherwise> <!-- 검색 o -->
-      WHERE genreno = #{genreno} AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
+       AND (title LIKE '%' || #{word} || '%'  <!-- 곡제목, 가수이름, 앨범제목, 가사 중 검색 -->
                                               OR singer LIKE '%' || #{word} || '%'
                                               OR album LIKE '%' || #{word} || '%' ) 
     </otherwise>

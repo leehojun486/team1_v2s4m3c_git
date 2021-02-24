@@ -6,7 +6,7 @@ import java.util.List;
 public interface MusicProcInter {
 
   /**
-   * 생성 :: <Xmp> <insert id="create" parameterType="MusicVO"> </Xmp>
+   * �깮�꽦 :: <Xmp> <insert id="create" parameterType="MusicVO"> </Xmp>
    * 
    * @param musicVO
    * @return
@@ -14,29 +14,29 @@ public interface MusicProcInter {
   public int create(MusicVO musicVO);
 
   /**
-   * 목록조회 :: <Xmp> <select id="list" resultType="MusicVO"> </Xmp>
+   * 紐⑸줉議고쉶 :: <Xmp> <select id="list" resultType="MusicVO"> </Xmp>
    * 
    * @return
    */
   public List<MusicVO> list();
 
   /**
-   * 가수번호로 목록조회 <Xmp> <select id="list_by_singerno" resultType="MusicVO"> </Xmp>
+   * 媛��닔踰덊샇濡� 紐⑸줉議고쉶 <Xmp> <select id="list_by_singerno" resultType="MusicVO"> </Xmp>
    * 
    * @param singerno
    * @return
    */
-  public List<MusicVO> list_by_singerno(int singerno);
+  public List<MusicVO> list_by_singerno();
 
   /**
-   * 목록 - 출력순서 정렬 :: <select id="list_seqno_asc" resultType="MusicVO">
+   * 紐⑸줉 - 異쒕젰�닚�꽌 �젙�젹 :: <select id="list_seqno_asc" resultType="MusicVO">
    * 
    * @return
    */
   public List<MusicVO> list_seqno_asc();
 
   /**
-   * 글 읽기 :: <Xmp> <select id="read" resultType="MusicVO" parameterType="int">
+   * 湲� �씫湲� :: <Xmp> <select id="read" resultType="MusicVO" parameterType="int">
    * </Xmp>
    * 
    * @param musicno
@@ -45,7 +45,7 @@ public interface MusicProcInter {
   public MusicVO read(int musicno);
 
   /** 
-   * 좋아요 리스트 추가하기 
+   * 醫뗭븘�슂 由ъ뒪�듃 異붽��븯湲� 
    * 
    * @param musicVO
    * @return
@@ -53,7 +53,7 @@ public interface MusicProcInter {
   /* public int add_likelist(MusicVO musicVO); */
 
   /**
-   * 좋아요 리스트 삭제하기
+   * 醫뗭븘�슂 由ъ뒪�듃 �궘�젣�븯湲�
    * 
    * @param musicVO
    * @return
@@ -61,7 +61,7 @@ public interface MusicProcInter {
   /* public int delete_likelist(MusicVO musicVO); */
 
   /**
-   * 검색 목록
+   * 寃��깋 紐⑸줉
    * 
    * @param MusicVO
    * @return
@@ -69,28 +69,28 @@ public interface MusicProcInter {
   public List<MusicVO> list_search(MusicVO musicVO);
 
   /**
-   * 통합 VO 기반 join
+   * �넻�빀 VO 湲곕컲 join
    * 
    * @return
    */
   public List<Genre_Music_Join> list_join();
 
   /**
-   * 통합 VO 기반 join
+   * �넻�빀 VO 湲곕컲 join
    * 
    * @return
    */
   public List<Genre_Music_Join> list_join_by_genreno(int genreno);
 
   /**
-   * 전체 레코드 갯수
+   * �쟾泥� �젅肄붾뱶 媛��닔
    * 
    * @return
    */
   public int total_count();
 
   /**
-   * 장르별 검색 레코드 갯수
+   * �옣瑜대퀎 寃��깋 �젅肄붾뱶 媛��닔
    * 
    * @param hashMap
    * @return
@@ -98,7 +98,7 @@ public interface MusicProcInter {
   public int search_count(HashMap<String, Object> hashMap);
 
   /**
-   * 검색 + 페이징 목록
+   * 寃��깋 + �럹�씠吏� 紐⑸줉
    * 
    * @param map
    * @return
@@ -106,26 +106,26 @@ public interface MusicProcInter {
   public List<MusicVO> list_by_genreno_search_paging(HashMap<String, Object> map);
 
   /**
-   * 페이지 목록 문자열 생성, Box 형태
+   * �럹�씠吏� 紐⑸줉 臾몄옄�뿴 �깮�꽦, Box �삎�깭
    * 
-   * @param listFile     목록 파일명
-   * @param genreno      카테고리번호
-   * @param search_count 검색 갯수
-   * @param nowPage      현재 페이지, nowPage는 1부터 시작
-   * @param word         검색어
+   * @param listFile     紐⑸줉 �뙆�씪紐�
+   * @param genreno      移댄뀒怨좊━踰덊샇
+   * @param search_count 寃��깋 媛��닔
+   * @param nowPage      �쁽�옱 �럹�씠吏�, nowPage�뒗 1遺��꽣 �떆�옉
+   * @param word         寃��깋�뼱
    * @return
    */
   public String pagingBox(String listFile, int genreno, int search_count, int nowPage, String word);
   
   /**
-   * 수정 처리
+   * �닔�젙 泥섎━
    * @param musicVO
    * @return
    */
   public int update(MusicVO musicVO);
 
   /**
-   * 패스워드 검사
+   * �뙣�뒪�썙�뱶 寃��궗
    * 
    * @param hashmap
    * @return
@@ -133,7 +133,7 @@ public interface MusicProcInter {
   public int passwd_check(HashMap<String, Object> hashmap);
 
   /**
-   * 삭제
+   * �궘�젣
    * 
    * @param musicno
    * @return
