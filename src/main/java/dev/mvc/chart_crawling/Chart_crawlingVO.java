@@ -14,6 +14,7 @@ public class Chart_crawlingVO {
   private int chartno;
   private String music="";
   private String artist="";
+  private int singerno;
   
   public int getChartno() {
     return chartno;
@@ -33,6 +34,13 @@ public class Chart_crawlingVO {
   public void setArtist(String artist) {
     this.artist = artist;
   }
+  public int getSingerno() {
+    return singerno;
+  }
+  public void setSingerno(int singerno) {
+    this.singerno = singerno;
+  }
+  
 
   
 

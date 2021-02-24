@@ -15,10 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
   <!-- singer 와 singer_review 테이블간의 조인(list) -->
   <select id="read_join" resultType="Chart_singer_joinVO" parameterType="String">
-      SELECT c.chartno,
+    SELECT c.chartno,
                 c.music, s.singerno, c.artist, s.name
     FROM singer s, chart_crawling c
-    WHERE c.artist = #{name}
+    WHERE c.artist = s.name AND s.name = #{name}
     ORDER BY singerno ASC
   </select>
 </mapper>

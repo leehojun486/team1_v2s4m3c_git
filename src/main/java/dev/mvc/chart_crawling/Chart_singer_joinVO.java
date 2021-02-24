@@ -2,19 +2,18 @@ package dev.mvc.chart_crawling;
 
 
 /*
-   CREATE TABLE follow(
-    followno                          NUMBER(10)     NOT NULL    PRIMARY KEY,
-    followvisible                     CHAR(1)    DEFAULT 'N'     NOT NULL,
-    followdate                        DATE     NOT NULL,
-    memberno                          NUMBER(10)     NOT NULL,
-  FOREIGN KEY (memberno) REFERENCES member (memberno)
-);
+    SELECT c.chartno,
+                c.music, s.singerno, c.artist, s.name
+    FROM singer s, chart_crawling c
+    WHERE c.artist = #{name}
+    ORDER BY singerno ASC
  */
 public class Chart_singer_joinVO {
   private int chartno;
-  private String music="";
-  private String artist="";
-  
+  private String music;
+  private int singerno;
+  private String artist;
+  private String name;
   
   public int getChartno() {
     return chartno;
@@ -28,29 +27,27 @@ public class Chart_singer_joinVO {
   public void setMusic(String music) {
     this.music = music;
   }
+  public int getSingerno() {
+    return singerno;
+  }
+  public void setSingerno(int singerno) {
+    this.singerno = singerno;
+  }
   public String getArtist() {
     return artist;
   }
   public void setArtist(String artist) {
     this.artist = artist;
   }
-
-  
-
- 
-
-
-  
-
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
   
   
 
- 
-  
-
-
- 
- 
 }
 
 

@@ -18,32 +18,28 @@ import dev.mvc.singer.SingerVO;
 
 @Controller
 public class Chart_crawlingCont {
- 
-  
+
   @Autowired
   @Qualifier("dev.mvc.chart_crawling.Chart_crawlingProc")
   private Chart_crawlingProcInter chart_crawlingProc;
-  
+
   @Autowired
   @Qualifier("dev.mvc.singer.SingerProc")
   private SingerProcInter singerProc;
 
-  
-  
-  
-
   public Chart_crawlingCont() {
     System.out.println("--> Followcont created");
-}
-  @RequestMapping(value="/chart/list.do", method=RequestMethod.GET,
-                             produces = "text/plain;charset=UTF-8")
-  public ModelAndView list(){
+  }
+
+  @RequestMapping(value = "/chart/list.do", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+  public ModelAndView list() {
     ModelAndView mav = new ModelAndView();
-    List<Chart_crawlingVO> list = this.chart_crawlingProc.list();       
+    List<Chart_crawlingVO> list = this.chart_crawlingProc.list();
 
     mav.addObject("list", list);
     return mav;
   }
+
   /**
    * ï¿½ï¿½Æ° ï¿½ï¿½È¸
    * @return
@@ -52,24 +48,28 @@ public class Chart_crawlingCont {
   @RequestMapping(value="/chart/list_ajax.do", method=RequestMethod.GET,
                              produces = "text/plain;charset=UTF-8")
   public String list_ajax(){
-     
-    List<Chart_crawlingVO> list = this.chart_crawlingProc.list();       
-    
     JSONObject obj = new JSONObject();
+
+    List<Chart_crawlingVO> list = this.chart_crawlingProc.list();
+    for (int i = 0; i < list.size(); i++) {
+      try
+      {
+        List<Chart_singer_joinVO> list_join = this.chart_crawlingProc.read_join(list.get(i).getArtist());
+        list.get(i).setSingerno(list_join.get(0).getSingerno());
+      }
+      catch(IndexOutOfBoundsException e)
+      {
+        // System.out.println("°¡¼öÅ×ÀÌºí¿¡ µî·ÏµÇ¾îÀÖÁö ¾ÊÀ½");
+      }
+    }
     obj.put("list",list);
-    /* System.out.println("list" + obj); */
-    
- 
+
     return obj.toString();
   }
- 
+
   
-  /**
-   * http://localhost:9090/team1/singer/read_join.do
-   * @param singerno
-   * @return
-   */
-  @RequestMapping(value = "/chart/read_join.do", method = RequestMethod.GET)
+  @RequestMapping(value = "/chart/read_join.do",
+                                method = RequestMethod.GET)
   public String read_join(String name) {
     
     /* System.out.println(name); */
@@ -80,14 +80,11 @@ public class Chart_crawlingCont {
      * JSONObject obj = new JSONObject(); obj.put("list",list);
      * System.out.println("list" + obj);
      */
-    JSONObject obj_join = new JSONObject();
-    obj_join.put("list_join",list_join);
-    System.out.println(list_join.get(0).getArtist());
+    JSONObject obj = new JSONObject();
+    obj.put("list_join", list_join);
+    System.out.println(list_join.get(0).getSingerno());
     
-    return obj_join.toString();
+    return obj.toString();
   }
-  
+
 }
-  
-
-

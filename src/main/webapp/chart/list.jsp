@@ -20,35 +20,7 @@
   $(function(){
    getList();
   });
-  function getJoin(name) {
-    var name = name;
-    
-    $.ajax({
-      url: "../chart/read_join.do", // action 대상 주소
-      type: "get",           // get, post
-      cache: false,          // 브러우저의 캐시영역 사용안함.
-      async: true,           // true: 비동기
-      dataType: "json",   // 응답 형식: json, xml, html...
-      data:{'name': name},
-      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
-       var msg = "";
-
-       var row = rdata.list_join[0].singerno;
-       msg+= "<A href='../singer/read.do?singerno='"+row+">";        
-       
-      return msg;
-
-      },
-      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
-      error: function(request, status, error) { // callback 함수
-        var msg = 'ERROR request.status: '+request.status + '/ ' + error;
-        console.log(msg);
-      }
-    });
-  }
   
-
-    
   function getList() {
     $.ajax({
       url: "../chart/list_ajax.do", // action 대상 주소
@@ -72,22 +44,21 @@
        msg+= " <TH class='th'>Title</TH>";
        msg+= "   <TH class='th'>Artist</TH>";
        msg+= "    </TR>";
+       // rdata.list.length
        for (i=0; i < rdata.list.length; i++){
          var row = rdata.list[i];  
-       msg+= " <TR>";
-       msg+= " <TD class='td'>"+row.chartno+"</TD>";
-       msg+= " <TD class='td'>"+row.music+"</TD>      "; 
-
-       msg+= " <TD class='td'>"+getJoin(row.artist)+row.artist+"</A></TD>";
-       
-
+         msg+= " <TR>";
+         msg+= " <TD class='td'>"+row.chartno+"</TD>";
+         msg+= " <TD class='td'>"+row.music+"</TD>      ";
+         var singerno = '';
+         msg+= " <TD class='td'>"+"<A href='../singer/read.do?singerno="+row.singerno+"'>"+row.artist+"</A></TD>";
        }   
        msg+= " </TR>";
         
-      msg+= " </TABLE>";
+       msg+= " </TABLE>";
        
         // alert(msg);
-      $('#table').html(msg);
+       $('#table').html(msg);
 
       },
       // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
