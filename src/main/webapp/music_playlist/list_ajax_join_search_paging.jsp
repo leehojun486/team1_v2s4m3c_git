@@ -281,7 +281,7 @@ function update_proc() {
     <div style="position: absolute; right: 20px; top: 250px;">
     <a href="../music/list.do">음악 등록☞</a>
   </div>
-    <p>수록된 음악 수:§${cnt_music}§</p>
+    <p>수록된 음악 수: ${cnt_music}♬</p>
   </DIV>
   <DIV id='panel_create' style='padding: 10px 0px 10px 0px; background-color: #F9F9F9; width: 100%; text-align: center;'>
   <form action="./list.do" method="get">

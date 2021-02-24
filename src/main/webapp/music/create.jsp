@@ -34,7 +34,7 @@
 <FORM name='frm' method='POST' action='./create.do' class="form-horizontal">
   <!-- <input type='hidden' name='likelist' value='N'>  -->
   <input type='hidden' name='singerno' value='1'>
-  <input type='hidden' name='albumno' value='1'> 
+  <input type='hidden' name='albumno' value='4'> 
   
   <!-- 미 설정 값들 -->
   <!-- <input type='hidden' name='youtube' value='youtube'> -->
@@ -68,6 +68,14 @@
      <label class="control-label col-md-3">앨범명</label>
      <div class="col-md-9">
        <input type='text' name='album' value='미안하다 사랑한다OST' required="required" 
+                 autofocus="autofocus" class="form-control" style='width: 30%;'>
+     </div>
+  </div>
+  
+  <div class="form-group">
+     <label class="control-label col-md-3">youtubeId</label>
+     <div class="col-md-9">
+       <input type='text' name='youtube' value='미안하다 사랑한다OST' required="required" 
                  autofocus="autofocus" class="form-control" style='width: 30%;'>
      </div>
   </div>
